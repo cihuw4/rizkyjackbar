@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-    const [origin, setOrigin] = useState({ x: 95, y: 10 });
+    const [origin, setOrigin] = useState({ x: 50, y: 50 });
     const buttonRef = useRef<HTMLButtonElement>(null);
 
     useEffect(() => {
@@ -18,17 +18,21 @@ export default function Navbar() {
         }
     }, []);
 
-    const menuVariants = {
+    const menuItems = ["Home", "About", "Projects", "Contact"];
+
+    const containerVariants = {
         hidden: {},
-        visible: { transition: { staggerChildren: 0.5 } },
+        visible: {
+            transition: {
+                staggerChildren: 0.5,
+            },
+        },
     };
 
     const itemVariants = {
         hidden: { opacity: 0, y: -20 },
         visible: { opacity: 1, y: 0 },
     };
-
-    const menuItems = ["Home", "About", "Projects", "Contact"];
 
     return (
         <header className="fixed top-0 left-0 w-full z-50">
@@ -67,26 +71,21 @@ export default function Navbar() {
                 {isOpen && (
                     <>
                         <motion.div
-                            className="fixed inset-0 bg-black/80 z-40"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.3 }}
-                            onClick={() => setIsOpen(false)}
-                        />
-
-                        {/* Menu items */}
-                        <motion.div
-                            className="fixed inset-0 flex items-center justify-center z-50"
+                            className="fixed inset-0 bg-black/85 z-40"
                             initial={{ clipPath: `circle(0% at ${origin.x}% ${origin.y}%)` }}
                             animate={{ clipPath: `circle(150% at ${origin.x}% ${origin.y}%)` }}
                             exit={{ clipPath: `circle(0% at ${origin.x}% ${origin.y}%)` }}
-                            transition={{ duration: 0.5, ease: "easeInOut" }}
+                            transition={{ duration: 0.6, ease: "easeInOut" }}
+                            onClick={() => setIsOpen(false)}
+                        />
+
+                        <motion.div
+                            className="fixed inset-0 flex items-center justify-center z-50 pointer-events-auto"
                             onClick={() => setIsOpen(false)}
                         >
                             <motion.div
-                                className="w-full max-w-sm p-6 flex flex-col gap-4 z-50 items-center"
-                                variants={menuVariants}
+                                className="w-full max-w-sm p-6 flex flex-col gap-4 items-center"
+                                variants={containerVariants}
                                 initial="hidden"
                                 animate="visible"
                                 exit="hidden"
@@ -98,10 +97,10 @@ export default function Navbar() {
                                         href={`#${item.toLowerCase()}`}
                                         className="block px-4 py-2 text-center text-white text-xl font-semibold"
                                         variants={itemVariants}
-                                        onClick={() => setIsOpen(false)}
                                         whileHover={{ scale: 1.05, fontWeight: 700 }}
                                         whileTap={{ scale: 0.95, fontWeight: 700 }}
                                         transition={{ type: "spring", stiffness: 300 }}
+                                        onClick={() => setIsOpen(false)}
                                     >
                                         {item}
                                     </motion.a>
