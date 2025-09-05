@@ -9,8 +9,8 @@ import "aos/dist/aos.css";
 export default function Home() {
   useEffect(() => {
     AOS.init({
-      duration: 1000, // durasi animasi
-      once: true, // animasi hanya sekali
+      duration: 1000,
+      once: true,
     });
   }, []);
 
@@ -25,7 +25,7 @@ export default function Home() {
           id="home"
           className="flex flex-col-reverse md:flex-row items-center justify-center min-h-screen px-6 sm:px-10 md:px-16 gap-10 pt-16 sm:pt-20 md:-mt-15"
         >
-          {/* Left Side - Text */}
+          {/* Left Side */}
           <div className="flex-1 text-center md:text-left md:pl-10 lg:pl-20">
             <h2
               data-aos="fade-right"
@@ -70,7 +70,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right Side - Image */}
+          {/* Right Side */}
           <div
             data-aos="fade-left"
             data-aos-delay="500"
