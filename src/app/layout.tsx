@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Poppins, Manrope } from "next/font/google";
 import "./globals.css";
 
+import Navbar from "./components/Navbar";
+import SidebarWrapper from "../app/components/SidebarWrapper"; // ⬅️ bikin wrapper
+
 const poppins = Poppins({
   subsets: ["latin"],
   variable: "--font-poppins",
@@ -22,8 +25,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${poppins.variable} ${manrope.variable}`}>
-      <body>
-        {children}
+      <body className="bg-gray-100 text-gray-900">
+        <Navbar />
+        <SidebarWrapper /> {/* Sidebar hanya muncul di "/" */}
+        <main className="pt-16">{children}</main>
       </body>
     </html>
   );

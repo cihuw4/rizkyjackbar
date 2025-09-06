@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Link from "next/link";
 
 export default function Home() {
   useEffect(() => {
@@ -46,7 +47,8 @@ export default function Home() {
               data-aos-delay="300"
               className="text-base sm:text-lg text-gray-600 max-w-md mx-auto md:mx-0"
             >
-              Focused on JavaScript, Next.js, and Tailwind CSS. Passionate about building clean, interactive, and responsive UI/UX.
+              Focused on JavaScript, Next.js, and Tailwind CSS. Passionate about
+              building clean, interactive, and responsive UI/UX.
             </p>
 
             <div
@@ -117,17 +119,18 @@ export default function Home() {
                 data-aos-delay="300"
                 className="text-gray-700 text-lg mb-8"
               >
-                I am a Frontend Developer passionate about creating clean, responsive, and interactive UI/UX.
+                I am a Frontend Developer passionate about creating clean,
+                responsive, and interactive UI/UX.
               </p>
 
-              <a
+              <Link
                 data-aos="fade-right"
                 data-aos-delay="400"
                 href="/about"
                 className="px-6 py-3 rounded-lg bg-gray-900 text-gray-100 hover:bg-gray-700 transition"
               >
                 Learn More
-              </a>
+              </Link>
             </div>
           </div>
         </section>
@@ -165,17 +168,18 @@ export default function Home() {
                 data-aos-delay="300"
                 className="text-gray-700 text-lg mb-8"
               >
-                Explore some of the web applications and interfaces I have built with modern frontend technologies.
+                Explore some of the web applications and interfaces I have built
+                with modern frontend technologies.
               </p>
 
-              <a
+              <Link
                 data-aos="fade-right"
                 data-aos-delay="400"
-                href="#projects"
+                href="/projects"
                 className="px-6 py-3 rounded-lg bg-gray-900 text-gray-100 hover:bg-gray-700 transition"
               >
                 View Projects
-              </a>
+              </Link>
             </div>
           </div>
         </section>
@@ -213,7 +217,8 @@ export default function Home() {
                 data-aos-delay="300"
                 className="text-gray-700 text-lg mb-8"
               >
-                Have a project in mind or just want to say hi? Feel free to get in touch!
+                Have a project in mind or just want to say hi? Feel free to get
+                in touch!
               </p>
 
               <a

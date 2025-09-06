@@ -1,13 +1,16 @@
 "use client";
 
-import { Home as HomeIcon } from "lucide-react";
+import Link from "next/link";
+import { Home as HomeIcon, ArrowLeft } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [origin, setOrigin] = useState({ x: 50, y: 50 });
     const buttonRef = useRef<HTMLButtonElement>(null);
+    const pathname = usePathname();
 
     useEffect(() => {
         if (buttonRef.current) {
@@ -18,7 +21,12 @@ export default function Navbar() {
         }
     }, []);
 
-    const menuItems = ["Home", "About", "Projects", "Contact"];
+    const menuItems = [
+        { name: "Home", href: "/" },
+        { name: "About", href: "/about" },
+        { name: "Projects", href: "/projects" },
+        { name: "Contact", href: "/contact" },
+    ];
 
     const containerVariants = {
         hidden: {},
@@ -37,10 +45,21 @@ export default function Navbar() {
     return (
         <header className="fixed top-0 left-0 w-full z-50">
             <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 relative z-50">
-                <a href="#home" className="flex items-center z-50">
-                    <HomeIcon className="w-6 h-6 text-gray-900" />
-                </a>
+                <div className="flex items-center gap-3">
+                    {/* Back button hanya muncul di /about & /projects */}
+                    {(pathname === "/about" || pathname === "/projects") && (
+                        <Link href="/">
+                            <ArrowLeft className="w-6 h-6 text-gray-900 cursor-pointer" />
+                        </Link>
+                    )}
 
+                    {/* Home Icon selalu muncul */}
+                    <Link href="/">
+                        <HomeIcon className="w-6 h-6 text-gray-900 cursor-pointer" />
+                    </Link>
+                </div>
+
+                {/* tombol hamburger */}
                 <button
                     ref={buttonRef}
                     className="flex flex-col justify-center items-center w-10 h-10 relative z-50"
@@ -92,18 +111,15 @@ export default function Navbar() {
                                 onClick={(e) => e.stopPropagation()}
                             >
                                 {menuItems.map((item) => (
-                                    <motion.a
-                                        key={item}
-                                        href={`#${item.toLowerCase()}`}
-                                        className="block px-4 py-2 text-center text-white text-xl font-semibold"
-                                        variants={itemVariants}
-                                        whileHover={{ scale: 1.05, fontWeight: 700 }}
-                                        whileTap={{ scale: 0.95, fontWeight: 700 }}
-                                        transition={{ type: "spring", stiffness: 300 }}
-                                        onClick={() => setIsOpen(false)}
-                                    >
-                                        {item}
-                                    </motion.a>
+                                    <motion.div key={item.name} variants={itemVariants}>
+                                        <Link
+                                            href={item.href}
+                                            className="block px-4 py-2 text-center text-white text-xl font-semibold"
+                                            onClick={() => setIsOpen(false)}
+                                        >
+                                            {item.name}
+                                        </Link>
+                                    </motion.div>
                                 ))}
                             </motion.div>
                         </motion.div>
