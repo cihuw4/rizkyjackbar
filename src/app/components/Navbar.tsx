@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Home as HomeIcon, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -9,16 +9,15 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [origin, setOrigin] = useState({ x: 50, y: 50 });
+    const [scrolled, setScrolled] = useState(false);
     const buttonRef = useRef<HTMLButtonElement>(null);
     const pathname = usePathname();
 
+    // Detect scroll
     useEffect(() => {
-        if (buttonRef.current) {
-            const rect = buttonRef.current.getBoundingClientRect();
-            const xPercent = ((rect.left + rect.width / 2) / window.innerWidth) * 100;
-            const yPercent = ((rect.top + rect.height / 2) / window.innerHeight) * 100;
-            setOrigin({ x: xPercent, y: yPercent });
-        }
+        const handleScroll = () => setScrolled(window.scrollY > 0);
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
     const menuItems = [
@@ -30,11 +29,7 @@ export default function Navbar() {
 
     const containerVariants = {
         hidden: {},
-        visible: {
-            transition: {
-                staggerChildren: 0.5,
-            },
-        },
+        visible: { transition: { staggerChildren: 0.2 } },
     };
 
     const itemVariants = {
@@ -42,50 +37,83 @@ export default function Navbar() {
         visible: { opacity: 1, y: 0 },
     };
 
+    const handleToggleMenu = () => {
+        if (buttonRef.current) {
+            const rect = buttonRef.current.getBoundingClientRect();
+            const xPercent = ((rect.left + rect.width / 2) / window.innerWidth) * 100;
+            const yPercent = ((rect.top + rect.height / 2) / window.innerHeight) * 100;
+            setOrigin({ x: xPercent, y: yPercent });
+        }
+        setIsOpen(!isOpen);
+    };
+
     return (
-        <header className="fixed top-0 left-0 w-full z-50">
-            <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 relative z-50">
-                <div className="flex items-center gap-3">
-                    {/* Back button hanya muncul di /about & /projects */}
-                    {(pathname === "/about" || pathname === "/projects") && (
+        <header
+            className="fixed top-0 left-0 w-full z-50 transition-colors duration-300"
+            style={{
+                backgroundColor: scrolled ? "rgba(255, 255, 255, 0.5)" : "transparent",
+            }}
+        >
+            <div className="mx-auto flex items-center justify-between py-6 px-6 relative z-50">
+                {/* Left: Back button + Brand */}
+                <motion.div
+                    className="flex items-center w-20"
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                >
+                    {(pathname === "/about" || pathname === "/projects") ? (
                         <Link href="/">
                             <ArrowLeft className="w-6 h-6 text-gray-900 cursor-pointer" />
                         </Link>
+                    ) : (
+                        <div className="w-6 h-6" />
                     )}
+                    <span
+                        className="ml-2 text-base font-bold text-gray-900 select-none"
+                        style={{ fontFamily: "var(--font-horizon)" }}
+                    >
+                        RIZKY
+                    </span>
+                </motion.div>
 
-                    {/* Home Icon selalu muncul */}
-                    <Link href="/">
-                        <HomeIcon className="w-6 h-6 text-gray-900 cursor-pointer" />
-                    </Link>
-                </div>
-
-                {/* tombol hamburger */}
-                <button
+                {/* Right: Hamburger */}
+                <motion.button
                     ref={buttonRef}
                     className="flex flex-col justify-center items-center w-10 h-10 relative z-50"
-                    onClick={() => setIsOpen(!isOpen)}
+                    onClick={handleToggleMenu}
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
                 >
+                    {/* Bottom line */}
                     <motion.span
                         className="block w-7 h-0.5 rounded"
                         style={{ backgroundColor: isOpen ? "#FF4C4C" : "#1F2937" }}
-                        animate={isOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-                        transition={{ type: "spring", stiffness: 500, damping: 25 }}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={isOpen ? { rotate: 45, y: 6, opacity: 1 } : { rotate: 0, y: 0, opacity: 1 }}
+                        transition={{ delay: 0.1, type: "spring", stiffness: 500, damping: 25 }}
                     />
+                    {/* Middle line */}
                     <motion.span
                         className="block w-7 h-0.5 rounded my-1"
                         style={{ backgroundColor: isOpen ? "#FF4C4C" : "#1F2937" }}
-                        animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
-                        transition={{ duration: 0.2 }}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={isOpen ? { opacity: 0 } : { opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2, duration: 0.3 }}
                     />
+                    {/* Top line */}
                     <motion.span
                         className="block w-7 h-0.5 rounded"
                         style={{ backgroundColor: isOpen ? "#FF4C4C" : "#1F2937" }}
-                        animate={isOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-                        transition={{ type: "spring", stiffness: 500, damping: 25 }}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={isOpen ? { rotate: -45, y: -6, opacity: 1 } : { rotate: 0, y: 0, opacity: 1 }}
+                        transition={{ delay: 0.3, type: "spring", stiffness: 500, damping: 25 }}
                     />
-                </button>
+                </motion.button>
             </div>
 
+            {/* Overlay & Menu */}
             <AnimatePresence>
                 {isOpen && (
                     <>

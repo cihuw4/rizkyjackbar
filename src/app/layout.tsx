@@ -3,7 +3,7 @@ import { Poppins, Manrope } from "next/font/google";
 import "./globals.css";
 
 import Navbar from "./components/Navbar";
-import SidebarWrapper from "../app/components/SidebarWrapper"; // ⬅️ bikin wrapper
+import SidebarWrapper from "../app/components/SidebarWrapper";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -18,16 +18,26 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Muhammad Rizky | Frontend Developer",
+  title: {
+    default: "Rizky | Portfolio",
+    template: "%s | Rizky",
+  },
   description: "Personal portfolio built with Next.js and TailwindCSS",
+  icons: {
+    icon: "/rizky.svg",
+  },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" className={`${poppins.variable} ${manrope.variable}`}>
       <body className="bg-gray-100 text-gray-900">
         <Navbar />
-        <SidebarWrapper /> {/* Sidebar hanya muncul di "/" */}
+        <SidebarWrapper />
         <main className="pt-16">{children}</main>
       </body>
     </html>

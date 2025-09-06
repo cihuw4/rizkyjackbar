@@ -1,11 +1,21 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Horizon";
+  src: url("/fonts/Horizon.woff2") format("woff2"),
+       url("/fonts/Horizon.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #f5f5f5;
   --foreground: #1a1a1a;
 
   --font-poppins: "Poppins", sans-serif;
   --font-manrope: "Manrope", sans-serif;
+  --font-horizon: "Horizon", sans-serif;
 }
 
 @theme inline {

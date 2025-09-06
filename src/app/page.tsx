@@ -24,7 +24,7 @@ export default function Home() {
         {/* Hero Section */}
         <section
           id="home"
-          className="flex flex-col-reverse md:flex-row items-center justify-center min-h-screen px-6 sm:px-10 md:px-16 gap-10 pt-16 sm:pt-20 md:-mt-15"
+          className="flex flex-col-reverse md:flex-row items-center justify-center min-h-screen px-6 sm:px-10 md:px-16 gap-10 pt-5 sm:pt-10 md:-mt-30"
         >
           {/* Left Side */}
           <div className="flex-1 text-center md:text-left md:pl-10 lg:pl-20">
