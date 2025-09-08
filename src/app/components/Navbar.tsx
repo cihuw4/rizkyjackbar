@@ -1,183 +1,199 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, X } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { useState, useEffect, useRef } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { ArrowLeft } from "lucide-react";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-    const [origin, setOrigin] = useState({ x: 50, y: 50 });
     const [scrolled, setScrolled] = useState(false);
-    const buttonRef = useRef<HTMLButtonElement>(null);
     const pathname = usePathname();
+    const router = useRouter();
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    const [circleOrigin, setCircleOrigin] = useState("100% 0%");
+    const [logoKey, setLogoKey] = useState(0);
 
     useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 0);
+        const handleScroll = () => setScrolled(window.scrollY > 20);
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const menuItems = [
-        { name: "Home", href: "/" },
-        { name: "About", href: "/about" },
-        { name: "Projects", href: "/projects" },
-        { name: "Contact", href: "/contact" },
-    ];
-
-    const containerVariants = {
-        hidden: {},
-        visible: { transition: { staggerChildren: 0.2 } },
-    };
-
-    const itemVariants = {
-        hidden: { opacity: 0, y: -20 },
-        visible: { opacity: 1, y: 0 },
-    };
-
-    const handleToggleMenu = () => {
+    useEffect(() => {
         if (buttonRef.current) {
             const rect = buttonRef.current.getBoundingClientRect();
-            const xPercent =
-                ((rect.left + rect.width / 2) / window.innerWidth) * 100;
-            const yPercent =
-                ((rect.top + rect.height / 2) / window.innerHeight) * 100;
-            setOrigin({ x: xPercent, y: yPercent });
+            setCircleOrigin(
+                `${rect.left + rect.width / 2}px ${rect.top + rect.height / 2}px`
+            );
         }
-        setIsOpen(!isOpen);
+    }, [isOpen]);
+
+    useEffect(() => {
+        setLogoKey((prev) => prev + 1);
+    }, [pathname]);
+
+    const menuItems = (() => {
+        if (pathname === "/") {
+            return [
+                { name: "Home", href: "/#home" },
+                { name: "About", href: "/#about" },
+                { name: "Projects", href: "/#projects" },
+                { name: "Contact", href: "/#contact" },
+            ];
+        } else if (pathname === "/about") {
+            return [
+                { name: "Home", href: "/" },
+                { name: "Projects", href: "/projects" },
+            ];
+        } else if (pathname === "/projects") {
+            return [
+                { name: "Home", href: "/" },
+                { name: "About", href: "/about" },
+            ];
+        } else {
+            return [{ name: "Home", href: "/" }];
+        }
+    })();
+
+    const handleMenuClick = (e: React.MouseEvent<HTMLAnchorElement>, itemHref: string) => {
+        setIsOpen(false);
+
+        const hash = itemHref.split("#")[1];
+        if (hash) {
+            e.preventDefault();
+            if (pathname !== "/") {
+                router.push("/");
+                setTimeout(() => {
+                    const element = document.getElementById(hash);
+                    if (element) element.scrollIntoView({ behavior: "smooth" });
+                }, 100);
+            } else {
+                const element = document.getElementById(hash);
+                if (element) element.scrollIntoView({ behavior: "smooth" });
+            }
+        }
     };
 
     return (
         <header
-            className="fixed top-0 left-0 w-full z-50 transition-colors duration-300"
-            style={{
-                backgroundColor: scrolled
-                    ? "rgba(255, 255, 255, 0.5)"
-                    : "transparent",
-            }}
+            className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 
+            ${scrolled || isOpen ? "bg-white/30 backdrop-blur-md" : "bg-transparent"}`}
         >
-            <div className="mx-auto flex items-center justify-between py-6 px-6 relative z-50">
-                <motion.div
-                    key={`brand-${pathname}`}
-                    className="flex items-center w-20"
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -30 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                >
-                    {pathname === "/about" || pathname === "/projects" ? (
-                        <Link href="/">
-                            <ArrowLeft className="w-6 h-6 text-gray-900 cursor-pointer" />
-                        </Link>
-                    ) : (
-                        <div className="w-6 h-6" />
-                    )}
-                    <span
-                        className="ml-2 text-base font-bold text-gray-900 select-none"
-                        style={{ fontFamily: "var(--font-horizon)" }}
+            <div className="max-w-6xl mx-auto flex items-center justify-between py-5 px-6 lg:px-12">
+
+                <div className="flex items-center gap-3 relative">
+
+                    <motion.div
+                        key={logoKey}
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -50 }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
+                        className={`${pathname === "/about" || pathname === "/projects"
+                            ? "lg:block hidden pointer-events-none"
+                            : "block lg:block pointer-events-none"
+                            }`}
                     >
-                        RIZKY
-                    </span>
-                </motion.div>
+                        <div
+                            className="text-xl font-bold tracking-wide text-gray-900"
+                            style={{ fontFamily: "var(--font-horizon)" }}
+                        >
+                            RIZKY
+                        </div>
+                    </motion.div>
+
+                    {(pathname === "/about" || pathname === "/projects") && (
+                        <motion.div
+                            initial={{ opacity: 0, x: -50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -50 }}
+                            transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+                            className="absolute left-0 md:left-[-15px] lg:left-[-40px]"
+                        >
+                            <Link
+                                href="/"
+                                className="flex items-center justify-center p-1 rounded-full hover:bg-black/10 transition"
+                            >
+                                <ArrowLeft size={25} className="text-gray-900" />
+                            </Link>
+                        </motion.div>
+                    )}
+                </div>
 
                 <motion.button
-                    key={`hamburger-${pathname}`}
                     ref={buttonRef}
-                    className="flex justify-center items-center w-10 h-10 relative z-50"
-                    onClick={handleToggleMenu}
-                    initial={{ opacity: 0, x: 30 }}
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="relative w-8 h-8 flex flex-col justify-center items-center gap-1.5 z-[60]"
+                    initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 30 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    exit={{ opacity: 0, x: 50 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.3 }}
                 >
-                    <AnimatePresence mode="wait" initial={false}>
-                        {isOpen ? (
-                            <motion.div
-                                key="close"
-                                initial={{ opacity: 0, scale: 0.5, rotate: -90 }}
-                                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                                exit={{ opacity: 0, scale: 0.5, rotate: 90 }}
-                                transition={{ duration: 0.3 }}
-                            >
-                                <X className="w-7 h-7 text-red-500" />
-                            </motion.div>
-                        ) : (
-                            <motion.div
-                                key="hamburger"
-                                className="flex flex-col justify-center items-center"
-                                initial={{ opacity: 0, scale: 0.5, rotate: 90 }}
-                                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                                exit={{ opacity: 0, scale: 0.5, rotate: -90 }}
-                                transition={{ duration: 0.3 }}
-                            >
-                                <span className="block w-7 h-0.5 rounded bg-gray-900" />
-                                <span className="block w-7 h-0.5 rounded my-1 bg-gray-900" />
-                                <span className="block w-7 h-0.5 rounded bg-gray-900" />
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
+                    <motion.span
+                        initial={false}
+                        animate={{
+                            rotate: isOpen ? 45 : 0,
+                            y: isOpen ? 7 : 0,
+                            backgroundColor: isOpen ? "#ef4444" : "#111111",
+                        }}
+                        transition={{ duration: 0.3 }}
+                        className="block h-0.5 w-7 rounded"
+                    />
+                    <motion.span
+                        initial={false}
+                        animate={{ opacity: isOpen ? 0 : 1 }}
+                        transition={{ duration: 0.2 }}
+                        className="block h-0.5 w-7 bg-gray-900 rounded"
+                    />
+                    <motion.span
+                        initial={false}
+                        animate={{
+                            rotate: isOpen ? -45 : 0,
+                            y: isOpen ? -9 : 0,
+                            backgroundColor: isOpen ? "#ef4444" : "#111111",
+                        }}
+                        transition={{ duration: 0.3 }}
+                        className="block h-0.5 w-7 rounded"
+                    />
                 </motion.button>
             </div>
 
+            {/* Mobile Menu Overlay */}
             <AnimatePresence>
                 {isOpen && (
-                    <>
-                        <motion.div
-                            className="fixed inset-0 bg-black/85 z-40"
-                            initial={{
-                                clipPath: `circle(0% at ${origin.x}% ${origin.y}%)`,
-                            }}
-                            animate={{
-                                clipPath: `circle(150% at ${origin.x}% ${origin.y}%)`,
-                            }}
-                            exit={{
-                                clipPath: `circle(0% at ${origin.x}% ${origin.y}%)`,
-                            }}
-                            transition={{ duration: 0.6, ease: "easeInOut" }}
-                            onClick={() => setIsOpen(false)}
-                        />
-
-                        <motion.div
-                            className="fixed inset-0 flex items-center justify-center z-50 pointer-events-auto"
-                            onClick={() => setIsOpen(false)}
-                        >
+                    <motion.div
+                        className="fixed inset-0 h-screen w-screen bg-black/80 z-50 flex flex-col items-center justify-center gap-8 text-2xl font-semibold text-white"
+                        initial={{ clipPath: `circle(0% at ${circleOrigin})` }}
+                        animate={{ clipPath: `circle(200% at ${circleOrigin})` }}
+                        exit={{ clipPath: `circle(0% at ${circleOrigin})` }}
+                        transition={{ duration: 0.6, ease: "easeInOut" }}
+                    >
+                        {menuItems.map((item, i) => (
                             <motion.div
-                                className="w-full max-w-sm p-6 flex flex-col gap-4 items-center"
-                                variants={containerVariants}
-                                initial="hidden"
-                                animate="visible"
-                                exit="hidden"
-                                onClick={(e) => e.stopPropagation()}
+                                key={item.name}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: 20 }}
+                                transition={{ delay: i * 0.15 + 0.3 }}
                             >
-                                {menuItems.map((item) => (
-                                    <motion.div
-                                        key={item.name}
-                                        variants={itemVariants}
-                                        whileHover={{
-                                            scale: 1.1,
-                                            textShadow:
-                                                "0px 0px 8px rgba(255,255,255,0.8)",
-                                        }}
-                                        whileTap={{ scale: 0.95 }}
-                                        transition={{
-                                            type: "spring",
-                                            stiffness: 300,
-                                            damping: 15,
-                                        }}
+                                <motion.div
+                                    whileHover={{ scale: 1.15 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    transition={{ type: "spring", stiffness: 300 }}
+                                >
+                                    <Link
+                                        href={item.href}
+                                        onClick={(e) => handleMenuClick(e, item.href)}
+                                        className="transition"
                                     >
-                                        <Link
-                                            href={item.href}
-                                            className="block px-4 py-2 text-center text-white text-xl font-semibold"
-                                            onClick={() => setIsOpen(false)}
-                                        >
-                                            {item.name}
-                                        </Link>
-                                    </motion.div>
-                                ))}
+                                        {item.name}
+                                    </Link>
+                                </motion.div>
                             </motion.div>
-                        </motion.div>
-                    </>
+                        ))}
+                    </motion.div>
                 )}
             </AnimatePresence>
         </header>
