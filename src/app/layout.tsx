@@ -4,6 +4,7 @@ import "./globals.css";
 
 import Navbar from "./components/Navbar";
 import SidebarWrapper from "../app/components/SidebarWrapper";
+import ChatbaseWidget from "../app/components/ChatbaseWidget";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -39,6 +40,9 @@ export default function RootLayout({
         <Navbar />
         <SidebarWrapper />
         <main className="pt-16">{children}</main>
+
+        {/* Chatbot muncul di semua halaman */}
+        <ChatbaseWidget />
       </body>
     </html>
   );
