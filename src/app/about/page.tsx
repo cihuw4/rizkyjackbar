@@ -4,6 +4,7 @@ import AboutSection from "../components/AboutSection";
 import SkillsSection from "../components/SkillsSection";
 import ExperienceSection from "../components/ExperienceSection";
 import EducationSection from "../components/EducationSection";
+import QueteSection from "../components/QuoteSection";
 
 export default function AboutPage() {
     return (
@@ -12,6 +13,7 @@ export default function AboutPage() {
             <SkillsSection />
             <ExperienceSection />
             <EducationSection />
+            <QueteSection />
         </div>
     );  
 }
