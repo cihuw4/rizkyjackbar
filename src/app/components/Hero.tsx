@@ -1,6 +1,28 @@
 "use client";
 
+import { useState, useEffect } from "react";
+
 export default function Hero() {
+    const [isClicked, setIsClicked] = useState(false);
+    const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
+
+    // Cek ukuran layar untuk atur apakah device mobile/tablet
+    useEffect(() => {
+        function checkScreen() {
+            setIsMobileOrTablet(window.innerWidth < 768); // Tailwind md breakpoint 768px
+        }
+        checkScreen();
+        window.addEventListener("resize", checkScreen);
+        return () => window.removeEventListener("resize", checkScreen);
+    }, []);
+
+    // Handler klik gambar hanya untuk mobile/tablet
+    function handleImageClick() {
+        if (isMobileOrTablet) {
+            setIsClicked((prev) => !prev);
+        }
+    }
+
     return (
         <section
             id="home"
@@ -34,7 +56,7 @@ export default function Hero() {
                     </p>
 
                     <div
-                        data-aos="fade-right"   
+                        data-aos="fade-right"
                         data-aos-delay="400"
                         className="mt-8 flex justify-center md:justify-start gap-4"
                     >
@@ -63,7 +85,14 @@ export default function Hero() {
                     <img
                         src="/img/profile.JPG"
                         alt="Rizky Jackbar"
-                        className="w-40 h-40 sm:w-48 sm:h-48 rounded-full md:w-70 md:h-[380px] object-cover shadow-lg max-w-full filter grayscale hover:grayscale-0 transition duration-500"
+                        onClick={handleImageClick}
+                        className={`w-40 h-40 sm:w-48 sm:h-48 rounded-full md:w-70 md:h-[380px] object-cover shadow-lg max-w-full filter transition duration-500
+                            ${isMobileOrTablet
+                                ? isClicked
+                                    ? "grayscale-0 cursor-pointer"
+                                    : "grayscale cursor-pointer"
+                                : "grayscale hover:grayscale-0"}
+                        `}
                     />
                 </div>
             </div>
