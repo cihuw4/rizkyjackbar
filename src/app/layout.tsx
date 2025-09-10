@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins, Manrope } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
 import Navbar from "./components/Navbar";
@@ -18,6 +19,12 @@ const manrope = Manrope({
   weight: ["400", "500"],
 });
 
+const horizon = localFont({
+  src: "./fonts/horizon.woff2",
+  variable: "--font-horizon",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: {
     default: "Rizky | Portfolio",
@@ -25,7 +32,7 @@ export const metadata: Metadata = {
   },
   description: "Personal portfolio built with Next.js and TailwindCSS",
   icons: {
-    icon: "/favicon/rizky.ico",               
+    icon: "/favicon/rizky.ico",
     shortcut: "/favicon/favicon-32x32.png",
     apple: "/favicon/apple-touch-icon.png",
   },
@@ -37,7 +44,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${poppins.variable} ${manrope.variable}`}>
+    <html
+      lang="en"
+      className={`${poppins.variable} ${manrope.variable} ${horizon.variable}`}
+    >
       <body className="bg-gray-100 text-gray-900">
         <Navbar />
         <SidebarWrapper />
