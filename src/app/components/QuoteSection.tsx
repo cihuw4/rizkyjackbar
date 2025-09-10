@@ -83,7 +83,7 @@ export default function QuoteSection() {
     return (
         <section
             ref={sectionRef}
-            className="max-w-4xl mx-auto py-20 text-center min-h-[200px]"
+            className="max-w-4xl mx-auto text-center min-h-[200px]"
         >
             <motion.div
                 initial={{ opacity: 0, y: 50 }}
