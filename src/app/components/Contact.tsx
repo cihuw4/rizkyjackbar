@@ -1,8 +1,27 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Mail } from "lucide-react";
 
 export default function Contact() {
+    const [isClicked, setIsClicked] = useState(false);
+    const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
+
+    useEffect(() => {
+        function checkScreen() {
+            setIsMobileOrTablet(window.innerWidth < 768);
+        }
+        checkScreen();
+        window.addEventListener("resize", checkScreen);
+        return () => window.removeEventListener("resize", checkScreen);
+    }, []);
+
+    function handleImageClick() {
+        if (isMobileOrTablet) {
+            setIsClicked((prev) => !prev);
+        }
+    }
+
     return (
         <section
             id="contact"
@@ -18,7 +37,14 @@ export default function Contact() {
                     <img
                         src="/img/profile.JPG"
                         alt="Contact Me"
-                        className="w-100 h-100 sm:w-120 sm:h-120 md:w-80 md:h-[450px] rounded-lg object-cover shadow-lg filter grayscale hover:grayscale-0 transition duration-500"
+                        onClick={handleImageClick}
+                        className={`w-100 h-100 sm:w-120 sm:h-120 md:w-80 md:h-[450px] rounded-lg object-cover shadow-lg filter transition duration-500
+                            ${isMobileOrTablet
+                                ? isClicked
+                                    ? "grayscale-0 cursor-pointer"
+                                    : "grayscale cursor-pointer"
+                                : "grayscale hover:grayscale-0"}
+                        `}
                     />
                 </div>
 

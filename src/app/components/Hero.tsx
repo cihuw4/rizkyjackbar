@@ -6,17 +6,15 @@ export default function Hero() {
     const [isClicked, setIsClicked] = useState(false);
     const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
 
-    // Cek ukuran layar untuk atur apakah device mobile/tablet
     useEffect(() => {
         function checkScreen() {
-            setIsMobileOrTablet(window.innerWidth < 768); // Tailwind md breakpoint 768px
+            setIsMobileOrTablet(window.innerWidth < 768);
         }
         checkScreen();
         window.addEventListener("resize", checkScreen);
         return () => window.removeEventListener("resize", checkScreen);
     }, []);
 
-    // Handler klik gambar hanya untuk mobile/tablet
     function handleImageClick() {
         if (isMobileOrTablet) {
             setIsClicked((prev) => !prev);
