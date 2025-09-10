@@ -34,3 +34,8 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading, sans-serif);
 }
+
+/* Untuk transisi smooth saat scaling width */
+.transition-width {
+  transition: width 0.3s ease;
+}

@@ -1,0 +1,153 @@
+"use client";
+
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import {
+    Timeline,
+    TimelineItem,
+    TimelineSeparator,
+    TimelineConnector,
+    TimelineContent,
+    TimelineDot,
+    TimelineOppositeContent,
+} from "@mui/lab";
+import { Typography, useMediaQuery } from "@mui/material";
+import { FaBriefcase } from "react-icons/fa";
+import { useTheme } from "@mui/material/styles";
+
+interface ExperienceItem {
+    title: string;
+    company: string;
+    description: string;
+    dateInfo: string;
+}
+
+const experiences: ExperienceItem[] = [
+    {
+        title: "Frontend Developer",
+        company: "Biru Digital",
+        description:
+            "Membangun antarmuka web responsif dengan Next.js, Tailwind CSS, dan animasi Framer Motion untuk meningkatkan pengalaman pengguna.",
+        dateInfo: "Jan 2024 | Present | Yogyakarta",
+    },
+    {
+        title: "Frontend Intern",
+        company: "eHealth.co.id",
+        description:
+            "Membantu tim frontend dalam membuat modul dashboard dan form interaktif menggunakan React.js dan Bootstrap.",
+        dateInfo: "Jun 2023 | Dec 2023 | Jakarta",
+    },
+    {
+        title: "Web Developer Freelance",
+        company: "Self-Project",
+        description:
+            "Membuat website portofolio dan landing page interaktif untuk klien menggunakan HTML, CSS, JS, dan React.",
+        dateInfo: "2022 | 2023 | Remote",
+    },
+];
+
+export default function ExperienceSection() {
+    const theme = useTheme();
+    const isMobileOrTablet = useMediaQuery(theme.breakpoints.down("md"));
+
+    useEffect(() => {
+        AOS.init({
+            duration: 600,
+            easing: "ease-out",
+            once: false,
+        });
+        AOS.refresh();
+    }, []);
+
+    return (
+        <section className="max-w-6xl mx-auto py-16 px-4 sm:px-6 relative">
+            <h2
+                className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12"
+                data-aos="fade-up"
+            >
+                Professional Experience
+            </h2>
+
+            <Timeline
+                position={isMobileOrTablet ? "right" : "alternate"}
+                sx={{
+                    "& .MuiTimelineItem-root": {
+                        "&:before": { flex: 0, padding: 0 },
+                    },
+                }}
+            >
+                {experiences.map((exp, idx) => (
+                    <TimelineItem key={idx}>
+                        {!isMobileOrTablet && (
+                            <TimelineOppositeContent className="hidden md:flex">
+                                <Typography color="textSecondary"></Typography>
+                            </TimelineOppositeContent>
+                        )}
+
+                        <TimelineSeparator
+                            sx={{
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "flex-start",
+                            }}
+                        >
+                            <TimelineDot
+                                sx={{
+                                    bgcolor: "gray.500",
+                                    color: "gray.700",
+                                }}
+                                data-aos="zoom-in"
+                                data-aos-duration="600"
+                                data-aos-once="false"
+                            >
+                                <FaBriefcase />
+                            </TimelineDot>
+
+                            {/* Connector */}
+                            <TimelineConnector
+                                sx={{ flexGrow: 1, mt: 0, bgcolor: "gray.400" }}
+                                data-aos="fade-up"
+                                data-aos-duration="600"
+                                data-aos-once="false"
+                            />
+                            {idx === experiences.length - 1 && (
+                                <TimelineDot
+                                    sx={{ width: 0, height: 0, p: 0, m: 0, bgcolor: "transparent" }}
+                                />
+                            )}
+                        </TimelineSeparator>
+
+                        <TimelineContent>
+                            <div className="flex flex-col">
+                                {/* Small date card */}
+                                <div
+                                    className={`bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500 text-gray-900 rounded-xl p-2 px-4 mb-2 w-fit ${
+                                        !isMobileOrTablet && idx % 2 === 1 ? "ml-auto" : ""
+                                    } shadow`}
+                                    data-aos="fade-right"
+                                    data-aos-duration="600"
+                                    data-aos-once="false"
+                                >
+                                    {exp.dateInfo}
+                                </div>
+
+                                {/* Main card */}
+                                <div
+                                    className="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl transition text-left"
+                                    data-aos="fade-left"
+                                    data-aos-duration="600"
+                                    data-aos-once="false"
+                                >
+                                    <h3 className="text-xl font-semibold mb-1">{exp.title}</h3>
+                                    <p className="text-gray-500 mb-1">{exp.company}</p>
+                                    <p className="text-gray-700">{exp.description}</p>
+                                </div>
+                            </div>
+                        </TimelineContent>
+                    </TimelineItem>
+                ))}
+            </Timeline>
+        </section>
+    );
+}

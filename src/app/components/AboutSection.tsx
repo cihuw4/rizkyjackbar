@@ -46,6 +46,9 @@ export default function AboutSection() {
 
             <div
                 data-aos="fade-left"
+                data-aos-duration="1000"
+                data-aos-delay="200"
+                data-aos-once="true"
                 className="flex flex-col justify-center text-left"
             >
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
