@@ -3,11 +3,23 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
+type Tech = {
+    icon: React.ReactNode;
+    color: string;
+};
+
+type Project = {
+    img: string;
+    name: string;
+    desc: string;
+    tech: Tech[];
+};
+
 export default function FlipCard({
     project,
     delay,
 }: {
-    project: any;
+    project: Project;
     delay: number;
 }) {
     const [isFlipped, setIsFlipped] = useState(false);
@@ -56,7 +68,7 @@ export default function FlipCard({
                     </div>
                     <div className="flex items-center justify-between mt-4">
                         <div className="flex gap-3">
-                            {project.tech.map((tech: any, i: number) => (
+                            {project.tech.map((tech, i) => (
                                 <div
                                     key={i}
                                     className="text-2xl sm:text-3xl transition"
@@ -73,8 +85,8 @@ export default function FlipCard({
                 </motion.div>
             </motion.div>
             <style jsx>{`
-        .perspective {perspective: 1000px;}
-      `}</style>
+                .perspective { perspective: 1000px; }
+            `}</style>
         </motion.div>
     );
 }
