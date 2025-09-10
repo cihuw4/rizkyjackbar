@@ -53,14 +53,12 @@ export default function AboutSection() {
             >
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
                     Who I Am
-                </h1>
+                </h1>   
                 <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed">
                     Hi, I'm <span className="font-semibold">Muhammad Rizky</span>.
                     I’m a passionate <span className="font-semibold">Frontend Developer</span>
                     with a strong focus on building clean, responsive, and interactive UI/UX.
-                    I specialize in <span className="text-blue-600 font-medium">JavaScript</span>,
-                    <span className="text-blue-600 font-medium"> Next.js</span>, and
-                    <span className="text-blue-600 font-medium"> Tailwind CSS</span>. <br /><br />
+                    I specialize in JavaScript, Next.js, and Tailwind CSS. <br /><br />
                     My goal is to craft digital experiences that not only look great but also
                     deliver smooth performance and accessibility across all devices.
                 </p>
