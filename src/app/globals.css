@@ -3,7 +3,7 @@
 @font-face {
   font-family: "Horizon";
   src: url("/fonts/Horizon.woff2") format("woff2"),
-       url("/fonts/Horizon.ttf") format("truetype");
+    url("/fonts/Horizon.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -23,7 +23,8 @@
   --font-sans: var(--font-manrope);
 }
 
-html, body {
+html,
+body {
   padding: 0;
   margin: 0;
   overflow-x: hidden;
@@ -34,7 +35,12 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading, sans-serif);
 }
 
