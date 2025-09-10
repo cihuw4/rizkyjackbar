@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Link from "next/link";
@@ -18,8 +18,22 @@ import {
 import { SiPython, SiWordpress } from "react-icons/si";
 
 export default function ProjectsPage() {
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
+    const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
+
     useEffect(() => {
         AOS.init({ duration: 1000, once: true });
+
+        const handleResize = () => {
+            setIsMobileOrTablet(window.innerWidth < 1024);
+        };
+
+        handleResize(); // check on load
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
     }, []);
 
     const previewProjects = projects.slice(0, 4);
@@ -52,12 +66,22 @@ export default function ProjectsPage() {
                                 key={idx}
                                 data-aos="fade-right"
                                 data-aos-delay={item.delay}
-                                className={`absolute ${item.top} ${item.left} w-3/4 aspect-video rounded-2xl overflow-hidden shadow-xl ring-4 ring-white ${item.z} rotate-[${item.rotate}deg] transition-all duration-500 hover:-translate-y-2 hover:scale-105 hover:shadow-2xl`}
+                                onClick={() => {
+                                    if (isMobileOrTablet) {
+                                        setActiveIndex(idx === activeIndex ? null : idx);
+                                    }
+                                }}
+                                className={`absolute ${item.top} ${item.left} w-3/4 aspect-video rounded-2xl overflow-hidden shadow-xl ring-4 ring-white ${item.z} rotate-[${item.rotate}deg] transition-all duration-500 hover:-translate-y-2 hover:scale-105 hover:shadow-2xl cursor-pointer`}
                             >
                                 <img
                                     src={`https://via.placeholder.com/400x225?text=Project+${idx + 1}`}
                                     alt={`Project ${idx + 1}`}
-                                    className="object-cover w-full h-full"
+                                    className={`object-cover w-full h-full transition duration-500 filter ${isMobileOrTablet
+                                            ? activeIndex === idx
+                                                ? "grayscale-0"
+                                                : "grayscale"
+                                            : "grayscale hover:grayscale-0"
+                                        }`}
                                 />
                             </div>
                         ))}
