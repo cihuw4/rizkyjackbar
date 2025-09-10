@@ -123,19 +123,15 @@ export default function ProjectsPage() {
                                     className="text-gray-400"
                                     whileHover={{
                                         color: tech.color,
-                                        scale: 1.2,
                                         filter: "drop-shadow(0 4px 10px rgba(0,0,0,0.3))",
                                     }}
-                                    transition={{ duration: 0.3 }}
+                                    transition={{ duration: 0.3, ease: "easeOut" }}
                                 >
                                     <Icon size={50} />
                                 </motion.div>
-                                <motion.span
-                                    className="mt-2 text-sm font-medium text-gray-700"
-                                    whileHover={{ color: tech.color }}
-                                >
+                                <span className="mt-2 text-sm font-medium text-gray-700">
                                     {tech.name}
-                                </motion.span>
+                                </span>
                             </motion.div>
                         );
                     })}
