@@ -28,7 +28,7 @@ export default function ArchivePage() {
     }, [selectedCategory]);
 
     return (
-        <section className="py-16 sm:py-20 bg-white min-h-screen">
+        <section className="py-16 sm:py-20 min-h-screen">
             <div className="max-w-4xl mx-auto px-6 sm:px-10 md:px-16">
                 <h2
                     data-aos="fade-up"
