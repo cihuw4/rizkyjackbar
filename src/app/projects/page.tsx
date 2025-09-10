@@ -6,6 +6,16 @@ import "aos/dist/aos.css";
 import Link from "next/link";
 import { projects } from "@/data/projects";
 import FlipCard from "../components/FlipCard";
+import { motion } from "framer-motion";
+import {
+    FaReact,
+    FaJsSquare,
+    FaHtml5,
+    FaCss3Alt,
+    FaNodeJs,
+    FaVuejs,
+} from "react-icons/fa";
+import { SiPython, SiWordpress } from "react-icons/si";
 
 export default function ProjectsPage() {
     useEffect(() => {
@@ -14,48 +24,46 @@ export default function ProjectsPage() {
 
     const previewProjects = projects.slice(0, 4);
 
+    const techs = [
+        { icon: FaReact, color: "#61DBFB", name: "React" },
+        { icon: FaJsSquare, color: "#F7DF1E", name: "JavaScript" },
+        { icon: FaHtml5, color: "#E34C26", name: "HTML5" },
+        { icon: FaCss3Alt, color: "#264DE4", name: "CSS3" },
+        { icon: FaNodeJs, color: "#3C873A", name: "Node.js" },
+        { icon: FaVuejs, color: "#42b883", name: "Vue.js" },
+        { icon: SiPython, color: "#3776AB", name: "Python" },
+        { icon: SiWordpress, color: "#21759B", name: "WordPress" },
+    ];
+
+    const loopedTechs = [...techs, ...techs];
+
     return (
-        <>
-            <main className="min-h-screen bg-gray-100 text-gray-900 px-6 sm:px-10 md:px-16 py-30">
+        <div>
+            <section className="min-h-screen bg-gray-100 text-gray-900 px-6 sm:px-10 md:px-16 py-20">
                 <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    {/* Left */}
                     <div className="relative w-full max-w-md sm:max-w-lg md:max-w-xl aspect-video mx-auto lg:mx-0">
-                        <div
-                            data-aos="fade-right"
-                            className="absolute top-14 left-0 w-3/4 aspect-video rounded-2xl overflow-hidden shadow-xl ring-4 ring-white z-0 -rotate-3 transition-all duration-500 hover:-translate-y-2 hover:scale-105 hover:shadow-2xl"
-                        >
-                            <img
-                                src="https://via.placeholder.com/400x225"
-                                alt="Project 3"
-                                className="object-cover w-full h-full"
-                            />
-                        </div>
-
-                        <div
-                            data-aos="fade-right"
-                            data-aos-delay={200}
-                            className="absolute top-8 left-8 sm:left-12 w-3/4 aspect-video rounded-2xl overflow-hidden shadow-xl ring-4 ring-white z-10 rotate-2 transition-all duration-500 hover:-translate-y-2 hover:scale-105 hover:shadow-2xl"
-                        >
-                            <img
-                                src="https://via.placeholder.com/400x225"
-                                alt="Project 2"
-                                className="object-cover w-full h-full"
-                            />
-                        </div>
-
-                        <div
-                            data-aos="fade-right"
-                            data-aos-delay={400}
-                            className="absolute top-0 left-16 sm:left-20 w-3/4 aspect-video rounded-2xl overflow-hidden shadow-xl ring-4 ring-white z-20 -rotate-1 transition-all duration-500 hover:-translate-y-3 hover:scale-110 hover:rotate-1 hover:shadow-2xl"
-                        >
-                            <img
-                                src="https://via.placeholder.com/400x225"
-                                alt="Project 1"
-                                className="object-cover w-full h-full"
-                            />
-                        </div>
+                        {[
+                            { delay: 0, rotate: "-3", top: "top-14", left: "left-0", z: "z-0" },
+                            { delay: 200, rotate: "2", top: "top-8", left: "left-12 sm:left-12", z: "z-10" },
+                            { delay: 400, rotate: "-1", top: "top-0", left: "left-16 sm:left-20", z: "z-20" },
+                        ].map((item, idx) => (
+                            <div
+                                key={idx}
+                                data-aos="fade-right"
+                                data-aos-delay={item.delay}
+                                className={`absolute ${item.top} ${item.left} w-3/4 aspect-video rounded-2xl overflow-hidden shadow-xl ring-4 ring-white ${item.z} rotate-[${item.rotate}deg] transition-all duration-500 hover:-translate-y-2 hover:scale-105 hover:shadow-2xl`}
+                            >
+                                <img
+                                    src={`https://via.placeholder.com/400x225?text=Project+${idx + 1}`}
+                                    alt={`Project ${idx + 1}`}
+                                    className="object-cover w-full h-full"
+                                />
+                            </div>
+                        ))}
                     </div>
 
-                    {/* Right: teks hero */}
+                    {/* Right */}
                     <div className="flex flex-col justify-center text-left">
                         <h1
                             data-aos="fade-left"
@@ -67,22 +75,72 @@ export default function ProjectsPage() {
                             data-aos="fade-left"
                             className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed"
                         >
-                            Here are some of the applications and interfaces I have built
-                            with modern frontend technologies. Each project is crafted with
-                            clean design, performance optimization, and responsive layouts.
+                            Here are some of the applications and interfaces I have built with
+                            modern frontend technologies. Each project is crafted with clean
+                            design, performance optimization, and responsive layouts.
                         </p>
                         <p
                             data-aos="fade-left"
                             data-aos-delay={200}
                             className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mt-4"
                         >
-                            From small business websites to larger enterprise applications,
-                            I aim to deliver scalable and maintainable solutions that
-                            enhance user experience and usability.
+                            From small business websites to larger enterprise applications, I
+                            aim to deliver scalable and maintainable solutions that enhance
+                            user experience and usability.
                         </p>
                     </div>
                 </div>
-            </main>
+            </section>
+
+            <section className="w-screen bg-gray-100 overflow-hidden py-6 -mt-12 lg:-mt-48 mb-16">
+                <motion.div
+                    className="flex gap-10 min-w-max"
+                    animate={{ x: ["0%", "-50%"] }}
+                    transition={{
+                        repeat: Infinity,
+                        repeatType: "loop",
+                        duration: 60,
+                        ease: "linear",
+                    }}
+                >
+                    {loopedTechs.map((tech, idx) => {
+                        const Icon = tech.icon;
+
+                        return (
+                            <motion.div
+                                key={idx}
+                                className="group flex flex-col items-center justify-center min-w-[120px] cursor-pointer"
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{
+                                    delay: idx * 0.1,
+                                    duration: 0.6,
+                                    type: "spring",
+                                }}
+                                whileHover={{ scale: 1.3 }}
+                            >
+                                <motion.div
+                                    className="text-gray-400"
+                                    whileHover={{
+                                        color: tech.color,
+                                        scale: 1.2,
+                                        filter: "drop-shadow(0 4px 10px rgba(0,0,0,0.3))",
+                                    }}
+                                    transition={{ duration: 0.3 }}
+                                >
+                                    <Icon size={50} />
+                                </motion.div>
+                                <motion.span
+                                    className="mt-2 text-sm font-medium text-gray-700"
+                                    whileHover={{ color: tech.color }}
+                                >
+                                    {tech.name}
+                                </motion.span>
+                            </motion.div>
+                        );
+                    })}
+                </motion.div>
+            </section>
 
             <section id="projects-grid" className="pb-16 sm:pb-20">
                 <div className="max-w-6xl mx-auto px-6 sm:px-10 md:px-16">
@@ -94,10 +152,13 @@ export default function ProjectsPage() {
                         Projects
                     </h2>
 
-                    {/* Project */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {previewProjects.map((project, index) => (
-                            <FlipCard key={project.id} project={project} delay={index * 100} />
+                            <FlipCard
+                                key={project.id}
+                                project={project}
+                                delay={index * 100}
+                            />
                         ))}
                     </div>
 
@@ -106,7 +167,7 @@ export default function ProjectsPage() {
                             <button
                                 data-aos="fade-up"
                                 data-aos-delay={200}
-                                className="px-6 py-3 bg-gray-900 text-gray-100 rounded-lg font-semibold hover:bg-gray-700 transition"
+                                className="px-6 py-3 bg-[#0A2757] text-white rounded-lg font-semibold hover:bg-[#0C3A72] transition"
                             >
                                 View All
                             </button>
@@ -114,6 +175,6 @@ export default function ProjectsPage() {
                     </div>
                 </div>
             </section>
-        </>
+        </div>
     );
 }
