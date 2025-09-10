@@ -25,7 +25,9 @@ export const metadata: Metadata = {
   },
   description: "Personal portfolio built with Next.js and TailwindCSS",
   icons: {
-    icon: "/rizky.svg",
+    icon: "/favicon/rizky.ico",               
+    shortcut: "/favicon/favicon-32x32.png",
+    apple: "/favicon/apple-touch-icon.png",
   },
 };
 
@@ -40,8 +42,6 @@ export default function RootLayout({
         <Navbar />
         <SidebarWrapper />
         <main className="pt-16">{children}</main>
-
-        {/* Chatbot muncul di semua halaman */}
         <ChatbaseWidget />
       </body>
     </html>
