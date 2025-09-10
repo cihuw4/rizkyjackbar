@@ -14,7 +14,7 @@ export default function Hero() {
                         data-aos-delay="100"
                         className="text-lg sm:text-xl font-semibold text-gray-700 mb-2"
                     >
-                        Hi, I'm Muhammad Rizky
+                        Muhammad Rizky
                     </h2>
                     <h1
                         data-aos="fade-right"
