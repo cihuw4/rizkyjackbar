@@ -75,7 +75,7 @@ export default function ProjectsHero({
             <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div
                     data-aos="fade-right"
-                    className="relative w-[320px] h-[180px] sm:w-[400px] sm:h-[225px] md:w-[500px] md:h-[280px] mx-auto lg:mx-0"
+                    className="relative w-full max-w-[280px] sm:max-w-[400px] md:max-w-[500px] h-[150px] sm:h-[210px] md:h-[280px] mx-auto lg:mx-0 mb-12 lg:mb-0"
                 >
                     {images.map((img, index) => {
                         const zIndexClass = activeIndex === index ? "z-30" : `z-[${img.z}]`;
@@ -84,7 +84,7 @@ export default function ProjectsHero({
                             <div
                                 key={index}
                                 className={`
-                                    absolute ${img.top} ${img.left} w-[75%] aspect-video rounded-2xl overflow-hidden shadow-xl ring-4 ring-white
+                                    absolute ${img.top} ${img.left} rounded-2xl overflow-hidden shadow-xl ring-4 ring-white
                                     ${zIndexClass} rotate-[${img.rotate}deg] transition-transform duration-500
                                     ${isMobileOrTablet
                                         ? clickedImages[index]
@@ -93,6 +93,7 @@ export default function ProjectsHero({
                                         : "filter grayscale hover:grayscale-0 hover:-translate-y-2 hover:scale-105 hover:shadow-2xl"
                                     }
                                 `}
+                                style={{ width: "75%", aspectRatio: "16 / 9" }}
                                 onClick={() => handleImageClick(index)}
                                 onMouseEnter={() => handleMouseEnter(index)}
                                 onMouseLeave={handleMouseLeave}
@@ -101,7 +102,7 @@ export default function ProjectsHero({
                                     src={img.src}
                                     alt={`Project ${index + 1}`}
                                     fill
-                                    className="object-cover transition duration-500"
+                                    className="object-cover transition duration-500 max-w-full max-h-full"
                                 />
                             </div>
                         );
