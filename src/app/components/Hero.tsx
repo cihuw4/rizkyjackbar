@@ -81,7 +81,7 @@ export default function Hero() {
                     className="flex justify-center md:justify-end"
                 >
                     <img
-                        src="/img/profile.JPG"
+                        src="/img/home_hero.jpg"
                         alt="Rizky Jackbar"
                         onClick={handleImageClick}
                         className={`w-40 h-40 sm:w-48 sm:h-48 rounded-full md:w-70 md:h-[380px] object-cover shadow-lg max-w-full filter transition duration-500

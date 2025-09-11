@@ -34,7 +34,7 @@ export default function About() {
                     className="flex justify-center md:justify-end md:pr-10 lg:pr-20 order-1 md:order-2"
                 >
                     <img
-                        src="/img/profile.JPG"
+                        src="/img/home_about.jpg"
                         alt="About Me"
                         onClick={handleImageClick}
                         className={`w-100 h-100 sm:w-120 sm:h-120 md:w-80 md:h-[450px] rounded-lg object-cover shadow-lg filter transition duration-500
@@ -72,7 +72,7 @@ export default function About() {
                         href="/about"
                         className="px-6 py-3 rounded-lg bg-gray-900 text-gray-100 hover:bg-gray-700 transition"
                     >
-                        Learn More
+                        More About Me
                     </Link>
                 </div>
             </div>

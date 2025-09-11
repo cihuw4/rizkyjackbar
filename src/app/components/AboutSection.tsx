@@ -52,7 +52,7 @@ export default function AboutSection() {
             left: "left-0",
             rotate: "-3",
             baseZ: 0,
-            src: "/images/profile3.jpg",
+            src: "/img/about3.jpg",
             alt: "Profile 3",
         },
         {
@@ -60,7 +60,7 @@ export default function AboutSection() {
             left: "left-10",
             rotate: "2",
             baseZ: 10,
-            src: "/images/profile2.jpg",
+            src: "/img/about2.jpg",
             alt: "Profile 2",
         },
         {
@@ -68,7 +68,7 @@ export default function AboutSection() {
             left: "left-20",
             rotate: "-1",
             baseZ: 20,
-            src: "/images/profile1.jpg",
+            src: "/img/about1.jpg",
             alt: "Profile 1",
         },
     ];

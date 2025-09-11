@@ -4,12 +4,11 @@ import { SiWordpress, SiPython } from "react-icons/si";
 export const projects = [
     {
         id: 1,
-        name: "Portfolio Website",
+        name: "AxiomPay",
         category: "Web Development",
         desc: "A personal portfolio website to showcase projects and skills.",
-        img: "https://via.placeholder.com/400x225",
-        github: "https://github.com/username/portfolio",
-        web: "https://portfolio.vercel.app",
+        img: "/img/axiompay.jpg",
+        web: "https://axiompay.io",
         tech: [
             { icon: <FaReact />, color: "#61DBFB" },
             { icon: <FaJsSquare />, color: "#F7DF1E" },
@@ -18,11 +17,12 @@ export const projects = [
     },
     {
         id: 2,
-        name: "E-commerce Store",
+        name: "Dev Academy",
         category: "Web Development",
         desc: "An online store built for small business with cart and checkout.",
-        img: "https://via.placeholder.com/400x225",
+        img: "/img/devacademy.jpg",
         github: "https://github.com/username/ecommerce-store",
+        web: "https://devacademy.vercel.app",
         tech: [
             { icon: <FaReact />, color: "#61DBFB" },
             { icon: <FaNodeJs />, color: "#3C873A" },
@@ -31,11 +31,11 @@ export const projects = [
     },
     {
         id: 3,
-        name: "Blog Platform",
+        name: "StressByJB",
         category: "Web Development",
         desc: "A responsive blog platform with user authentication and CMS.",
-        img: "https://via.placeholder.com/400x225",
-        web: "https://blog-platform.vercel.app",
+        img: "/img/stressbyjb.jpg",
+        web: "https://stressbyjb.streamlit.app",
         tech: [
             { icon: <FaReact />, color: "#61DBFB" },
             { icon: <FaNodeJs />, color: "#3C873A" },
@@ -44,11 +44,11 @@ export const projects = [
     },
     {
         id: 4,
-        name: "Task Manager App",
+        name: "Furniro",
         category: "Web Development",
         desc: "A productivity app to manage tasks and deadlines efficiently.",
-        img: "https://via.placeholder.com/400x225",
-        github: "https://github.com/username/task-manager",
+        img: "/img/furniro.jpg",
+        web: "https://furnirowebapp.vercel.app/",
         tech: [
             { icon: <FaVuejs />, color: "#42b883" },
             { icon: <FaSass />, color: "#CC6699" },

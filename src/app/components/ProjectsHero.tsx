@@ -25,9 +25,9 @@ export default function ProjectsHero({
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
     const images = [
-        { top: "top-14", left: "left-0", rotate: "-3", z: 0, src: "/images/project1.jpg" },
-        { top: "top-8", left: "left-10", rotate: "2", z: 10, src: "/images/project2.jpg" },
-        { top: "top-0", left: "left-20", rotate: "-1", z: 20, src: "/images/project3.jpg" },
+        { top: "top-14", left: "left-0", rotate: "-3", z: 0, src: "/img/project3.jpg" },
+        { top: "top-8", left: "left-10", rotate: "2", z: 10, src: "/img/project1.jpg" },
+        { top: "top-0", left: "left-20", rotate: "-1", z: 20, src: "/img/project2.jpg" },
     ];
 
     const handleMouseEnter = (index: number) => {
