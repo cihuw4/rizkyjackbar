@@ -36,90 +36,80 @@ export default function TechLogosMarquee({
     const loopedTechs = [...techs, ...techs];
 
     const handleIconClick = (idx: number) => {
-        if (isMobileOrTablet) {
+        if (!isMobileOrTablet) return;
+
+        setClickedIcons((prev) => {
+            const updated = [...prev];
+            updated[idx] = true;
+            return updated;
+        });
+
+        setTimeout(() => {
             setClickedIcons((prev) => {
                 const updated = [...prev];
-                updated[idx] = true;
+                updated[idx] = false;
                 return updated;
             });
-
-            setTimeout(() => {
-                setClickedIcons((prev) => {
-                    const updated = [...prev];
-                    updated[idx] = false;
-                    return updated;
-                });
-            }, 1000);
-        }
+        }, 1000);
     };
 
     return (
-        <section className="w-screen bg-gray-100 overflow-x-hidden py-6 -mt-12 lg:-mt-48 mb-16">
-            <motion.div
-                className="flex gap-10 min-w-max"
-                animate={{ x: ["0%", "-50%"] }}
-                transition={{
-                    repeat: Infinity,
-                    repeatType: "loop",
-                    duration: 30, // dipercepat dari 60 ke 30 detik
-                    ease: "linear",
-                }}
-                style={{
-                    willChange: "transform",
-                    backfaceVisibility: "hidden",
-                    pointerEvents: "none", // supaya animasi tidak ganggu scroll
-                }}
-            >
-                {loopedTechs.map((tech, idx) => {
-                    const Icon = tech.icon;
-                    const isActive = isMobileOrTablet && clickedIcons[idx];
-                    const iconColor = isActive ? tech.color : "#A0AEC0";
+        <section className="w-screen bg-gray-100 overflow-x-hidden py-6 mt-0 mb-16">
+            <div className="flex items-center h-full max-w-6xl mx-auto px-6 sm:px-10 md:px-16">
+                <motion.div
+                    className="flex gap-10 min-w-max"
+                    animate={{ x: ["0%", "-50%"] }}
+                    transition={{
+                        repeat: Infinity,
+                        repeatType: "loop",
+                        duration: 30,
+                        ease: "linear",
+                    }}
+                    style={{
+                        willChange: "transform",
+                        backfaceVisibility: "hidden",
+                        pointerEvents: "none", // Animasi jangan ganggu scroll & klik
+                    }}
+                >
+                    {loopedTechs.map((tech, idx) => {
+                        const Icon = tech.icon;
+                        const isActive = isMobileOrTablet && clickedIcons[idx];
 
-                    return (
-                        <motion.div
-                            key={idx}
-                            className="group flex flex-col items-center justify-center min-w-[120px] cursor-pointer"
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{
-                                delay: idx * 0.1,
-                                duration: 0.6,
-                                type: "spring",
-                            }}
-                            whileHover={
-                                !isMobileOrTablet
-                                    ? {
-                                          scale: 1.3,
-                                          color: tech.color,
-                                          filter:
-                                              "drop-shadow(0 4px 10px rgba(0,0,0,0.3))",
-                                      }
-                                    : {}
-                            }
-                            onClick={() => handleIconClick(idx)}
-                            style={{
-                                pointerEvents: "auto", // supaya ikon bisa diklik / hover
-                            }}
-                        >
+                        return (
                             <motion.div
+                                key={idx}
+                                className={`group flex flex-col items-center justify-center min-w-[120px] ${isMobileOrTablet ? "cursor-pointer" : "cursor-default"
+                                    }`}
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{
+                                    delay: idx * 0.1,
+                                    duration: 0.6,
+                                    type: "spring",
+                                }}
+                                whileHover={
+                                    !isMobileOrTablet
+                                        ? {
+                                            scale: 1.3,
+                                            color: tech.color,
+                                        }
+                                        : {}
+                                }
+                                onClick={isMobileOrTablet ? () => handleIconClick(idx) : undefined}
                                 style={{
-                                    color: iconColor,
-                                    filter: isActive
-                                        ? "drop-shadow(0 4px 10px rgba(0,0,0,0.3))"
-                                        : "none",
-                                    transform: isActive ? "scale(1.3)" : "scale(1)",
-                                    transition: "all 0.3s ease-in-out",
+                                    pointerEvents: "auto",
+                                    color: isActive ? tech.color : "#A0AEC0"
                                 }}
                             >
                                 <Icon size={50} />
+                                <span className="mt-2 text-sm font-medium text-gray-700">
+                                    {tech.name}
+                                </span>
                             </motion.div>
-                            <span className="mt-2 text-sm font-medium text-gray-700">
-                                {tech.name}
-                            </span>
-                        </motion.div>
-                    );
-                })}
-            </motion.div>
+                        );
+                    })}
+                </motion.div>
+            </div>
         </section>
     );
 }

@@ -71,7 +71,7 @@ export default function ProjectsHero({
     };
 
     return (
-        <section className="min-h-screen bg-gray-100 text-gray-900 px-6 sm:px-10 md:px-16 py-20">
+        <section className="min-h-[100vh] pb-32 bg-gray-100 text-gray-900 px-6 sm:px-10 md:px-16 py-20">
             <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 {/* Images */}
                 <div
@@ -112,7 +112,7 @@ export default function ProjectsHero({
                 </div>
 
                 {/* Text */}
-                <div className="flex flex-col justify-center text-left">
+                <div className="flex flex-col justify-center text-left lg:self-end lg:pt-10">
                     <h1
                         data-aos="fade-left"
                         className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
