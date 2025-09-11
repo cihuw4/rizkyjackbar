@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { motion } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 
 interface ProjectsHeroProps {
     isMobileOrTablet: boolean;
@@ -23,39 +25,17 @@ export default function ProjectsHero({
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
     const images = [
-        {
-            top: "top-14",
-            left: "left-0",
-            rotate: "-3",
-            z: 0,
-            src: "/images/project1.jpg",
-        },
-        {
-            top: "top-8",
-            left: "left-10",
-            rotate: "2",
-            z: 10,
-            src: "/images/project2.jpg",
-        },
-        {
-            top: "top-0",
-            left: "left-20",
-            rotate: "-1",
-            z: 20,
-            src: "/images/project3.jpg",
-        },
+        { top: "top-14", left: "left-0", rotate: "-3", z: 0, src: "/images/project1.jpg" },
+        { top: "top-8", left: "left-10", rotate: "2", z: 10, src: "/images/project2.jpg" },
+        { top: "top-0", left: "left-20", rotate: "-1", z: 20, src: "/images/project3.jpg" },
     ];
 
     const handleMouseEnter = (index: number) => {
-        if (!isMobileOrTablet) {
-            setActiveIndex(index);
-        }
+        if (!isMobileOrTablet) setActiveIndex(index);
     };
 
     const handleMouseLeave = () => {
-        if (!isMobileOrTablet) {
-            setActiveIndex(null);
-        }
+        if (!isMobileOrTablet) setActiveIndex(null);
     };
 
     const handleImageClick = (index: number) => {
@@ -65,8 +45,18 @@ export default function ProjectsHero({
                 updated[index] = !updated[index];
                 return updated;
             });
-
             setActiveIndex((prev) => (prev === index ? null : index));
+        }
+    };
+
+    const handleScrollDown = () => {
+        const section = document.getElementById("projects-grid");
+        if (section) {
+            const yOffset = -100;
+            const y =
+                section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+            window.scrollTo({ top: y, behavior: "smooth" });
         }
     };
 
@@ -79,9 +69,7 @@ export default function ProjectsHero({
                     className="relative w-full max-w-[280px] sm:max-w-[400px] md:max-w-[500px] h-[150px] sm:h-[210px] md:h-[280px] mx-auto lg:mx-0 mb-12 lg:mb-0"
                 >
                     {images.map((img, index) => {
-                        const zIndexStyle = {
-                            zIndex: activeIndex === index ? 30 : img.z,
-                        };
+                        const zIndexStyle = { zIndex: activeIndex === index ? 30 : img.z };
 
                         const grayscaleClass = isMobileOrTablet
                             ? clickedImages[index]
@@ -136,6 +124,24 @@ export default function ProjectsHero({
                         aim to deliver scalable and maintainable solutions that enhance
                         user experience and usability.
                     </p>
+
+                    {isMobileOrTablet && (
+                        <div className="mt-8 w-full">
+                            <motion.button
+                                onClick={handleScrollDown}
+                                whileTap={{ scale: 0.98 }}
+                                className="w-full flex items-center justify-center gap-2 px-2 py-2 bg-[#0A2757] text-white rounded-full font-semibold hover:bg-[#0C3A72] transition"
+                            >
+                                Scroll Down
+                                <motion.div
+                                    animate={{ y: [0, 6, 0] }}
+                                    transition={{ repeat: Infinity, duration: 1.2 }}
+                                >
+                                    <ChevronDown size={22} />
+                                </motion.div>
+                            </motion.button>
+                        </div>
+                    )}
                 </div>
             </div>
         </section>
