@@ -12,8 +12,20 @@ export default function EducationSection() {
     const [visible, setVisible] = useState(false);
     const [headlineAnimated, setHeadlineAnimated] = useState(false);
 
+    const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
+
+    const [hoverIndex, setHoverIndex] = useState<number | null>(null);
+
     useEffect(() => {
         AOS.init({ duration: 1000, once: false });
+
+        function checkScreenWidth() {
+            setIsMobileOrTablet(window.innerWidth < 1024);
+        }
+        checkScreenWidth();
+        window.addEventListener("resize", checkScreenWidth);
+
+        return () => window.removeEventListener("resize", checkScreenWidth);
     }, []);
 
     useEffect(() => {
@@ -42,6 +54,20 @@ export default function EducationSection() {
     }, [headlineAnimated]);
 
     const [activeIndex, setActiveIndex] = useState<number | null>(0);
+    const [autoActiveIndex, setAutoActiveIndex] = useState(0);
+
+    useEffect(() => {
+        if (!isMobileOrTablet) {
+            setAutoActiveIndex(-1);
+            return;
+        }
+
+        const interval = setInterval(() => {
+            setAutoActiveIndex(prev => (prev + 1) % 3);
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, [isMobileOrTablet]);
 
     const toggleActive = (index: number) => {
         setActiveIndex(activeIndex === index ? null : index);
@@ -79,31 +105,70 @@ export default function EducationSection() {
                     </p>
                     <p className="text-sm text-gray-500 mt-1">2021 - 2025</p>
 
-                    <div className="flex flex-row gap-2 group w-full justify-center mt-6" data-aos="fade-up">
-                        <div className="relative h-60 rounded-xl overflow-hidden shadow-sm transition-all duration-300 transition-width w-1/3 group-hover:w-1/4 hover:w-1/2 z-10">
-                            <Image
-                                src="/images/campus1.jpg"
-                                alt="Campus 1"
-                                fill
-                                className="object-cover transition duration-300 filter grayscale hover:grayscale-0"
-                            />
-                        </div>
-                        <div className="relative h-60 rounded-xl overflow-hidden shadow-sm transition-all duration-300 transition-width w-1/3 group-hover:w-1/3 hover:w-1/2 z-10">
-                            <Image
-                                src="/images/campus2.jpg"
-                                alt="Campus 2"
-                                fill
-                                className="object-cover transition duration-300 filter grayscale hover:grayscale-0"
-                            />
-                        </div>
-                        <div className="relative h-60 rounded-xl overflow-hidden shadow-sm transition-all duration-300 transition-width w-1/3 group-hover:w-1/4 hover:w-1/2 z-10">
-                            <Image
-                                src="/images/campus3.jpg"
-                                alt="Campus 3"
-                                fill
-                                className="object-cover transition duration-300 filter grayscale hover:grayscale-0"
-                            />
-                        </div>
+                    <div
+                        className="flex flex-row gap-2 group w-full justify-center mt-6"
+                        data-aos="fade-up"
+                    >
+                        {[0, 1, 2].map((idx) => {
+                            const isDesktop = !isMobileOrTablet;
+                            const hovered = hoverIndex !== null;
+
+                            let widthClass = "w-1/3";
+                            let style: React.CSSProperties = {
+                                transition: "width 0.3s ease",
+                                overflow: "hidden",
+                                position: "relative",
+                            };
+
+                            if (isDesktop) {
+                                if (!hovered) {
+                                    widthClass = "w-1/3";
+                                } else {
+                                    if (hoverIndex === idx) {
+                                        widthClass = "w-1/2";
+                                        style.zIndex = 10;
+                                    } else {
+                                        widthClass = "w-1/4";
+                                        style.zIndex = 0;
+                                    }
+                                }
+                            } else {
+                                const isActive = autoActiveIndex === idx;
+                                widthClass = isActive ? "w-1/2" : "w-1/4";
+                            }
+
+                            let transformOrigin = "center";
+                            if (idx === 0) transformOrigin = "left";
+                            else if (idx === 2) transformOrigin = "right";
+
+                            return (
+                                <div
+                                    key={idx}
+                                    onMouseEnter={() => {
+                                        if (isDesktop) setHoverIndex(idx);
+                                    }}
+                                    onMouseLeave={() => {
+                                        if (isDesktop) setHoverIndex(null);
+                                    }}
+                                    className={`relative h-60 rounded-xl overflow-hidden shadow-sm transition-all duration-300 ${widthClass}`}
+                                    style={{ ...style, transformOrigin }}
+                                >
+                                    <Image
+                                        src={`/images/campus${idx + 1}.jpg`}
+                                        alt={`Campus ${idx + 1}`}
+                                        fill
+                                        className={`object-cover transition duration-300 filter ${isDesktop
+                                            ? hoverIndex === idx
+                                                ? "grayscale-0"
+                                                : "grayscale"
+                                            : autoActiveIndex === idx
+                                                ? "grayscale-0"
+                                                : "grayscale"
+                                            }`}
+                                    />
+                                </div>
+                            );
+                        })}
                     </div>
 
                     <div className="w-full mt-6 space-y-4" data-aos="fade-up">
@@ -124,7 +189,7 @@ export default function EducationSection() {
                         Some of my achievements during my study.
                     </p>
 
-                    <ul className="space-y-4 mt-12"> 
+                    <ul className="space-y-4 mt-12">
                         {[
                             {
                                 icon: <FaTrophy />,
@@ -161,7 +226,7 @@ export default function EducationSection() {
                                 >
                                     <motion.div
                                         className={`inline-flex items-center justify-center rounded-full p-3 transition-colors duration-300
-                        ${isActive ? "bg-yellow-100" : "bg-gray-100"}`}
+                                            ${isActive ? "bg-yellow-100" : "bg-gray-100"}`}
                                         initial={false}
                                         animate={{
                                             backgroundColor: isActive ? "#FEF3C7" : "#F3F4F6",
@@ -170,7 +235,7 @@ export default function EducationSection() {
                                     >
                                         {React.cloneElement(icon, {
                                             className: `w-6 h-6 transition-colors duration-300
-                            ${isActive
+                                                ${isActive
                                                     ? "text-yellow-400"
                                                     : "text-gray-400 filter grayscale"
                                                 }`,
