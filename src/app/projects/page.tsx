@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Link from "next/link";
@@ -18,22 +18,8 @@ import {
 import { SiPython, SiWordpress } from "react-icons/si";
 
 export default function ProjectsPage() {
-    const [activeIndex, setActiveIndex] = useState<number | null>(null);
-    const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
-
     useEffect(() => {
         AOS.init({ duration: 1000, once: true });
-
-        const handleResize = () => {
-            setIsMobileOrTablet(window.innerWidth < 1024);
-        };
-
-        handleResize();
-        window.addEventListener("resize", handleResize);
-
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
     }, []);
 
     const previewProjects = projects.slice(0, 4);
@@ -53,10 +39,9 @@ export default function ProjectsPage() {
 
     return (
         <div>
-            {/* === Intro Section === */}
             <section className="min-h-screen bg-gray-100 text-gray-900 px-6 sm:px-10 md:px-16 py-20">
                 <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    {/* === Left Side - Project Images === */}
+                    {/* Left */}
                     <div className="relative w-full max-w-md sm:max-w-lg md:max-w-xl aspect-video mx-auto lg:mx-0">
                         {[
                             { delay: 0, rotate: "-3", top: "top-14", left: "left-0", z: "z-0" },
@@ -67,36 +52,18 @@ export default function ProjectsPage() {
                                 key={idx}
                                 data-aos="fade-right"
                                 data-aos-delay={item.delay}
-                                onClick={() => {
-                                    if (isMobileOrTablet) {
-                                        setActiveIndex(idx === activeIndex ? null : idx);
-                                    }
-                                }}
-                                className={`
-                                    absolute ${item.top} ${item.left} w-3/4 aspect-video rounded-2xl overflow-hidden 
-                                    shadow-xl ring-4 ring-white ${item.z} rotate-[${item.rotate}deg] transition-all duration-500 
-                                    cursor-pointer
-                                    ${isMobileOrTablet && activeIndex === idx ? "-translate-y-2 scale-105 shadow-2xl" : ""}
-                                    hover:-translate-y-2 hover:scale-105 hover:shadow-2xl
-                                `}
+                                className={`absolute ${item.top} ${item.left} w-3/4 aspect-video rounded-2xl overflow-hidden shadow-xl ring-4 ring-white ${item.z} rotate-[${item.rotate}deg] transition-all duration-500 hover:-translate-y-2 hover:scale-105 hover:shadow-2xl`}
                             >
                                 <img
                                     src={`https://via.placeholder.com/400x225?text=Project+${idx + 1}`}
                                     alt={`Project ${idx + 1}`}
-                                    className={`
-                                        object-cover w-full h-full transition duration-500 filter 
-                                        ${isMobileOrTablet
-                                            ? activeIndex === idx
-                                                ? "grayscale-0"
-                                                : "grayscale"
-                                            : "grayscale hover:grayscale-0"}
-                                    `}
+                                    className="object-cover w-full h-full"
                                 />
                             </div>
                         ))}
                     </div>
 
-                    {/* === Right Side - Text === */}
+                    {/* Right */}
                     <div className="flex flex-col justify-center text-left">
                         <h1
                             data-aos="fade-left"
@@ -125,7 +92,6 @@ export default function ProjectsPage() {
                 </div>
             </section>
 
-            {/* === Scrolling Tech Stack Section === */}
             <section className="w-screen bg-gray-100 overflow-hidden py-6 -mt-12 lg:-mt-48 mb-16">
                 <motion.div
                     className="flex gap-10 min-w-max"
@@ -172,7 +138,6 @@ export default function ProjectsPage() {
                 </motion.div>
             </section>
 
-            {/* === Projects Grid Section === */}
             <section id="projects-grid" className="pb-16 sm:pb-20">
                 <div className="max-w-6xl mx-auto px-6 sm:px-10 md:px-16">
                     <h2
