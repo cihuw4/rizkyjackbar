@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import ProjectsHero from "../components/ProjectsHero";
-// import TechLogosMarquee from "../components/TechLogosMarquee";
+import TechLogosMarquee from "../components/TechLogosMarquee";
 import ProjectsGrid from "../components/ProjectsGrid";
 
 export default function ProjectsPage() {
@@ -28,11 +28,11 @@ export default function ProjectsPage() {
                 setClickedImages={setClickedImages}
             />
 
-            {/* <TechLogosMarquee
+            <TechLogosMarquee
                 isMobileOrTablet={isMobileOrTablet}
                 clickedIcons={clickedIcons}
                 setClickedIcons={setClickedIcons}
-            /> */}
+            />
 
             <ProjectsGrid isMobileOrTablet={isMobileOrTablet} />
         </div>
