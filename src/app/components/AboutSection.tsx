@@ -8,6 +8,7 @@ import "aos/dist/aos.css";
 export default function AboutSection() {
     const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
     const [clickedImages, setClickedImages] = useState([false, false, false]);
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
     useEffect(() => {
         AOS.init({ duration: 1000, once: true });
@@ -28,75 +29,94 @@ export default function AboutSection() {
                 updated[index] = !updated[index];
                 return updated;
             });
+
+            setActiveIndex((prev) => (prev === index ? null : index));
         }
     };
 
+    const handleMouseEnter = (index: number) => {
+        if (!isMobileOrTablet) {
+            setActiveIndex(index);
+        }
+    };
+
+    const handleMouseLeave = () => {
+        if (!isMobileOrTablet) {
+            setActiveIndex(null);
+        }
+    };
+
+    const images = [
+        {
+            top: "top-14",
+            left: "left-0",
+            rotate: "-3",
+            baseZ: 0,
+            src: "/images/profile3.jpg",
+            alt: "Profile 3",
+        },
+        {
+            top: "top-8",
+            left: "left-10",
+            rotate: "2",
+            baseZ: 10,
+            src: "/images/profile2.jpg",
+            alt: "Profile 2",
+        },
+        {
+            top: "top-0",
+            left: "left-20",
+            rotate: "-1",
+            baseZ: 20,
+            src: "/images/profile1.jpg",
+            alt: "Profile 1",
+        },
+    ];
+
     return (
-        <section className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-6 py-16">
-            {/* Image Stack */}
-            <div data-aos="fade-right" className="relative w-[320px] h-[460px] mx-auto md:mx-0">
-                {/* Image 1 */}
-                <div
-                    className={`
-                        absolute top-14 left-0 w-64 h-80 rounded-2xl overflow-hidden shadow-xl ring-4 ring-white z-0 -rotate-3 transition-transform duration-500
-                        ${isMobileOrTablet
-                            ? clickedImages[0]
-                                ? "grayscale-0 -translate-y-2 scale-105 shadow-2xl"
-                                : "grayscale cursor-pointer"
-                            : "filter grayscale hover:grayscale-0 hover:-translate-y-2 hover:scale-105 hover:shadow-2xl"
-                        }
-                    `}
-                    onClick={() => handleImageClick(0)}
-                >
-                    <Image
-                        src="/images/profile3.jpg"
-                        alt="Profile 3"
-                        fill
-                        className="object-cover transition duration-500"
-                    />
-                </div>
+        <section className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-center px-4">
+            <div data-aos="fade-right" className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[400px] h-[420px] sm:h-[460px] md:h-[500px] mx-auto lg:mx-0">
+                {images.map(({ top, left, rotate, baseZ, src, alt }, index) => {
+                    const zIndexClass = activeIndex === index ? "z-30" : `z-[${baseZ}]`;
 
-                {/* Image 2 */}
-                <div
-                    className={`
-                        absolute top-8 left-10 w-64 h-80 rounded-2xl overflow-hidden shadow-xl ring-4 ring-white z-10 rotate-2 transition-transform duration-500
-                        ${isMobileOrTablet
-                            ? clickedImages[1]
-                                ? "grayscale-0 -translate-y-2 scale-105 shadow-2xl"
-                                : "grayscale cursor-pointer"
-                            : "filter grayscale hover:grayscale-0 hover:-translate-y-2 hover:scale-105 hover:shadow-2xl"
-                        }
-                    `}
-                    onClick={() => handleImageClick(1)}
-                >
-                    <Image
-                        src="/images/profile2.jpg"
-                        alt="Profile 2"
-                        fill
-                        className="object-cover transition duration-500"
-                    />
-                </div>
+                    const clickedClass =
+                        isMobileOrTablet && clickedImages[index]
+                            ? "grayscale-0 -translate-y-2 scale-105 shadow-2xl"
+                            : isMobileOrTablet
+                            ? "grayscale cursor-pointer"
+                            : "filter grayscale hover:grayscale-0 hover:-translate-y-2 hover:scale-105 hover:shadow-2xl";
 
-                {/* Image 3 */}
-                <div
-                    className={`
-                        absolute top-0 left-20 w-64 h-80 rounded-2xl overflow-hidden shadow-xl ring-4 ring-white z-20 -rotate-1 transition-transform duration-500
-                        ${isMobileOrTablet
-                            ? clickedImages[2]
-                                ? "grayscale-0 -translate-y-3 scale-110 rotate-1 shadow-2xl"
-                                : "grayscale cursor-pointer"
-                            : "filter grayscale hover:grayscale-0 hover:-translate-y-3 hover:scale-110 hover:rotate-1 hover:shadow-2xl"
-                        }
-                    `}
-                    onClick={() => handleImageClick(2)}
-                >
-                    <Image
-                        src="/images/profile1.jpg"
-                        alt="Profile 1"
-                        fill
-                        className="object-cover transition duration-500"
-                    />
-                </div>
+                    return (
+                        <div
+                            key={index}
+                            className={`
+                                absolute ${top} ${left} rounded-2xl overflow-hidden shadow-xl ring-4 ring-white
+                                ${zIndexClass} rotate-[${rotate}deg] transition-transform duration-500
+                                ${clickedClass}
+                                cursor-pointer
+                            `}
+                            onClick={() => handleImageClick(index)}
+                            onMouseEnter={() => handleMouseEnter(index)}
+                            onMouseLeave={handleMouseLeave}
+                            style={{ maxWidth: '100%', maxHeight: '100%' }}
+                        >
+                            <div className="
+                                w-40 h-52
+                                sm:w-48 sm:h-60
+                                md:w-56 md:h-72
+                                lg:w-64 lg:h-80
+                                relative
+                            ">
+                                <Image
+                                    src={src}
+                                    alt={alt}
+                                    fill
+                                    className="object-cover transition duration-500 max-w-full max-h-full"
+                                />
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
 
             {/* Text Section */}
@@ -105,7 +125,7 @@ export default function AboutSection() {
                 data-aos-duration="1000"
                 data-aos-delay="200"
                 data-aos-once="true"
-                className="flex flex-col justify-center text-left px-4"
+                className="flex flex-col justify-center text-left"
             >
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
                     Who I Am
