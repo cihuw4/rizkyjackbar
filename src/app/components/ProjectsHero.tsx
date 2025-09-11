@@ -73,27 +73,29 @@ export default function ProjectsHero({
     return (
         <section className="min-h-screen bg-gray-100 text-gray-900 px-6 sm:px-10 md:px-16 py-20">
             <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                {/* Images */}
                 <div
                     data-aos="fade-right"
                     className="relative w-full max-w-[280px] sm:max-w-[400px] md:max-w-[500px] h-[150px] sm:h-[210px] md:h-[280px] mx-auto lg:mx-0 mb-12 lg:mb-0"
                 >
                     {images.map((img, index) => {
-                        const zIndexClass = activeIndex === index ? "z-30" : `z-[${img.z}]`;
+                        const zIndexStyle = {
+                            zIndex: activeIndex === index ? 30 : img.z,
+                        };
+
+                        const grayscaleClass = isMobileOrTablet
+                            ? clickedImages[index]
+                                ? "grayscale-0"
+                                : "grayscale cursor-pointer"
+                            : activeIndex === index
+                                ? "grayscale-0"
+                                : "grayscale hover:grayscale-0";
 
                         return (
                             <div
                                 key={index}
-                                className={`
-                                    absolute ${img.top} ${img.left} rounded-2xl overflow-hidden shadow-xl ring-4 ring-white
-                                    ${zIndexClass} rotate-[${img.rotate}deg] transition-transform duration-500
-                                    ${isMobileOrTablet
-                                        ? clickedImages[index]
-                                            ? "grayscale-0 -translate-y-2 scale-105 shadow-2xl"
-                                            : "grayscale cursor-pointer"
-                                        : "filter grayscale hover:grayscale-0 hover:-translate-y-2 hover:scale-105 hover:shadow-2xl"
-                                    }
-                                `}
-                                style={{ width: "75%", aspectRatio: "16 / 9" }}
+                                className={`absolute ${img.top} ${img.left} rounded-2xl overflow-hidden shadow-xl ring-4 ring-white rotate-[${img.rotate}deg] transition-transform duration-500 transform hover:-translate-y-2 hover:scale-105`}
+                                style={{ ...zIndexStyle, width: "75%", aspectRatio: "16 / 9" }}
                                 onClick={() => handleImageClick(index)}
                                 onMouseEnter={() => handleMouseEnter(index)}
                                 onMouseLeave={handleMouseLeave}
@@ -102,13 +104,14 @@ export default function ProjectsHero({
                                     src={img.src}
                                     alt={`Project ${index + 1}`}
                                     fill
-                                    className="object-cover transition duration-500 max-w-full max-h-full"
+                                    className={`object-cover transition duration-500 max-w-full max-h-full ${grayscaleClass}`}
                                 />
                             </div>
                         );
                     })}
                 </div>
 
+                {/* Text */}
                 <div className="flex flex-col justify-center text-left">
                     <h1
                         data-aos="fade-left"

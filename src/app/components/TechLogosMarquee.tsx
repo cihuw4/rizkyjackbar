@@ -1,7 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaReact, FaJsSquare, FaHtml5, FaCss3Alt, FaNodeJs, FaVuejs } from "react-icons/fa";
+import {
+    FaReact,
+    FaJsSquare,
+    FaHtml5,
+    FaCss3Alt,
+    FaNodeJs,
+    FaVuejs,
+} from "react-icons/fa";
 import { SiPython, SiWordpress } from "react-icons/si";
 
 interface TechLogosMarqueeProps {
@@ -26,6 +33,7 @@ export default function TechLogosMarquee({
         { icon: SiWordpress, color: "#21759B", name: "WordPress" },
     ];
 
+    // Duplicate the list to create infinite marquee effect
     const loopedTechs = [...techs, ...techs];
 
     const handleIconClick = (idx: number) => {
@@ -36,6 +44,7 @@ export default function TechLogosMarquee({
                 return updated;
             });
 
+            // Reset after 1 second so the icon "click effect" is temporary
             setTimeout(() => {
                 setClickedIcons((prev) => {
                     const updated = [...prev];
@@ -74,7 +83,15 @@ export default function TechLogosMarquee({
                                 duration: 0.6,
                                 type: "spring",
                             }}
-                            whileHover={!isMobileOrTablet ? { scale: 1.3 } : {}}
+                            whileHover={
+                                !isMobileOrTablet
+                                    ? {
+                                        scale: 1.3,
+                                        color: tech.color,
+                                        filter: "drop-shadow(0 4px 10px rgba(0,0,0,0.3))",
+                                    }
+                                    : {}
+                            }
                             onClick={() => handleIconClick(idx)}
                         >
                             <motion.div
@@ -86,15 +103,6 @@ export default function TechLogosMarquee({
                                     transform: isActive ? "scale(1.3)" : "scale(1)",
                                     transition: "all 0.3s ease-in-out",
                                 }}
-                                whileHover={
-                                    !isMobileOrTablet
-                                        ? {
-                                            color: tech.color,
-                                            filter:
-                                                "drop-shadow(0 4px 10px rgba(0,0,0,0.3))",
-                                        }
-                                        : {}
-                                }
                             >
                                 <Icon size={50} />
                             </motion.div>
