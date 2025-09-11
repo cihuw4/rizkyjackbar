@@ -33,7 +33,6 @@ export default function TechLogosMarquee({
         { icon: SiWordpress, color: "#21759B", name: "WordPress" },
     ];
 
-    // Duplicate the list to create infinite marquee effect
     const loopedTechs = [...techs, ...techs];
 
     const handleIconClick = (idx: number) => {
@@ -44,7 +43,6 @@ export default function TechLogosMarquee({
                 return updated;
             });
 
-            // Reset after 1 second so the icon "click effect" is temporary
             setTimeout(() => {
                 setClickedIcons((prev) => {
                     const updated = [...prev];
@@ -56,15 +54,20 @@ export default function TechLogosMarquee({
     };
 
     return (
-        <section className="w-screen bg-gray-100 overflow-hidden py-6 -mt-12 lg:-mt-48 mb-16">
+        <section className="w-screen bg-gray-100 overflow-x-hidden py-6 -mt-12 lg:-mt-48 mb-16">
             <motion.div
                 className="flex gap-10 min-w-max"
                 animate={{ x: ["0%", "-50%"] }}
                 transition={{
                     repeat: Infinity,
                     repeatType: "loop",
-                    duration: 60,
+                    duration: 30, // dipercepat dari 60 ke 30 detik
                     ease: "linear",
+                }}
+                style={{
+                    willChange: "transform",
+                    backfaceVisibility: "hidden",
+                    pointerEvents: "none", // supaya animasi tidak ganggu scroll
                 }}
             >
                 {loopedTechs.map((tech, idx) => {
@@ -86,13 +89,17 @@ export default function TechLogosMarquee({
                             whileHover={
                                 !isMobileOrTablet
                                     ? {
-                                        scale: 1.3,
-                                        color: tech.color,
-                                        filter: "drop-shadow(0 4px 10px rgba(0,0,0,0.3))",
-                                    }
+                                          scale: 1.3,
+                                          color: tech.color,
+                                          filter:
+                                              "drop-shadow(0 4px 10px rgba(0,0,0,0.3))",
+                                      }
                                     : {}
                             }
                             onClick={() => handleIconClick(idx)}
+                            style={{
+                                pointerEvents: "auto", // supaya ikon bisa diklik / hover
+                            }}
                         >
                             <motion.div
                                 style={{
