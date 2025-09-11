@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -20,6 +20,44 @@ export default function ProjectsHero({
         AOS.init({ duration: 1000, once: true });
     }, []);
 
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+    const images = [
+        {
+            top: "top-14",
+            left: "left-0",
+            rotate: "-3",
+            z: 0,
+            src: "/images/project1.jpg",
+        },
+        {
+            top: "top-8",
+            left: "left-10",
+            rotate: "2",
+            z: 10,
+            src: "/images/project2.jpg",
+        },
+        {
+            top: "top-0",
+            left: "left-20",
+            rotate: "-1",
+            z: 20,
+            src: "/images/project3.jpg",
+        },
+    ];
+
+    const handleMouseEnter = (index: number) => {
+        if (!isMobileOrTablet) {
+            setActiveIndex(index);
+        }
+    };
+
+    const handleMouseLeave = () => {
+        if (!isMobileOrTablet) {
+            setActiveIndex(null);
+        }
+    };
+
     const handleImageClick = (index: number) => {
         if (isMobileOrTablet) {
             setClickedImages((prev) => {
@@ -27,32 +65,10 @@ export default function ProjectsHero({
                 updated[index] = !updated[index];
                 return updated;
             });
+
+            setActiveIndex((prev) => (prev === index ? null : index));
         }
     };
-
-    const images = [
-        {
-            top: "top-14",
-            left: "left-0",
-            rotate: "-3",
-            z: "z-0",
-            src: "/images/project1.jpg",
-        },
-        {
-            top: "top-8",
-            left: "left-10",
-            rotate: "2",
-            z: "z-10",
-            src: "/images/project2.jpg",
-        },
-        {
-            top: "top-0",
-            left: "left-20",
-            rotate: "-1",
-            z: "z-20",
-            src: "/images/project3.jpg",
-        },
-    ];
 
     return (
         <section className="min-h-screen bg-gray-100 text-gray-900 px-6 sm:px-10 md:px-16 py-20">
@@ -61,28 +77,35 @@ export default function ProjectsHero({
                     data-aos="fade-right"
                     className="relative w-[320px] h-[180px] sm:w-[400px] sm:h-[225px] md:w-[500px] md:h-[280px] mx-auto lg:mx-0"
                 >
-                    {images.map((img, index) => (
-                        <div
-                            key={index}
-                            className={`
-                                absolute ${img.top} ${img.left} w-[75%] aspect-video rounded-2xl overflow-hidden shadow-xl ring-4 ring-white ${img.z} rotate-[${img.rotate}deg] transition-transform duration-500
-                                ${isMobileOrTablet
-                                    ? clickedImages[index]
-                                        ? "grayscale-0 -translate-y-2 scale-105 shadow-2xl"
-                                        : "grayscale cursor-pointer"
-                                    : "filter grayscale hover:grayscale-0 hover:-translate-y-2 hover:scale-105 hover:shadow-2xl"
-                                }
-                            `}
-                            onClick={() => handleImageClick(index)}
-                        >
-                            <Image
-                                src={img.src}
-                                alt={`Project ${index + 1}`}
-                                fill
-                                className="object-cover transition duration-500"
-                            />
-                        </div>
-                    ))}
+                    {images.map((img, index) => {
+                        const zIndexClass = activeIndex === index ? "z-30" : `z-[${img.z}]`;
+
+                        return (
+                            <div
+                                key={index}
+                                className={`
+                                    absolute ${img.top} ${img.left} w-[75%] aspect-video rounded-2xl overflow-hidden shadow-xl ring-4 ring-white
+                                    ${zIndexClass} rotate-[${img.rotate}deg] transition-transform duration-500
+                                    ${isMobileOrTablet
+                                        ? clickedImages[index]
+                                            ? "grayscale-0 -translate-y-2 scale-105 shadow-2xl"
+                                            : "grayscale cursor-pointer"
+                                        : "filter grayscale hover:grayscale-0 hover:-translate-y-2 hover:scale-105 hover:shadow-2xl"
+                                    }
+                                `}
+                                onClick={() => handleImageClick(index)}
+                                onMouseEnter={() => handleMouseEnter(index)}
+                                onMouseLeave={handleMouseLeave}
+                            >
+                                <Image
+                                    src={img.src}
+                                    alt={`Project ${index + 1}`}
+                                    fill
+                                    className="object-cover transition duration-500"
+                                />
+                            </div>
+                        );
+                    })}
                 </div>
 
                 <div className="flex flex-col justify-center text-left">
