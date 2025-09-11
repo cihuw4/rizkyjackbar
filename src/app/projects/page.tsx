@@ -52,12 +52,12 @@ export default function ProjectsPage() {
                                 key={idx}
                                 data-aos="fade-right"
                                 data-aos-delay={item.delay}
-                                className={`absolute ${item.top} ${item.left} w-3/4 aspect-video rounded-2xl overflow-hidden shadow-xl ring-4 ring-white ${item.z} rotate-[${item.rotate}deg] transition-all duration-500 hover:-translate-y-2 hover:scale-105 hover:shadow-2xl`}
+                                className={`group absolute ${item.top} ${item.left} w-3/4 aspect-video rounded-2xl overflow-hidden shadow-xl ring-4 ring-white ${item.z} rotate-[${item.rotate}deg] transition-all duration-500 hover:-translate-y-2 hover:scale-105 hover:shadow-2xl`}
                             >
                                 <img
                                     src={`https://via.placeholder.com/400x225?text=Project+${idx + 1}`}
                                     alt={`Project ${idx + 1}`}
-                                    className="object-cover w-full h-full"
+                                    className="object-cover w-full h-full grayscale transition duration-500 ease-in-out group-hover:grayscale-0"
                                 />
                             </div>
                         ))}
