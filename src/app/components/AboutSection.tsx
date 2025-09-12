@@ -128,7 +128,7 @@ export default function AboutSection() {
                 className="flex flex-col justify-center text-left"
             >
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                    Who I Am
+                    Who I Am ?
                 </h1>
                 <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed">
                     Hi, I&apos;m <span className="font-semibold">Muhammad Rizky</span>.

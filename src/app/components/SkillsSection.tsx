@@ -10,7 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function SkillsSection() {
     const [selectedSkill, setSelectedSkill] = useState<string>("Frontend Fundamentals");
     const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
-    const [hoveredItem, setHoveredItem] = useState<string | null>(null); // state untuk hover tiap item
+    const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
     const skills = [
         {
@@ -24,9 +24,9 @@ export default function SkillsSection() {
             details: [
                 { name: "HTML", icon: SiHtml5, color: "#E34F26" },
                 { name: "CSS (Flexbox, Grid, Responsive)", icon: SiCss3, color: "#1572B6" },
-                { name: "JavaScript (ES6+)", icon: SiJavascript, color: "#F7DF1E" },
+                { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
                 { name: "DOM Manipulation", icon: FaCode, color: "#FF7F50" },
-                { name: "Web Accessibility (a11y)", icon: SiTestinglibrary, color: "#4CAF50" },
+                { name: "Web Accessibility", icon: SiTestinglibrary, color: "#4CAF50" },
                 { name: "SEO Basics", icon: FaCode, color: "#FF4500" },
             ],
             tools: [
@@ -49,8 +49,6 @@ export default function SkillsSection() {
                 { name: "Bootstrap", icon: SiBootstrap, color: "#7952B3" },
                 { name: "Material UI", icon: SiMaterialdesign, color: "#007FFF" },
                 { name: "Chakra UI", icon: SiChakraui, color: "#319795" },
-                { name: "Ant Design", icon: SiAntdesign, color: "#1890FF" },
-                { name: "DaisyUI", icon: SiDaisyui, color: "#2B2B2B" },
             ],
             tools: [
                 { name: "Figma", icon: SiFigma, color: "#F24E1E" },
@@ -72,17 +70,13 @@ export default function SkillsSection() {
                 { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
                 { name: "Node.js", icon: FaNodeJs, color: "#339933" },
                 { name: "Express.js", icon: FaNodeJs, color: "#000000" },
-                { name: "Redux", icon: FaCode, color: "#764ABC" },
-                { name: "Zustand", icon: FaCode, color: "#00A676" },
                 { name: "React Query", icon: FaReact, color: "#FF4154" },
-                { name: "GraphQL (Apollo)", icon: SiGraphql, color: "#E10098" },
                 { name: "Vue.js", icon: FaVuejs, color: "#4FC08D" },
             ],
             tools: [
                 { name: "Postman", icon: SiPostman, color: "#FF6C37" },
                 { name: "Vite", icon: SiVite, color: "#646CFF" },
                 { name: "Webpack", icon: SiWebpack, color: "#8DD6F9" },
-                { name: "Babel", icon: SiBabel, color: "#F9DC3E" },
             ],
         },
         {
@@ -96,14 +90,9 @@ export default function SkillsSection() {
             details: [
                 { name: "Jest", icon: SiJest, color: "#C21325" },
                 { name: "React Testing Library", icon: FaReact, color: "#61DAFB" },
-                { name: "Cypress", icon: SiCypress, color: "#17202C" },
-                { name: "Playwright", icon: SiVitest, color: "#AD34FF" },
-                { name: "Vitest", icon: SiVitest, color: "#AD34FF" },
             ],
             tools: [
                 { name: "CI/CD (GitHub Actions)", icon: FaGithub, color: "#181717" },
-                { name: "Coverage Report", icon: FaCode, color: "#FF7F50" },
-                { name: "Mock Service Worker", icon: SiPostman, color: "#FF6C37" },
             ],
         },
     ];

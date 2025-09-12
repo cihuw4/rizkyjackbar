@@ -25,25 +25,25 @@ interface ExperienceItem {
 
 const experiences: ExperienceItem[] = [
     {
-        title: "Frontend Developer",
-        company: "Biru Digital",
+        title: "Frontend Developer Intern",
+        company: "Coding Collective Indonesia",
         description:
-            "Membangun antarmuka web responsif dengan Next.js, Tailwind CSS, dan animasi Framer Motion untuk meningkatkan pengalaman pengguna.",
-        dateInfo: "Jan 2024 | Present | Yogyakarta",
+            "Developed and maintained web applications using React, Next.js, and WordPress, focusing on responsive design and seamless user experience.",
+        dateInfo: "May 2025 | August 2025 | Yogyakarta",
     },
     {
-        title: "Frontend Intern",
-        company: "eHealth.co.id",
+        title: "Frontend Web Developer",
+        company: "Tokonesia",
         description:
-            "Membantu tim frontend dalam membuat modul dashboard dan form interaktif menggunakan React.js dan Bootstrap.",
-        dateInfo: "Jun 2023 | Dec 2023 | Jakarta",
+            "Built and customized WordPress-based websites, ensuring optimal performance, clean UI, and cross-device compatibility.",
+        dateInfo: "Jun 2023 | Dec 2023 | Remote (Based in China)",
     },
     {
-        title: "Web Developer Freelance",
-        company: "Self-Project",
+        title: "Teaching Assistant for Practicum",
+        company: "Amikom Yogyakarta University",
         description:
-            "Membuat website portofolio dan landing page interaktif untuk klien menggunakan HTML, CSS, JS, dan React.",
-        dateInfo: "2022 | 2023 | Remote",
+            "Assisted students in mastering Linux operating systems, providing technical guidance during lab sessions and grading assignments.",
+        dateInfo: "Februari - Juli 2023 | Amikom Campus",
     },
 ];
 
@@ -122,9 +122,8 @@ export default function ExperienceSection() {
                             <div className="flex flex-col">
                                 {/* Small date card */}
                                 <div
-                                    className={`bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500 text-gray-900 rounded-xl p-2 px-4 mb-2 w-fit ${
-                                        !isMobileOrTablet && idx % 2 === 1 ? "ml-auto" : ""
-                                    } shadow`}
+                                    className={`bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500 text-gray-900 rounded-xl p-2 px-4 mb-2 w-fit ${!isMobileOrTablet && idx % 2 === 1 ? "ml-auto" : ""
+                                        } shadow`}
                                     data-aos="fade-right"
                                     data-aos-duration="600"
                                     data-aos-once="false"

@@ -55,7 +55,7 @@ export default function Contact() {
                         data-aos-delay="200"
                         className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 relative inline-block"
                     >
-                        Contact Me
+                        Contact
                         <span className="absolute left-0 -bottom-2 w-16 h-1 bg-gradient-to-r from-pink-500 via-yellow-400 to-green-400 rounded-full animate-pulse"></span>
                     </h1>
 

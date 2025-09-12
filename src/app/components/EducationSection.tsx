@@ -6,6 +6,7 @@ import "aos/dist/aos.css";
 import Image from "next/image";
 import { FaTrophy, FaCertificate, FaPaintBrush } from "react-icons/fa";
 import { motion } from "framer-motion";
+import achievementsData from "../../data/achievementsData";
 
 export default function EducationSection() {
     const sectionRef = useRef<HTMLElement | null>(null);
@@ -72,6 +73,12 @@ export default function EducationSection() {
     const toggleActive = (index: number) => {
         setActiveIndex(activeIndex === index ? null : index);
     };
+
+    const [showAll, setShowAll] = useState(false);
+
+    const visibleAchievements = showAll
+        ? achievementsData
+        : achievementsData.slice(0, 3);
 
     return (
         <section
@@ -147,27 +154,31 @@ export default function EducationSection() {
                                     style={{ ...style, transformOrigin }}
                                 >
                                     <Image
-                                        src={`/images/campus${idx + 1}.jpg`}
+                                        src={`/img/campus${idx + 1}.jpg`}
                                         alt={`Campus ${idx + 1}`}
                                         fill
                                         className={`object-cover transition duration-300 filter ${isDesktop
-                                                ? hoverIndex === idx
-                                                    ? "grayscale-0"
-                                                    : "grayscale"
-                                                : autoActiveIndex === idx
-                                                    ? "grayscale-0"
-                                                    : "grayscale"
+                                            ? hoverIndex === idx
+                                                ? "grayscale-0"
+                                                : "grayscale"
+                                            : autoActiveIndex === idx
+                                                ? "grayscale-0"
+                                                : "grayscale"
                                             }`}
                                     />
                                 </div>
                             );
                         })}
                     </div>
-
                     <div className="w-full mt-6 space-y-4" data-aos="fade-up">
                         <p className="text-gray-600">
-                            Focused on software development, web programming, and UI/UX design. Actively involved in projects using React,
-                            Next.js, and Tailwind CSS.
+                            I pursued my undergraduate studies in Informatics at Universitas Amikom Yogyakarta, where I built a solid foundation in the core areas of computer science and software engineering. Throughout the program, I studied various subjects such as algorithms and data structures, database systems, computer networks, operating systems, and software development methodologies.
+                        </p>
+                        <p className="text-gray-600">
+                            Beyond theoretical learning, I was also actively involved in practical projects that focused on modern web development. I gained extensive experience in building responsive and interactive user interfaces using technologies like React, Next.js, and Tailwind CSS, while also applying best practices in version control, clean code, and collaborative development through Git and GitHub.
+                        </p>
+                        <p className="text-gray-600">
+                            My academic journey helped me develop strong problem-solving skills, logical thinking, and adaptability to emerging technologies. I also explored areas such as UI/UX design principles, API integration, and backend development fundamentals, preparing me to contribute effectively to real-world software development projects as a frontend developer.
                         </p>
                     </div>
                 </div>
@@ -178,34 +189,20 @@ export default function EducationSection() {
                     <p className="text-lg font-medium mt-1">Some of my achievements during my study.</p>
 
                     <ul className="space-y-4 mt-12">
-                        {[
-                            {
-                                icon: <FaTrophy />,
-                                title: "1st Place Web Design Competition - HackDev 2022",
-                                desc: "Built an interactive landing page with Next.js & Tailwind CSS.",
-                            },
-                            {
-                                icon: <FaCertificate />,
-                                title: "Frontend Developer Certification - Dicoding",
-                                desc: "Official certification from Dicoding Academy (2023).",
-                            },
-                            {
-                                icon: <FaPaintBrush />,
-                                title: "UI/UX Design Finalist - UXverse 2021",
-                                desc: "Finalist in a national-scale user interface design competition.",
-                            },
-                        ].map(({ icon, title, desc }, i) => {
+                        {achievementsData.map(({ icon, title, desc }, i) => {
                             const isActive = activeIndex === i;
 
                             return (
                                 <motion.li
                                     key={i}
                                     onClick={() => toggleActive(i)}
-                                    className="bg-white p-4 shadow rounded-md flex items-center space-x-4 cursor-pointer"
+                                    className="bg-white p-4 shadow rounded-md flex items-center space-x-4 cursor-pointer overflow-hidden"
                                     initial={false}
                                     animate={{
                                         scale: isActive ? 1.05 : 1,
-                                        boxShadow: isActive ? "0 8px 20px rgba(43, 36, 15, 0.01)" : "0 2px 8px rgba(0, 0, 0, 0.1)",
+                                        boxShadow: isActive
+                                            ? "0 8px 20px rgba(43, 36, 15, 0.01)"
+                                            : "0 2px 8px rgba(0, 0, 0, 0.1)",
                                     }}
                                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
                                     data-aos="fade-up"
@@ -213,20 +210,22 @@ export default function EducationSection() {
                                     <motion.div
                                         className={`inline-flex items-center justify-center rounded-full p-3 transition-colors duration-300 ${isActive ? "bg-yellow-100" : "bg-gray-100"
                                             }`}
-                                        initial={false}
-                                        animate={{
-                                            backgroundColor: isActive ? "#FEF3C7" : "#F3F4F6",
-                                        }}
-                                        transition={{ duration: 0.3 }}
                                     >
                                         {React.cloneElement(icon, {
-                                            className: `w-6 h-6 transition-colors duration-300 ${isActive ? "text-yellow-400" : "text-gray-400 filter grayscale"
+                                            className: `w-6 h-6 transition-colors duration-300 ${isActive
+                                                ? "text-yellow-400"
+                                                : "text-gray-400 filter grayscale"
                                                 }`,
                                         })}
                                     </motion.div>
-                                    <div>
-                                        <h4 className="font-semibold">{title}</h4>
-                                        <p className="text-sm text-gray-600">{desc}</p>
+
+                                    <div className="flex flex-col flex-1 min-w-0">
+                                        <h4 className="text-sm sm:text-base font-semibold truncate">
+                                            {title}
+                                        </h4>
+                                        <p className="text-xs sm:text-sm text-gray-600 truncate">
+                                            {desc}
+                                        </p>
                                     </div>
                                 </motion.li>
                             );
