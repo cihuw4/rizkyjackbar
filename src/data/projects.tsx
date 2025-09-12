@@ -36,7 +36,7 @@ export const projects = [
     {
         id: 3,
         name: "StressByJB",
-        category: "Web Development",
+        category: "Data Science",
         desc: "Final year project: A stress-level prediction system for students and learners, built using Python and Streamlit, deployed on Google Cloud.",
         img: "/img/stressbyjb.jpg",
         github: "https://github.com/cihuw4/stressapp.git",
