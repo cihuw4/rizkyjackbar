@@ -80,7 +80,7 @@ export default function Contact() {
 
                         {/* LinkedIn */}
                         <a
-                            href="https://www.linkedin.com/in/muhamadrizky/"
+                            href="https://www.linkedin.com/in/muhammad-rizky-842606218/"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-900 text-white hover:bg-gray-500 transition"
@@ -92,7 +92,7 @@ export default function Contact() {
 
                         {/* GitHub */}
                         <a
-                            href="https://github.com/muhamadrizky"
+                            href="https://github.com/cihuw4"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-900 text-white hover:bg-gray-500 transition"
