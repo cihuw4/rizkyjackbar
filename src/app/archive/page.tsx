@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { projects } from "@/data/projects";
 import { FaGithub, FaGlobe } from "react-icons/fa";
 
-const categories = ["All", "Web Development", "Data & AI"];
+const categories = ["All", "Web Development", "Data Science"];
 
 export default function ArchivePage() {
     const [selectedCategory, setSelectedCategory] = useState("All");
