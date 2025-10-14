@@ -6,6 +6,7 @@ import "aos/dist/aos.css";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import achievementsData from "../../data/achievementsData";
+import { ChevronDown } from "lucide-react";
 
 export default function EducationSection() {
     const sectionRef = useRef<HTMLElement | null>(null);
@@ -14,13 +15,7 @@ export default function EducationSection() {
     const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
     const [hoverIndex, setHoverIndex] = useState<number | null>(null);
     const [autoActiveIndex, setAutoActiveIndex] = useState(0);
-
-    const [selectedAchievement, setSelectedAchievement] = useState<null | {
-        title: string;
-        desc: string;
-        icon: JSX.Element;
-        pdf: string;
-    }>(null);
+    const [openIndex, setOpenIndex] = useState<number | null>(null);
 
     // ✅ Inisialisasi AOS & cek device
     useEffect(() => {
@@ -60,14 +55,9 @@ export default function EducationSection() {
         return () => clearInterval(interval);
     }, [isMobileOrTablet]);
 
-    const openPopup = (achievement: {
-        title: string;
-        desc: string;
-        icon: JSX.Element;
-        pdf: string;
-    }) => setSelectedAchievement(achievement);
-
-    const closePopup = () => setSelectedAchievement(null);
+    const toggleDropdown = (index: number) => {
+        setOpenIndex(openIndex === index ? null : index);
+    };
 
     return (
         <section
@@ -172,86 +162,70 @@ export default function EducationSection() {
                         {achievementsData.map(({ icon, title, desc, pdf }, i) => (
                             <motion.li
                                 key={i}
-                                onClick={() => openPopup({ title, desc, icon, pdf })}
-                                whileHover={{ scale: 1.05, boxShadow: "0 8px 24px rgba(0,0,0,0.15)" }}
-                                className="bg-white p-4 shadow rounded-md flex items-center space-x-4 cursor-pointer overflow-hidden transition-transform"
+                                className="bg-white shadow rounded-md cursor-pointer overflow-hidden transition-transform"
                                 data-aos="fade-up"
                             >
-                                <motion.div className="inline-flex items-center justify-center rounded-full p-3 bg-gray-100 group-hover:bg-yellow-100 transition-colors duration-300">
-                                    {React.cloneElement(icon, {
-                                        className:
-                                            "w-6 h-6 text-gray-400 group-hover:text-yellow-400 transition-colors duration-300",
-                                    })}
-                                </motion.div>
+                                {/* Header */}
+                                <button
+                                    onClick={() => toggleDropdown(i)}
+                                    className="w-full flex justify-between items-center p-4 text-left group"
+                                >
+                                    <div className="flex items-center gap-3 flex-1 min-w-0">
+                                        <motion.div className="inline-flex items-center justify-center rounded-full p-3 bg-gray-100 group-hover:bg-yellow-100 transition-colors duration-300">
+                                            {React.cloneElement(icon, {
+                                                className:
+                                                    "w-6 h-6 text-gray-400 group-hover:text-yellow-400 transition-colors duration-300",
+                                            })}
+                                        </motion.div>
 
-                                <div className="flex flex-col flex-1 min-w-0">
-                                    <h4 className="text-sm sm:text-base font-semibold truncate">{title}</h4>
-                                    <p className="text-xs sm:text-sm text-gray-600 truncate">{desc}</p>
-                                </div>
+                                        <div className="flex flex-col flex-1 min-w-0">
+                                            <h4 className="text-sm sm:text-base font-semibold truncate">{title}</h4>
+                                            <p className="text-xs sm:text-sm text-gray-600 truncate">{desc}</p>
+                                        </div>
+                                    </div>
+
+                                    <ChevronDown
+                                        className={`w-5 h-5 text-gray-400 transition-transform duration-300 ml-3 flex-shrink-0 ${openIndex === i ? "rotate-180" : "rotate-0"
+                                            }`}
+                                    />
+                                </button>
+
+                                {/* Dropdown PDF */}
+                                <AnimatePresence>
+                                    {openIndex === i && (
+                                        <motion.div
+                                            initial={{ height: 0, opacity: 0 }}
+                                            animate={{ height: "auto", opacity: 1 }}
+                                            exit={{ height: 0, opacity: 0 }}
+                                            transition={{ duration: 0.3 }}
+                                            className="border-t bg-gray-50"
+                                        >
+                                            <div className="p-3 sm:p-4">
+                                                <div className="w-full h-[300px] sm:h-[400px] bg-gray-100 rounded-md overflow-hidden">
+                                                    <iframe
+                                                        src={pdf}
+                                                        className="w-full h-full"
+                                                        title={`PDF - ${title}`}
+                                                    ></iframe>
+                                                </div>
+                                                <div className="mt-3 flex justify-center sm:justify-end">
+                                                    <a
+                                                        href={pdf}
+                                                        download
+                                                        className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition text-sm sm:text-base w-full sm:w-auto text-center"
+                                                    >
+                                                        Download PDF
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
                             </motion.li>
                         ))}
                     </ul>
                 </div>
             </div>
-
-            <AnimatePresence>
-                {selectedAchievement && (
-                    <motion.div
-                        className="fixed inset-0 z-[9999] flex justify-center items-center px-2 sm:px-4"
-                        onClick={closePopup}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                    >
-                        <motion.div
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.8, opacity: 0 }}
-                            transition={{ duration: 0.3 }}
-                            className="bg-white rounded-lg shadow-lg w-full max-w-[95%] sm:max-w-2xl md:max-w-4xl relative flex flex-col overflow-hidden max-h-[90vh]"
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            {/* Tombol close */}
-                            <button
-                                onClick={closePopup}
-                                className="absolute top-2 right-2 sm:top-3 sm:right-3 text-gray-500 hover:text-gray-700 text-xl sm:text-2xl z-10"
-                            >
-                                ×
-                            </button>
-
-                            {/* Header */}
-                            <div className="p-3 sm:p-4 border-b text-center">
-                                <h3 className="text-lg sm:text-xl font-semibold">
-                                    {selectedAchievement.title}
-                                </h3>
-                                <p className="text-gray-600 text-sm sm:text-base">
-                                    {selectedAchievement.desc}
-                                </p>
-                            </div>
-
-                            {/* PDF Viewer */}
-                            <div className="w-full flex-1 bg-gray-100">
-                                <iframe
-                                    src={selectedAchievement.pdf}
-                                    className="w-full h-[60vh] sm:h-[70vh] md:h-[500px]"
-                                    title="PDF Viewer"
-                                ></iframe>
-                            </div>
-
-                            {/* Footer download */}
-                            <div className="p-3 sm:p-4 border-t flex justify-center sm:justify-end">
-                                <a
-                                    href={selectedAchievement.pdf}
-                                    download
-                                    className="bg-green-600 text-white text-sm sm:text-base px-4 py-2 rounded-md hover:bg-green-700 transition w-full sm:w-auto text-center"
-                                >
-                                    Download PDF
-                                </a>
-                            </div>
-                        </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
         </section>
     );
 }
