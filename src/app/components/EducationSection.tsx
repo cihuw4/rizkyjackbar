@@ -137,12 +137,12 @@ export default function EducationSection() {
                                         alt={`Campus ${idx + 1}`}
                                         fill
                                         className={`object-cover transition duration-300 filter ${isDesktop
-                                                ? hoverIndex === idx
-                                                    ? "grayscale-0"
-                                                    : "grayscale"
-                                                : autoActiveIndex === idx
-                                                    ? "grayscale-0"
-                                                    : "grayscale"
+                                            ? hoverIndex === idx
+                                                ? "grayscale-0"
+                                                : "grayscale"
+                                            : autoActiveIndex === idx
+                                                ? "grayscale-0"
+                                                : "grayscale"
                                             }`}
                                     />
                                 </div>
@@ -197,7 +197,7 @@ export default function EducationSection() {
             <AnimatePresence>
                 {selectedAchievement && (
                     <motion.div
-                        className="fixed inset-0 z-[9999] flex justify-center items-center px-4"
+                        className="fixed inset-0 z-[9999] flex justify-center items-center px-2 sm:px-4"
                         onClick={closePopup}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -208,34 +208,42 @@ export default function EducationSection() {
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.8, opacity: 0 }}
                             transition={{ duration: 0.3 }}
-                            className="bg-white rounded-lg shadow-lg max-w-4xl w-full relative flex flex-col overflow-hidden"
+                            className="bg-white rounded-lg shadow-lg w-full max-w-[95%] sm:max-w-2xl md:max-w-4xl relative flex flex-col overflow-hidden max-h-[90vh]"
                             onClick={(e) => e.stopPropagation()}
                         >
+                            {/* Tombol close */}
                             <button
                                 onClick={closePopup}
-                                className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-2xl"
+                                className="absolute top-2 right-2 sm:top-3 sm:right-3 text-gray-500 hover:text-gray-700 text-xl sm:text-2xl z-10"
                             >
                                 ×
                             </button>
 
-                            <div className="p-4 border-b text-center">
-                                <h3 className="text-xl font-semibold">{selectedAchievement.title}</h3>
-                                <p className="text-gray-600">{selectedAchievement.desc}</p>
+                            {/* Header */}
+                            <div className="p-3 sm:p-4 border-b text-center">
+                                <h3 className="text-lg sm:text-xl font-semibold">
+                                    {selectedAchievement.title}
+                                </h3>
+                                <p className="text-gray-600 text-sm sm:text-base">
+                                    {selectedAchievement.desc}
+                                </p>
                             </div>
 
-                            <div className="w-full h-[500px] bg-gray-100">
+                            {/* PDF Viewer */}
+                            <div className="w-full flex-1 bg-gray-100">
                                 <iframe
                                     src={selectedAchievement.pdf}
-                                    className="w-full h-full"
+                                    className="w-full h-[60vh] sm:h-[70vh] md:h-[500px]"
                                     title="PDF Viewer"
                                 ></iframe>
                             </div>
 
-                            <div className="p-4 border-t flex justify-end">
+                            {/* Footer download */}
+                            <div className="p-3 sm:p-4 border-t flex justify-center sm:justify-end">
                                 <a
                                     href={selectedAchievement.pdf}
                                     download
-                                    className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition"
+                                    className="bg-green-600 text-white text-sm sm:text-base px-4 py-2 rounded-md hover:bg-green-700 transition w-full sm:w-auto text-center"
                                 >
                                     Download PDF
                                 </a>
