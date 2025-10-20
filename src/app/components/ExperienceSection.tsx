@@ -21,15 +21,24 @@ interface ExperienceItem {
     company: string;
     description: string;
     dateInfo: string;
+    logo: string;
 }
 
 const experiences: ExperienceItem[] = [
+    {
+        title: "Frontend Developer",
+        company: "Trans Retail Indonesia",
+        description: "Developed and Maintained website",
+        dateInfo: "Oct 2025 | - | Jakarta",
+        logo: "/img/transretail_logo.webp",
+    },
     {
         title: "Frontend Developer Intern",
         company: "Coding Collective Indonesia",
         description:
             "Developed and maintained web applications using React, Next.js, and WordPress, focusing on responsive design and seamless user experience.",
         dateInfo: "May 2025 | August 2025 | Yogyakarta",
+        logo: "/img/codingcollective_logo.webp",
     },
     {
         title: "Frontend Web Developer",
@@ -37,6 +46,7 @@ const experiences: ExperienceItem[] = [
         description:
             "Built and customized WordPress-based websites, ensuring optimal performance, clean UI, and cross-device compatibility.",
         dateInfo: "Jun 2023 | Dec 2023 | Remote (Based in China)",
+        logo: "/img/tokonesia_id_logo.webp",
     },
     {
         title: "Teaching Assistant for Practicum",
@@ -44,6 +54,7 @@ const experiences: ExperienceItem[] = [
         description:
             "Assisted students in mastering Linux operating systems, providing technical guidance during lab sessions and grading assignments.",
         dateInfo: "Februari - Juli 2023 | Amikom Campus",
+        logo: "/img/amikom_logo.webp",
     },
 ];
 
@@ -113,7 +124,13 @@ export default function ExperienceSection() {
                             />
                             {idx === experiences.length - 1 && (
                                 <TimelineDot
-                                    sx={{ width: 0, height: 0, p: 0, m: 0, bgcolor: "transparent" }}
+                                    sx={{
+                                        width: 0,
+                                        height: 0,
+                                        p: 0,
+                                        m: 0,
+                                        bgcolor: "transparent",
+                                    }}
                                 />
                             )}
                         </TimelineSeparator>
@@ -122,8 +139,9 @@ export default function ExperienceSection() {
                             <div className="flex flex-col">
                                 {/* Small date card */}
                                 <div
-                                    className={`bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500 text-gray-900 rounded-xl p-2 px-4 mb-2 w-fit ${!isMobileOrTablet && idx % 2 === 1 ? "ml-auto" : ""
-                                        } shadow`}
+                                    className={`bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500 text-gray-900 rounded-xl p-2 px-4 mb-2 w-fit ${
+                                        !isMobileOrTablet && idx % 2 === 1 ? "ml-auto" : ""
+                                    } shadow`}
                                     data-aos="fade-right"
                                     data-aos-duration="600"
                                     data-aos-once="false"
@@ -139,7 +157,17 @@ export default function ExperienceSection() {
                                     data-aos-once="false"
                                 >
                                     <h3 className="text-xl font-semibold mb-1">{exp.title}</h3>
-                                    <p className="text-gray-500 mb-1">{exp.company}</p>
+
+                                    {/* Company logo + name */}
+                                    <div className="text-gray-500 mb-1 flex items-center gap-2">
+                                        <img
+                                            src={exp.logo}
+                                            alt={`${exp.company} logo`}
+                                            className="w-5 h-5 object-contain"
+                                        />
+                                        <span>{exp.company}</span>
+                                    </div>
+
                                     <p className="text-gray-700">{exp.description}</p>
                                 </div>
                             </div>
