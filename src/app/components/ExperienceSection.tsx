@@ -29,8 +29,8 @@ const experiences: ExperienceItem[] = [
         title: "Frontend Developer",
         company: "Trans Retail Indonesia",
         description: "Developed and Maintained website",
-        dateInfo: "Oct 2025 | - | Jakarta",
-        logo: "/img/transretail_logo.webp",
+        dateInfo: "Oct 2025 | Present | Jakarta",
+        logo: "/transmart_logo.webp",
     },
     {
         title: "Frontend Developer Intern",
@@ -38,7 +38,7 @@ const experiences: ExperienceItem[] = [
         description:
             "Developed and maintained web applications using React, Next.js, and WordPress, focusing on responsive design and seamless user experience.",
         dateInfo: "May 2025 | August 2025 | Yogyakarta",
-        logo: "/img/codingcollective_logo.webp",
+        logo: "/codingcollective_logo.webp",
     },
     {
         title: "Frontend Web Developer",
@@ -46,7 +46,7 @@ const experiences: ExperienceItem[] = [
         description:
             "Built and customized WordPress-based websites, ensuring optimal performance, clean UI, and cross-device compatibility.",
         dateInfo: "Jun 2023 | Dec 2023 | Remote (Based in China)",
-        logo: "/img/tokonesia_id_logo.webp",
+        logo: "/tokonesia_id_logo.webp",
     },
     {
         title: "Teaching Assistant for Practicum",
@@ -54,7 +54,7 @@ const experiences: ExperienceItem[] = [
         description:
             "Assisted students in mastering Linux operating systems, providing technical guidance during lab sessions and grading assignments.",
         dateInfo: "Februari - Juli 2023 | Amikom Campus",
-        logo: "/img/amikom_logo.webp",
+        logo: "/amikom_logo.webp",
     },
 ];
 
