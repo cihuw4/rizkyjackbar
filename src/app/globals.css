@@ -18,11 +18,6 @@
   --font-horizon: "Horizon", sans-serif;
 }
 
-@theme inline {
-  --font-heading: var(--font-poppins);
-  --font-sans: var(--font-manrope);
-}
-
 html,
 body {
   padding: 0;
