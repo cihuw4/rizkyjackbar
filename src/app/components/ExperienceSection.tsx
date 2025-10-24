@@ -137,7 +137,6 @@ export default function ExperienceSection() {
 
                         <TimelineContent>
                             <div className="flex flex-col">
-                                {/* Small date card */}
                                 <div
                                     className={`bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500 text-gray-900 rounded-xl p-2 px-4 mb-2 w-fit ${
                                         !isMobileOrTablet && idx % 2 === 1 ? "ml-auto" : ""
