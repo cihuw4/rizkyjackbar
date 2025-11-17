@@ -30,7 +30,7 @@ const experiences: ExperienceItem[] = [
         company: "Trans Retail Indonesia",
         description: "Developed and Maintained website",
         dateInfo: "Oct 2025 | Present | Jakarta",
-        logo: "/transmart_logo.webp",
+        logo: "/transretail.png",
     },
     {
         title: "Frontend Developer Intern",
