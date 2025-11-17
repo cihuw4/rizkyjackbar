@@ -83,9 +83,9 @@ export default function FlipCard({
                             ))}
                         </div>
 
-                        <button className="px-4 py-2 bg-[#0A2757] text-white rounded-lg hover:bg-[#0C3A72] transition cursor-pointer whitespace-nowrap">
+                        {/* <button className="px-4 py-2 bg-[#0A2757] text-white rounded-lg hover:bg-[#0C3A72] transition cursor-pointer whitespace-nowrap">
                             Preview
-                        </button>
+                        </button> */}
                     </div>
                 </motion.div>
             </motion.div>

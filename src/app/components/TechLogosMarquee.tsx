@@ -68,7 +68,7 @@ export default function TechLogosMarquee({
                     style={{
                         willChange: "transform",
                         backfaceVisibility: "hidden",
-                        pointerEvents: "none", // Animasi jangan ganggu scroll & klik
+                        pointerEvents: "none",
                     }}
                 >
                     {loopedTechs.map((tech, idx) => {

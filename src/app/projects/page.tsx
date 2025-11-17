@@ -28,11 +28,11 @@ export default function ProjectsPage() {
                 setClickedImages={setClickedImages}
             />
 
-            <TechLogosMarquee
+            {/* <TechLogosMarquee
                 isMobileOrTablet={isMobileOrTablet}
                 clickedIcons={clickedIcons}
                 setClickedIcons={setClickedIcons}
-            />
+            /> */}
 
             <ProjectsGrid isMobileOrTablet={isMobileOrTablet} />
         </div>

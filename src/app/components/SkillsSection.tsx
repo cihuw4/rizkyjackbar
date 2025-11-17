@@ -31,7 +31,7 @@ export default function SkillsSection() {
             ],
             tools: [
                 { name: "VS Code", icon: FaCode, color: "#007ACC" },
-                { name: "Chrome DevTools", icon: FaCode, color: "#4285F4" },
+                // { name: "Chrome DevTools", icon: FaCode, color: "#4285F4" },
                 { name: "Git", icon: FaGitAlt, color: "#F05032" },
                 { name: "Github", icon: FaGithub, color: "#181717" },
             ],
@@ -48,12 +48,12 @@ export default function SkillsSection() {
                 { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
                 { name: "Bootstrap", icon: SiBootstrap, color: "#7952B3" },
                 { name: "Material UI", icon: SiMaterialdesign, color: "#007FFF" },
-                { name: "Chakra UI", icon: SiChakraui, color: "#319795" },
+                // { name: "Chakra UI", icon: SiChakraui, color: "#319795" },
             ],
             tools: [
                 { name: "Figma", icon: SiFigma, color: "#F24E1E" },
-                { name: "Storybook", icon: SiStorybook, color: "#FF4785" },
-                { name: "Framer Motion", icon: SiFramer, color: "#0055FF" },
+                // { name: "Storybook", icon: SiStorybook, color: "#FF4785" },
+                // { name: "Framer Motion", icon: SiFramer, color: "#0055FF" },
             ],
         },
         {
@@ -70,13 +70,13 @@ export default function SkillsSection() {
                 { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
                 { name: "Node.js", icon: FaNodeJs, color: "#339933" },
                 { name: "Express.js", icon: FaNodeJs, color: "#000000" },
-                { name: "React Query", icon: FaReact, color: "#FF4154" },
-                { name: "Vue.js", icon: FaVuejs, color: "#4FC08D" },
+                // { name: "React Query", icon: FaReact, color: "#FF4154" },
+                // { name: "Vue.js", icon: FaVuejs, color: "#4FC08D" },
             ],
             tools: [
                 { name: "Postman", icon: SiPostman, color: "#FF6C37" },
                 { name: "Vite", icon: SiVite, color: "#646CFF" },
-                { name: "Webpack", icon: SiWebpack, color: "#8DD6F9" },
+                // { name: "Webpack", icon: SiWebpack, color: "#8DD6F9" },
             ],
         },
         {
