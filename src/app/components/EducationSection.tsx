@@ -134,7 +134,7 @@ export default function EducationSection() {
                   key={idx}
                   onMouseEnter={() => isDesktop && setHoverIndex(idx)}
                   onMouseLeave={() => isDesktop && setHoverIndex(null)}
-                  className={`relative h-60 rounded-xl overflow-hidden shadow-sm transition-all duration-300 ${widthClass}`}
+                  className={`relative h-60 rounded-xl overflow-hidden shadow-sm transition-all duration-300 cursor-pointer ${widthClass}`}
                   style={{ ...style, transformOrigin }}>
                   <Image
                     src={`/img/campus${idx + 1}.jpg`}
@@ -186,7 +186,7 @@ export default function EducationSection() {
                 data-aos="fade-up">
                 <button
                   onClick={() => toggleDropdown(i)}
-                  className="w-full flex justify-between items-center p-4 text-left group">
+                  className="w-full flex justify-between items-center p-4 text-left group cursor-pointer">
                   <div className="flex items-center gap-3 flex-1 min-w-0">
                     <motion.div className="inline-flex items-center justify-center rounded-full p-3 bg-gray-100 group-hover:bg-yellow-100 transition-colors duration-300">
                       {React.cloneElement(icon, {

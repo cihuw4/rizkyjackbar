@@ -125,7 +125,7 @@ export default function SkillsSection() {
                             transition={{ delay: i * 0.1, duration: 0.5, type: "spring" }}
                             whileHover={{ scale: 1.08 }}
                             whileTap={{ scale: 0.95 }}
-                            className="flex flex-col items-center bg-white rounded-2xl shadow-md p-6 hover:shadow-xl transition duration-300 w-full"
+                            className="flex flex-col items-center bg-white rounded-2xl shadow-md p-6 hover:shadow-xl transition duration-300 w-full cursor-pointer"
                         >
                             <div className="mb-4">{skill.icon(isActive, isHovered)}</div>
                             <p className={`text-lg font-medium ${isActive ? "text-gray-900" : "text-gray-500"}`}>

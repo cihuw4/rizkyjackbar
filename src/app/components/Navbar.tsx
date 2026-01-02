@@ -174,7 +174,7 @@ function HamburgerButton({
     <motion.button
       ref={buttonRef}
       onClick={() => setIsOpen(!isOpen)}
-      className="relative w-8 h-8 flex flex-col justify-center items-center gap-1.5 z-[60]"
+      className="relative w-8 h-8 flex flex-col justify-center items-center gap-1.5 z-[60] cursor-pointer"
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 50 }}
