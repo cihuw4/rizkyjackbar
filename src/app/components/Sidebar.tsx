@@ -60,7 +60,7 @@ export default function Sidebar() {
                             {isActive && (
                                 <motion.span
                                     key={section.id}
-                                    className={`absolute left-[100%] top-1/2 -translate-y-1/2 translate-x-1 w-6 h-6 rounded-full pointer-events-none ${activeSection === "home" || activeSection === "projects"
+                                    className={`absolute left-[110%] top-1/4 -translate-y-1/2 translate-x-1 w-6 h-6 rounded-full pointer-events-none ${activeSection === "home" || activeSection === "projects"
                                         ? "bg-gray-100"
                                         : "bg-white"
                                         }`}
