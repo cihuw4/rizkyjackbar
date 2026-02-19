@@ -54,14 +54,14 @@ export default function Hero() {
             data-aos-delay="400"
             className="mt-8 flex justify-center md:justify-start gap-4">
             <a
-              href="/Muhammad_Rizky.pdf"
+              href="/MuhammadRizky-CV.pdf"
               download
-              className="px-6 py-3 rounded-lg bg-gray-900 text-gray-100 hover:bg-gray-600 transition-colors duration-300">
+              className="px-6 py-3 rounded-lg bg-gray-900 text-gray-100 hover:bg-gray-600 transition-colors duration-300 whitespace-nowrap">
               Download CV
             </a>
             <a
               href="#contact"
-              className="px-6 py-3 rounded-lg bg-gray-600 text-white hover:bg-gray-900 transition-colors duration-300">
+              className="px-6 py-3 rounded-lg bg-gray-600 text-white hover:bg-gray-900 transition-colors duration-300 whitespace-nowrap">
               Contact Me
             </a>
           </div>
@@ -76,7 +76,7 @@ export default function Hero() {
             src="/img/home_hero.jpg"
             alt="Rizky Jackbar"
             onClick={handleImageClick}
-            className={`w-40 h-40 sm:w-48 sm:h-48 rounded-full md:w-70 md:h-[380px] object-cover shadow-lg max-w-full filter transition duration-500
+            className={`w-40 h-40 sm:w-120 sm:h-120 md:w-80 md:h-[450px] rounded-full object-cover shadow-lg max-w-full filter transition duration-500
                             ${
                               isMobileOrTablet
                                 ? isClicked

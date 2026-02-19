@@ -1,8 +1,11 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @font-face {
   font-family: "Horizon";
-  src: url("/fonts/Horizon.woff2") format("woff2"),
+  src:
+    url("/fonts/Horizon.woff2") format("woff2"),
     url("/fonts/Horizon.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
