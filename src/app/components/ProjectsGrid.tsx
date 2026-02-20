@@ -24,7 +24,7 @@ export default function ProjectsGrid({
                 <h2
                     data-aos="fade-up"
                     data-aos-delay={200}
-                    className="text-3xl sm:text-4xl md:text-5xl font-bold mb-20 text-center"
+                    className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 text-center"
                 >
                     Projects
                 </h2>
