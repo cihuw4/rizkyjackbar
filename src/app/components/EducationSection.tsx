@@ -81,7 +81,7 @@ export default function EducationSection() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-26 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 xl:gap-28 items-start">
         {/* Left - Campus */}
         <div
           className="flex flex-col items-start text-left"
@@ -178,7 +178,7 @@ export default function EducationSection() {
             Some of my achievements during my study.
           </p>
 
-          <ul className="space-y-4 mt-12">
+          <ul className="space-y-4 mt-4">
             {achievementsData.map(({ icon, title, desc, pdf }, i) => (
               <motion.li
                 key={i}
