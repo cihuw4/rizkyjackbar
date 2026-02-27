@@ -3,77 +3,137 @@
 import { useEffect, useState } from "react";
 import { Home as HomeIcon, User, FolderKanban, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Lottie from "lottie-react";
 
 const sections = [
-    { id: "home", icon: HomeIcon },
-    { id: "about", icon: User },
-    { id: "projects", icon: FolderKanban },
-    { id: "contact", icon: Mail },
+  {
+    id: "home",
+    icon: HomeIcon,
+    animationPath: "/lottie/home-button.json",
+  },
+  {
+    id: "about",
+    icon: User,
+    animationPath: "/lottie/user.json",
+  },
+  {
+    id: "projects",
+    icon: FolderKanban,
+    animationPath: "/lottie/checklist.json",
+  },
+  {
+    id: "contact",
+    icon: Mail,
+    animationPath: "/lottie/email.json",
+  },
 ];
 
 export default function Sidebar() {
-    const [activeSection, setActiveSection] = useState("home");
+  const [activeSection, setActiveSection] = useState("home");
+  const [hovered, setHovered] = useState<string | null>(null);
+  const [animations, setAnimations] = useState<any>({});
 
-    useEffect(() => {
-        const handleScroll = () => {
-            let current = "home";
-            sections.forEach((section) => {
-                const el = document.getElementById(section.id);
-                if (el) {
-                    const top = el.offsetTop;
-                    const scrollY = window.scrollY + window.innerHeight / 3;
-                    if (scrollY >= top) current = section.id;
-                }
-            });
-            setActiveSection(current);
-        };
+  // Load Lottie JSON dari public
+  useEffect(() => {
+    const loadAnimations = async () => {
+      const results: any = {};
 
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
-    const handleClick = (id: string) => {
-        const el = document.getElementById(id);
-        if (el) {
-            el.scrollIntoView({ behavior: "smooth" });
+      for (const section of sections) {
+        if (section.animationPath) {
+          const res = await fetch(section.animationPath);
+          results[section.id] = await res.json();
         }
+      }
+
+      setAnimations(results);
     };
 
-    return (
-        <nav className="hidden md:flex fixed top-[55%] left-0 transform -translate-y-1/2 flex-col items-center gap-6 px-4 py-8 bg-gray-900 rounded-r-xl shadow-lg">
-            {sections.map((section) => {
-                const Icon = section.icon;
-                const isActive = activeSection === section.id;
-                return (
-                    <motion.button
-                        key={section.id}
-                        onClick={() => handleClick(section.id)}
-                        className="p-2 rounded relative"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        <Icon
-                            className={`w-6 h-6 text-white transition-transform ${isActive ? "scale-125" : ""}`}
-                        />
+    loadAnimations();
+  }, []);
 
-                        <AnimatePresence>
-                            {isActive && (
-                                <motion.span
-                                    key={section.id}
-                                    className={`absolute left-[110%] top-1/4 -translate-y-1/2 translate-x-1 w-6 h-6 rounded-full pointer-events-none ${activeSection === "home" || activeSection === "projects"
-                                        ? "bg-gray-100"
-                                        : "bg-white"
-                                        }`}
-                                    initial={{ scale: 0, opacity: 0 }}
-                                    animate={{ scale: 1, opacity: 1 }}
-                                    exit={{ scale: 0, opacity: 0 }}
-                                    transition={{ type: "spring", stiffness: 500, damping: 25 }}
-                                />
-                            )}
-                        </AnimatePresence>
-                    </motion.button>
-                );
-            })}
-        </nav>
-    );
+  // Active section detection
+  useEffect(() => {
+    const handleScroll = () => {
+      let current = "home";
+
+      sections.forEach((section) => {
+        const el = document.getElementById(section.id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= window.innerHeight / 3 && rect.bottom >= 0) {
+            current = section.id;
+          }
+        }
+      });
+
+      setActiveSection(current);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleClick = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
+  return (
+    <nav className="hidden md:flex fixed top-[55%] left-0 -translate-y-1/2 flex-col items-center gap-6 px-4 py-8 bg-gray-300 rounded-r-xl shadow-lg">
+      {sections.map((section) => {
+        const Icon = section.icon;
+        const isActive = activeSection === section.id;
+        const isHovered = hovered === section.id;
+
+        return (
+          <motion.button
+            key={section.id}
+            onClick={() => handleClick(section.id)}
+            onMouseEnter={() => setHovered(section.id)}
+            onMouseLeave={() => setHovered(null)}
+            className="relative w-12 h-12 flex items-center justify-center"
+            whileHover={{ scale: 1.15 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            {/* Icon Normal */}
+            {!isHovered && (
+              <Icon
+                className={`w-8 h-8 transition-all duration-300 ${
+                  isActive ? "scale-125 text-black" : "text-gray-400"
+                }`}
+              />
+            )}
+
+            {/* Lottie Hover */}
+            {isHovered && animations[section.id] && (
+              <div className="absolute w-12 h-12 pointer-events-none">
+                <Lottie animationData={animations[section.id]} loop autoplay />
+              </div>
+            )}
+
+            {/* Active Indicator */}
+            <AnimatePresence>
+              {isActive && (
+                <motion.span
+                  className={`absolute left-[105%] top-1/1 -translate-y-1/2 w-6 h-6 rounded-full ${
+                    activeSection === "home" || activeSection === "projects"
+                      ? "bg-gray-100"
+                      : "bg-white"
+                  }`}
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0, opacity: 0 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 500,
+                    damping: 25,
+                  }}
+                />
+              )}
+            </AnimatePresence>
+          </motion.button>
+        );
+      })}
+    </nav>
+  );
 }
