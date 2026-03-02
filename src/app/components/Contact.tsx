@@ -41,15 +41,10 @@ export default function Contact() {
             onClick={handleImageClick}
             width={320}
             height={450}
-            className={`w-100 h-100 sm:w-120 sm:h-120 md:w-80 md:h-[450px] rounded-lg object-cover shadow-lg filter transition duration-500
-                            ${
-                              isMobileOrTablet
-                                ? isClicked
-                                  ? "grayscale-0 cursor-pointer"
-                                  : "grayscale cursor-pointer"
-                                : "grayscale hover:grayscale-0"
-                            }
-                        `}
+            className={`w-[320px] h-[450px] rounded-lg object-cover shadow-lg filter transition duration-500
+              ${isMobileOrTablet
+                ? isClicked ? "grayscale-0 cursor-pointer" : "grayscale cursor-pointer" : "grayscale hover:grayscale-0"
+              }`}
           />
         </div>
 

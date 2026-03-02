@@ -26,27 +26,24 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="flex flex-col-reverse md:flex-row items-center justify-center min-h-screen px-6 sm:px-10 md:px-16 py-16 sm:py-20 bg-gray-100">
+      className="flex flex-col-reverse md:flex-row items-center justify-center min-h-screen px-6 sm:px-10 md:px-16 py-16 sm:py-20 bg-gray-100"
+    >
       <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10">
         <div
           data-aos="fade-left"
           data-aos-delay="100"
-          className="flex justify-center md:justify-end md:pr-10 lg:pr-20 order-1 md:order-2">
+          className="flex justify-center md:justify-end md:pr-10 lg:pr-20 order-1 md:order-2"
+        >
           <Image
             src="/img/home_project.webp"
             alt="My Projects"
-            width={450}
+            width={320}
             height={450}
             onClick={handleImageClick}
-            className={`w-100 h-100 sm:w-120 sm:h-120 md:w-80 md:h-[450px] rounded-lg object-cover shadow-lg filter transition duration-500
-                            ${
-                              isMobileOrTablet
-                                ? isClicked
-                                  ? "grayscale-0 cursor-pointer"
-                                  : "grayscale cursor-pointer"
-                                : "grayscale hover:grayscale-0"
-                            }
-                        `}
+            className={`w-[320px] h-[450px] rounded-lg object-cover shadow-lg filter transition duration-500
+              ${isMobileOrTablet
+                ? isClicked ? "grayscale-0 cursor-pointer" : "grayscale cursor-pointer" : "grayscale hover:grayscale-0"
+              }`}
           />
         </div>
 
@@ -54,7 +51,8 @@ export default function Projects() {
           <h1
             data-aos="fade-right"
             data-aos-delay="200"
-            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 relative inline-block">
+            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 relative inline-block"
+          >
             Projects
             <span className="absolute left-0 -bottom-2 w-16 h-1 bg-gradient-to-r from-pink-500 via-yellow-400 to-green-400 rounded-full animate-pulse"></span>
           </h1>
@@ -62,7 +60,8 @@ export default function Projects() {
           <p
             data-aos="fade-right"
             data-aos-delay="300"
-            className="text-base sm:text-lg text-gray-600 max-w-sm mx-auto md:mx-0 mb-8">
+            className="text-base sm:text-lg text-gray-600 max-w-sm mx-auto md:mx-0 mb-8"
+          >
             I build web projects that focus on performance, accessibility, and
             clean design.
           </p>
@@ -71,7 +70,8 @@ export default function Projects() {
             data-aos="fade-right"
             data-aos-delay="400"
             href="/projects"
-            className="px-6 py-3 rounded-lg bg-gray-900 text-gray-100 hover:bg-gray-600 transition">
+            className="px-6 py-3 rounded-lg bg-gray-900 text-gray-100 hover:bg-gray-600 transition"
+          >
             View Projects
           </Link>
         </div>
