@@ -30,7 +30,7 @@ const sections = [
 
 export default function Sidebar() {
   const [activeSection, setActiveSection] = useState("home");
-  const [hovered, setHovered] = useState<string | null>(null);
+  // const [hovered, setHovered] = useState<string | null>(null);
   const [animations, setAnimations] = useState<Record<string, object>>({});
 
   // Load Lottie JSON dari public
@@ -83,25 +83,17 @@ export default function Sidebar() {
       {sections.map((section) => {
         const Icon = section.icon;
         const isActive = activeSection === section.id;
-        const isHovered = hovered === section.id;
 
         return (
           <motion.button
             key={section.id}
             onClick={() => handleClick(section.id)}
-            onMouseEnter={() => setHovered(section.id)}
-            onMouseLeave={() => setHovered(null)}
             className="relative w-12 h-12 flex items-center justify-center"
-            whileHover={{ scale: 1.15 }}
+            whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
-            {/* PRIORITAS 1: ACTIVE → LOTTIE */}
+            {/* ACTIVE → LOTTIE */}
             {isActive && animations[section.id] ? (
-              <div className="absolute w-12 h-12 pointer-events-none">
-                <Lottie animationData={animations[section.id]} loop autoplay />
-              </div>
-            ) : isHovered && animations[section.id] ? (
-              /* PRIORITAS 2: HOVER → LOTTIE */
               <div className="absolute w-12 h-12 pointer-events-none">
                 <Lottie animationData={animations[section.id]} loop autoplay />
               </div>
@@ -109,7 +101,7 @@ export default function Sidebar() {
               /* DEFAULT → ICON */
               <Icon
                 className={`w-8 h-8 transition-all duration-300 ${
-                  isActive ? "scale-125 text-black" : "text-gray-400"
+                  isActive ? "text-black" : "text-gray-400"
                 }`}
               />
             )}
