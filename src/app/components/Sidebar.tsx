@@ -95,19 +95,23 @@ export default function Sidebar() {
             whileHover={{ scale: 1.15 }}
             whileTap={{ scale: 0.95 }}
           >
-            {!isHovered && (
+            {/* PRIORITAS 1: ACTIVE → LOTTIE */}
+            {isActive && animations[section.id] ? (
+              <div className="absolute w-12 h-12 pointer-events-none">
+                <Lottie animationData={animations[section.id]} loop autoplay />
+              </div>
+            ) : isHovered && animations[section.id] ? (
+              /* PRIORITAS 2: HOVER → LOTTIE */
+              <div className="absolute w-12 h-12 pointer-events-none">
+                <Lottie animationData={animations[section.id]} loop autoplay />
+              </div>
+            ) : (
+              /* DEFAULT → ICON */
               <Icon
                 className={`w-8 h-8 transition-all duration-300 ${
                   isActive ? "scale-125 text-black" : "text-gray-400"
                 }`}
               />
-            )}
-
-            {/* Lottie Hover */}
-            {isHovered && animations[section.id] && (
-              <div className="absolute w-12 h-12 pointer-events-none">
-                <Lottie animationData={animations[section.id]} loop autoplay />
-              </div>
             )}
 
             {/* Active Indicator */}
