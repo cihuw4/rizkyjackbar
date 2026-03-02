@@ -93,7 +93,7 @@ export default function Navbar() {
         scrolled || isOpen ? "bg-white/30 backdrop-blur-md" : "bg-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto flex items-center justify-between py-5 px-6 lg:px-12">
+      <div className="max-w-7xl mx-auto flex items-center justify-between py-5 px-6 lg:px-12">
         <LogoAndBack pathname={pathname} logoKey={logoKey} />
 
         <HamburgerButton
@@ -138,7 +138,7 @@ function LogoAndBack({
       >
         <div
           className="text-xl font-bold tracking-wide text-gray-900"
-          style={{ fontFamily: "var(--font-horizon)" }}
+          style={{ fontFamily: "var(--font-horizon)" }} 
         >
           RIZKY
         </div>
