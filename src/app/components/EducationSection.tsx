@@ -142,7 +142,7 @@ export default function EducationSection() {
                   style={{ ...style, transformOrigin }}
                 >
                   <Image
-                    src={`/img/campus${idx + 1}.jpg`}
+                    src={`/img/campus${idx + 1}.webp`}
                     alt={`Campus ${idx + 1}`}
                     fill
                     className={`object-cover transition duration-300 filter ${

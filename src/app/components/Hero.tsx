@@ -82,7 +82,7 @@ export default function Hero() {
           className="flex justify-center md:justify-end"
         >
           <Image
-            src="/img/home_hero.jpg"
+            src="/img/home_hero.webp"
             alt="Rizky Jackbar"
             width={450}
             height={450}

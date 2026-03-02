@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Home as HomeIcon, User, FolderKanban, Mail } from "lucide-react";
+import { Home as HomeIcon, User, FileText, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Lottie from "lottie-react";
 
@@ -18,7 +18,7 @@ const sections = [
   },
   {
     id: "projects",
-    icon: FolderKanban,
+    icon: FileText,
     animationPath: "/lottie/checklist.json",
   },
   {
@@ -95,7 +95,6 @@ export default function Sidebar() {
             whileHover={{ scale: 1.15 }}
             whileTap={{ scale: 0.95 }}
           >
-            {/* Icon Normal */}
             {!isHovered && (
               <Icon
                 className={`w-8 h-8 transition-all duration-300 ${

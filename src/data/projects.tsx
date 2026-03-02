@@ -16,7 +16,7 @@ export const projects = [
     name: "AxiomPay",
     category: "Web Development",
     desc: "Internship project: A web-based payment platform developed for a client in the Philippines.",
-    img: "/img/axiompay.jpg",
+    img: "/img/axiompay.webp",
     web: "https://axiompay.io",
     tech: [
       { icon: <FaReact />, color: "#61DBFB" },
@@ -31,7 +31,7 @@ export const projects = [
     name: "Dev Academy",
     category: "Web Development",
     desc: "An online learning platform designed for managing and attending online classes.",
-    img: "/img/devacademy.jpg",
+    img: "/img/devacademy.webp",
     github: "https://github.com/cihuw4/fe_binar_final_project.git",
     web: "https://devacademy.vercel.app",
     tech: [
@@ -47,7 +47,7 @@ export const projects = [
     name: "StressByJB",
     category: "Data Science",
     desc: "Final year project: A stress-level prediction system for students and learners, built using Python and Streamlit, deployed on Google Cloud.",
-    img: "/img/stressbyjb.jpg",
+    img: "/img/stressbyjb.webp",
     github: "https://github.com/cihuw4/stressapp.git",
     web: "https://stressbyjb.streamlit.app",
     tech: [
@@ -79,7 +79,7 @@ export const projects = [
     name: "Furniro",
     category: "Web Development",
     desc: "Personal project: An e-commerce platform for purchasing home furniture online.",
-    img: "/img/furniro.jpg",
+    img: "/img/furniro.webp",
     github: "https://github.com/cihuw4/furniro.git",
     web: "https://furnirowebapp.vercel.app/",
     tech: [
@@ -93,7 +93,7 @@ export const projects = [
     name: "Swift-X",
     category: "Web Development",
     desc: "Internship project",
-    img: "/img/swiftx.jpg",
+    img: "/img/swiftx.webp",
     web: "https://swift-x.co/",
     tech: [
       { icon: <FaReact />, color: "#61DBFB" },
@@ -108,7 +108,7 @@ export const projects = [
     name: "8Bacus",
     category: "Web Development",
     desc: "Internship project",
-    img: "/img/8bacus.jpg",
+    img: "/img/8bacus.webp",
     web: "https://8bacuscorp.com/en",
     tech: [
       { icon: <FaReact />, color: "#61DBFB" },
@@ -123,7 +123,7 @@ export const projects = [
     name: "Face Republic",
     category: "Web Development",
     desc: "Internship project",
-    img: "/img/facerepublic.jpg",
+    img: "/img/facerepublic.webp",
     web: "https://facerepublic.ae/",
     tech: [
       { icon: <FaReact />, color: "#61DBFB" },
@@ -138,7 +138,7 @@ export const projects = [
     name: "PayBo",
     category: "Web Development",
     desc: "Internship project",
-    img: "/img/paybo.jpg",
+    img: "/img/paybo.webp",
     web: "https://paybo.io/",
     tech: [
       { icon: <FaReact />, color: "#61DBFB" },

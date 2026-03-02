@@ -33,7 +33,7 @@ export default function Projects() {
           data-aos-delay="100"
           className="flex justify-center md:justify-end md:pr-10 lg:pr-20 order-1 md:order-2">
           <Image
-            src="/img/home_project.jpg"
+            src="/img/home_project.webp"
             alt="My Projects"
             width={450}
             height={450}

@@ -30,21 +30,21 @@ export default function ProjectsHero({
       left: "left-0",
       rotate: "-3",
       z: 0,
-      src: "/img/project3.jpg",
+      src: "/img/project3.webp",
     },
     {
       top: "top-8",
       left: "left-10",
       rotate: "2",
       z: 10,
-      src: "/img/project1.jpg",
+      src: "/img/project1.webp",
     },
     {
       top: "top-0",
       left: "left-20",
       rotate: "-1",
       z: 20,
-      src: "/img/project2.jpg",
+      src: "/img/project2.webp",
     },
   ];
 

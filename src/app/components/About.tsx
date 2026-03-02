@@ -35,7 +35,7 @@ export default function About() {
           className="flex justify-center md:justify-end md:pr-10 lg:pr-20 order-1 md:order-2"
         >
           <Image
-            src="/img/home_about.jpg"
+            src="/img/home_about.webp"
             alt="About Me"
             width={320}
             height={450}
