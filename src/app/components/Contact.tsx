@@ -42,8 +42,12 @@ export default function Contact() {
             width={320}
             height={450}
             className={`w-[320px] h-[450px] rounded-lg object-cover shadow-lg filter transition duration-500
-              ${isMobileOrTablet
-                ? isClicked ? "grayscale-0 cursor-pointer" : "grayscale cursor-pointer" : "grayscale hover:grayscale-0"
+              ${
+                isMobileOrTablet
+                  ? isClicked
+                    ? "grayscale-0 cursor-pointer"
+                    : "grayscale cursor-pointer"
+                  : "grayscale hover:grayscale-0"
               }`}
           />
         </div>
@@ -75,9 +79,8 @@ export default function Contact() {
           >
             {/* Email */}
             <a
-              href="mailto:muhamadrizky62020@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="mailto:muhamadrizky62020@gmail.com?subject=Hello%20Rizky&body=Hi%20Rizky,%0A%0AI%20want%20to%20discuss%20a%20project%20with%20you."
+              aria-label="Send email to Muhammad Rizky"
               className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-900 text-white hover:bg-gray-500 transition"
             >
               <Mail className="w-6 h-6" />
