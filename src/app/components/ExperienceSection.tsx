@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import {
@@ -68,7 +69,8 @@ export default function ExperienceSection() {
     <section className="max-w-6xl mx-auto py-16 px-4 sm:px-6 relative">
       <h2
         className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12"
-        data-aos="fade-up">
+        data-aos="fade-up"
+      >
         Professional Experience
       </h2>
 
@@ -78,7 +80,8 @@ export default function ExperienceSection() {
           "& .MuiTimelineItem-root": {
             "&:before": { flex: 0, padding: 0 },
           },
-        }}>
+        }}
+      >
         {experiences.map((exp, idx) => (
           <TimelineItem key={idx}>
             {!isMobileOrTablet && (
@@ -92,7 +95,8 @@ export default function ExperienceSection() {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "flex-start",
-              }}>
+              }}
+            >
               <TimelineDot
                 sx={{
                   bgcolor: "gray.500",
@@ -100,7 +104,8 @@ export default function ExperienceSection() {
                 }}
                 data-aos="zoom-in"
                 data-aos-duration="600"
-                data-aos-once="false">
+                data-aos-once="false"
+              >
                 <FaBriefcase />
               </TimelineDot>
 
@@ -132,7 +137,8 @@ export default function ExperienceSection() {
                   } shadow`}
                   data-aos="fade-right"
                   data-aos-duration="600"
-                  data-aos-once="false">
+                  data-aos-once="false"
+                >
                   {exp.dateInfo}
                 </div>
 
@@ -141,15 +147,18 @@ export default function ExperienceSection() {
                   className="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl transition text-left"
                   data-aos="fade-left"
                   data-aos-duration="600"
-                  data-aos-once="false">
+                  data-aos-once="false"
+                >
                   <h3 className="text-xl font-semibold mb-1">{exp.title}</h3>
 
-                  {/* Company logo + name */}
+                  {/* company logo & name */}
                   <div className="text-gray-500 mb-1 flex items-center gap-2">
-                    <img
+                    <Image
                       src={exp.logo}
                       alt={`${exp.company} logo`}
-                      className="w-5 h-5 object-contain"
+                      width={20}
+                      height={20}
+                      className="object-contain"
                     />
                     <span>{exp.company}</span>
                   </div>

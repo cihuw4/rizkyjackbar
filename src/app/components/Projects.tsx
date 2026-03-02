@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Projects() {
   const [isClicked, setIsClicked] = useState(false);
@@ -31,9 +32,11 @@ export default function Projects() {
           data-aos="fade-left"
           data-aos-delay="100"
           className="flex justify-center md:justify-end md:pr-10 lg:pr-20 order-1 md:order-2">
-          <img
+          <Image
             src="/img/home_project.jpg"
             alt="My Projects"
+            width={450}
+            height={450}
             onClick={handleImageClick}
             className={`w-100 h-100 sm:w-120 sm:h-120 md:w-80 md:h-[450px] rounded-lg object-cover shadow-lg filter transition duration-500
                             ${

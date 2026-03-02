@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 type Tech = {
   icon: React.ReactNode;
@@ -47,10 +48,12 @@ export default function FlipCard({
           className="absolute w-full h-full backface-hidden rounded-2xl overflow-hidden"
           style={{ backfaceVisibility: "hidden" }}
         >
-          <img
+          <Image
             src={project.img}
             alt={project.name}
             className="w-full h-full object-cover rounded-2xl"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           <div className="absolute top-0 right-0 bg-[#0A2757] text-white px-3 py-1 rounded-bl-2xl font-semibold text-sm lg:hidden">
             Click for detail

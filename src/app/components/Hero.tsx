@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 export default function Hero() {
   const [isClicked, setIsClicked] = useState(false);
@@ -24,26 +25,30 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="flex flex-col-reverse md:flex-row items-center justify-center min-h-screen px-6 sm:px-10 md:px-16 py-16 sm:py-20">
+      className="flex flex-col-reverse md:flex-row items-center justify-center min-h-screen px-6 sm:px-10 md:px-16 py-16 sm:py-20"
+    >
       <div className="w-full max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-10 px-6 sm:px-10 md:px-16">
         {/* Left Side */}
         <div className="flex-1 text-center md:text-left">
           <h2
             data-aos="fade-right"
             data-aos-delay="100"
-            className="text-lg sm:text-xl font-semibold text-gray-700 mb-2">
+            className="text-lg sm:text-xl font-semibold text-gray-700 mb-2"
+          >
             Muhammad Rizky
           </h2>
           <h1
             data-aos="fade-right"
             data-aos-delay="200"
-            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
+            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4"
+          >
             Frontend Developer
           </h1>
           <p
             data-aos="fade-right"
             data-aos-delay="300"
-            className="text-base sm:text-lg text-gray-600 max-w-sm mx-auto md:mx-0">
+            className="text-base sm:text-lg text-gray-600 max-w-sm mx-auto md:mx-0"
+          >
             As a Frontend Developer dedicated to crafting seamless user
             interfaces and engaging digital experiences using modern web
             technologies.
@@ -52,16 +57,19 @@ export default function Hero() {
           <div
             data-aos="fade-right"
             data-aos-delay="400"
-            className="mt-8 flex justify-center md:justify-start gap-4">
+            className="mt-8 flex justify-center md:justify-start gap-4"
+          >
             <a
               href="/MuhammadRizky-CV.pdf"
               download
-              className="px-6 py-3 rounded-lg bg-gray-900 text-gray-100 hover:bg-gray-600 transition-colors duration-300 whitespace-nowrap">
+              className="px-6 py-3 rounded-lg bg-gray-900 text-gray-100 hover:bg-gray-600 transition-colors duration-300 whitespace-nowrap"
+            >
               Download CV
             </a>
             <a
               href="#contact"
-              className="px-6 py-3 rounded-lg bg-gray-600 text-white hover:bg-gray-900 transition-colors duration-300 whitespace-nowrap">
+              className="px-6 py-3 rounded-lg bg-gray-600 text-white hover:bg-gray-900 transition-colors duration-300 whitespace-nowrap"
+            >
               Contact Me
             </a>
           </div>
@@ -71,10 +79,13 @@ export default function Hero() {
         <div
           data-aos="fade-left"
           data-aos-delay="500"
-          className="flex justify-center md:justify-end">
-          <img
+          className="flex justify-center md:justify-end"
+        >
+          <Image
             src="/img/home_hero.jpg"
             alt="Rizky Jackbar"
+            width={450}
+            height={450}
             onClick={handleImageClick}
             className={`w-40 h-40 sm:w-120 sm:h-120 md:w-80 md:h-[450px] rounded-full object-cover shadow-lg max-w-full filter transition duration-500
                             ${

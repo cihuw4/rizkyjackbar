@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function About() {
@@ -25,15 +26,19 @@ export default function About() {
   return (
     <section
       id="about"
-      className="flex flex-col-reverse md:flex-row items-center justify-center min-h-screen px-6 sm:px-10 md:px-16 py-16 sm:py-20 bg-white">
+      className="flex flex-col-reverse md:flex-row items-center justify-center min-h-screen px-6 sm:px-10 md:px-16 py-16 sm:py-20 bg-white"
+    >
       <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10">
         <div
           data-aos="fade-left"
           data-aos-delay="100"
-          className="flex justify-center md:justify-end md:pr-10 lg:pr-20 order-1 md:order-2">
-          <img
+          className="flex justify-center md:justify-end md:pr-10 lg:pr-20 order-1 md:order-2"
+        >
+          <Image
             src="/img/home_about.jpg"
             alt="About Me"
+            width={320}
+            height={450}
             onClick={handleImageClick}
             className={`w-100 h-100 sm:w-120 sm:h-120 md:w-80 md:h-[450px] rounded-lg object-cover shadow-lg filter transition duration-500
                             ${
@@ -51,7 +56,8 @@ export default function About() {
           <h1
             data-aos="fade-right"
             data-aos-delay="200"
-            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 relative inline-block">
+            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 relative inline-block"
+          >
             About
             <span className="absolute left-0 -bottom-2 w-16 h-1 bg-gradient-to-r from-pink-500 via-yellow-400 to-green-400 rounded-full animate-pulse"></span>
           </h1>
@@ -59,7 +65,8 @@ export default function About() {
           <p
             data-aos="fade-right"
             data-aos-delay="300"
-            className="text-base sm:text-lg text-gray-600 max-w-sm mx-auto md:mx-0 mb-8">
+            className="text-base sm:text-lg text-gray-600 max-w-sm mx-auto md:mx-0 mb-8"
+          >
             Skilled in JavaScript, Next.js, and Tailwind CSS, I create
             responsive and user-friendly web applications.
           </p>
@@ -68,7 +75,8 @@ export default function About() {
             data-aos="fade-right"
             data-aos-delay="400"
             href="/about"
-            className="px-6 py-3 rounded-lg bg-gray-900 text-gray-100 hover:bg-gray-600 transition">
+            className="px-6 py-3 rounded-lg bg-gray-900 text-gray-100 hover:bg-gray-600 transition"
+          >
             More About Me
           </Link>
         </div>

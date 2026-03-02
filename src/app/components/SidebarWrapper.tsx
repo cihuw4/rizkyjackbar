@@ -4,8 +4,8 @@ import { usePathname } from "next/navigation";
 import Sidebar from "./Sidebar";
 
 export default function SidebarWrapper() {
-    const pathname = usePathname();
+  const pathname = usePathname();
 
-    if (pathname !== "/") return null;
-    return <Sidebar />;
+  if (pathname !== "/") return null;
+  return <Sidebar />;
 }

@@ -36,7 +36,7 @@ export default function EducationSection() {
           setHeadlineAnimated(true);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
     if (currentSection) observer.observe(currentSection);
     return () => {
@@ -69,10 +69,12 @@ export default function EducationSection() {
                     ? "opacity-100 pointer-events-auto"
                     : "opacity-0 pointer-events-none"
                 }`}
-      data-aos="fade-up">
+      data-aos="fade-up"
+    >
       <div
         className="text-center"
-        data-aos={!headlineAnimated ? "fade-up" : undefined}>
+        data-aos={!headlineAnimated ? "fade-up" : undefined}
+      >
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">
           Education
         </h2>
@@ -85,7 +87,8 @@ export default function EducationSection() {
         {/* Left - Campus */}
         <div
           className="flex flex-col items-start text-left"
-          data-aos="fade-right">
+          data-aos="fade-right"
+        >
           <h3 className="text-2xl font-semibold">
             Amikom Yogyakarta University
           </h3>
@@ -96,7 +99,8 @@ export default function EducationSection() {
 
           <div
             className="flex flex-row gap-2 group w-full justify-center mt-6"
-            data-aos="fade-up">
+            data-aos="fade-up"
+          >
             {[0, 1, 2].map((idx) => {
               const isDesktop = !isMobileOrTablet;
               const hovered = hoverIndex !== null;
@@ -135,7 +139,8 @@ export default function EducationSection() {
                   onMouseEnter={() => isDesktop && setHoverIndex(idx)}
                   onMouseLeave={() => isDesktop && setHoverIndex(null)}
                   className={`relative h-60 rounded-xl overflow-hidden shadow-sm transition-all duration-300 cursor-pointer ${widthClass}`}
-                  style={{ ...style, transformOrigin }}>
+                  style={{ ...style, transformOrigin }}
+                >
                   <Image
                     src={`/img/campus${idx + 1}.jpg`}
                     alt={`Campus ${idx + 1}`}
@@ -146,8 +151,8 @@ export default function EducationSection() {
                           ? "grayscale-0"
                           : "grayscale"
                         : autoActiveIndex === idx
-                        ? "grayscale-0"
-                        : "grayscale"
+                          ? "grayscale-0"
+                          : "grayscale"
                     }`}
                   />
                 </div>
@@ -183,10 +188,12 @@ export default function EducationSection() {
               <motion.li
                 key={i}
                 className="bg-white shadow rounded-md cursor-pointer overflow-hidden transition-transform"
-                data-aos="fade-up">
+                data-aos="fade-up"
+              >
                 <button
                   onClick={() => toggleDropdown(i)}
-                  className="w-full flex justify-between items-center p-4 text-left group cursor-pointer">
+                  className="w-full flex justify-between items-center p-4 text-left group cursor-pointer"
+                >
                   <div className="flex items-center gap-3 flex-1 min-w-0">
                     <motion.div className="inline-flex items-center justify-center rounded-full p-3 bg-gray-100 group-hover:bg-yellow-100 transition-colors duration-300">
                       {React.cloneElement(icon, {
@@ -220,19 +227,22 @@ export default function EducationSection() {
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3 }}
-                      className="border-t bg-gray-50">
+                      className="border-t bg-gray-50"
+                    >
                       <div className="p-3 sm:p-4">
                         <div className="w-full h-[300px] sm:h-[400px] bg-gray-100 rounded-md overflow-hidden">
                           <iframe
                             src={pdf}
                             className="w-full h-full"
-                            title={`PDF - ${title}`}></iframe>
+                            title={`PDF - ${title}`}
+                          ></iframe>
                         </div>
                         <div className="mt-3 flex justify-center sm:justify-end">
                           <a
                             href={pdf}
                             download
-                            className="bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition text-sm sm:text-base w-full sm:w-auto text-center">
+                            className="bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition text-sm sm:text-base w-full sm:w-auto text-center"
+                          >
                             Download Certificate
                           </a>
                         </div>

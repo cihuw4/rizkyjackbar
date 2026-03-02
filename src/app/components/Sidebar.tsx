@@ -31,12 +31,12 @@ const sections = [
 export default function Sidebar() {
   const [activeSection, setActiveSection] = useState("home");
   const [hovered, setHovered] = useState<string | null>(null);
-  const [animations, setAnimations] = useState<any>({});
+  const [animations, setAnimations] = useState<Record<string, object>>({});
 
   // Load Lottie JSON dari public
   useEffect(() => {
     const loadAnimations = async () => {
-      const results: any = {};
+      const results: Record<string, object> = {};
 
       for (const section of sections) {
         if (section.animationPath) {
