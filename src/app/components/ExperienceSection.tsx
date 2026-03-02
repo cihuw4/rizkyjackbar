@@ -30,7 +30,7 @@ const experiences: ExperienceItem[] = [
     company: "Trans Retail Indonesia",
     description:
       "Developed and maintained internal web applications used by multiple departments to support daily business operations.",
-    dateInfo: "Oct 2025 | Present | Jakarta",
+    dateInfo: "Oct 2025 - Present | Jakarta",
     logo: "/transretail.png",
   },
   {
@@ -38,7 +38,7 @@ const experiences: ExperienceItem[] = [
     company: "Coding Collective Indonesia",
     description:
       "Developed and maintained web applications using React, Next.js, and WordPress, focusing on responsive design and seamless user experience.",
-    dateInfo: "May 2025 | August 2025 | Yogyakarta",
+    dateInfo: "May - August 2025 | Yogyakarta",
     logo: "/codingcollective_logo.webp",
   },
   {
