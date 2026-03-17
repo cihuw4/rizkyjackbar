@@ -40,7 +40,7 @@ export default function Projects() {
             width={320}
             height={450}
             onClick={handleImageClick}
-            className={`w-[320px] h-[450px] rounded-lg object-cover shadow-lg filter transition duration-500
+            className={`w-[380px] h-[450px] sm:max-w-[320px] rounded-lg object-cover shadow-lg filter transition duration-500
               ${isMobileOrTablet
                 ? isClicked ? "grayscale-0 cursor-pointer" : "grayscale cursor-pointer" : "grayscale hover:grayscale-0"
               }`}
@@ -62,7 +62,7 @@ export default function Projects() {
             data-aos-delay="300"
             className="text-base sm:text-lg text-gray-600 max-w-sm mx-auto md:mx-0 mb-8"
           >
-            I build web projects that focus on performance, accessibility, and
+            Build web projects that focus on performance, accessibility, and
             clean design.
           </p>
 

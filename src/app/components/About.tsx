@@ -40,7 +40,7 @@ export default function About() {
             width={320}
             height={450}
             onClick={handleImageClick}
-            className={`w-100 h-100 sm:w-120 sm:h-120 md:w-80 md:h-[450px] rounded-lg object-cover shadow-lg filter transition duration-500
+            className={`w-[380px] h-[450px] sm:max-w-[320px] rounded-lg object-cover shadow-lg filter transition duration-500
                             ${
                               isMobileOrTablet
                                 ? isClicked
@@ -67,7 +67,7 @@ export default function About() {
             data-aos-delay="300"
             className="text-base sm:text-lg text-gray-600 max-w-sm mx-auto md:mx-0 mb-8"
           >
-            Skilled in JavaScript, Next.js, and Tailwind CSS, I create
+            Skilled in JavaScript, Next.js, and Tailwind CSS, and create
             responsive and user-friendly web applications.
           </p>
 
