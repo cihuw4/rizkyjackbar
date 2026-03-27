@@ -31,10 +31,10 @@ export default function SkillsSection() {
   const skills = [
     {
       name: "Frontend Fundamentals",
-      icon: (active: boolean, hover: boolean) => (
+      icon: (active: boolean) => (
         <FaCode
           className="w-12 h-12 transition-colors duration-300"
-          style={{ color: active || hover ? "#FF7F50" : "#9CA3AF" }}
+          style={{ color: active ? "#FF7F50" : "#9CA3AF" }}
         />
       ),
       details: [
@@ -58,10 +58,10 @@ export default function SkillsSection() {
     },
     {
       name: "UI Frameworks",
-      icon: (active: boolean, hover: boolean) => (
+      icon: (active: boolean) => (
         <MdDashboardCustomize
           className="w-12 h-12 transition-colors duration-300"
-          style={{ color: active || hover ? "#9B5DE5" : "#9CA3AF" }}
+          style={{ color: active ? "#9B5DE5" : "#9CA3AF" }}
         />
       ),
       details: [
@@ -78,10 +78,10 @@ export default function SkillsSection() {
     },
     {
       name: "Frameworks & Libraries",
-      icon: (active: boolean, hover: boolean) => (
+      icon: (active: boolean) => (
         <FaReact
           className="w-12 h-12 transition-colors duration-300"
-          style={{ color: active || hover ? "#61DAFB" : "#9CA3AF" }}
+          style={{ color: active ? "#61DAFB" : "#9CA3AF" }}
         />
       ),
       details: [
@@ -101,10 +101,10 @@ export default function SkillsSection() {
     },
     {
       name: "Testing",
-      icon: (active: boolean, hover: boolean) => (
+      icon: (active: boolean) => (
         <VscBeaker
           className="w-12 h-12 transition-colors duration-300"
-          style={{ color: active || hover ? "#22C55E" : "#9CA3AF" }}
+          style={{ color: active ? "#22C55E" : "#9CA3AF" }}
         />
       ),
       details: [
@@ -143,11 +143,10 @@ export default function SkillsSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1, duration: 0.5, type: "spring" }}
-              whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.95 }}
-              className="flex flex-col items-center bg-white rounded-2xl shadow-md p-6 hover:shadow-xl transition duration-300 w-full cursor-pointer"
+              className={`flex flex-col items-center bg-white rounded-2xl p-6 transition duration-300 w-full cursor-pointer ${isActive ? "shadow-xl scale-105" : "shadow-md scale-100"}`}
             >
-              <div className="mb-4">{skill.icon(isActive, isHovered)}</div>
+              <div className="mb-4">{skill.icon(isActive)}</div>
               <p
                 className={`text-lg font-medium ${isActive ? "text-gray-900" : "text-gray-500"}`}
               >

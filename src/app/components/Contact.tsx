@@ -41,7 +41,7 @@ export default function Contact() {
             onClick={handleImageClick}
             width={320}
             height={450}
-            className={`w-[320px] h-[450px] sm:max-w-[320px] rounded-lg object-cover shadow-lg filter transition duration-500
+            className={`w-[380px] h-[450px] sm:max-w-[320px] rounded-lg object-cover shadow-lg filter transition duration-500
               ${
                 isMobileOrTablet
                   ? isClicked
