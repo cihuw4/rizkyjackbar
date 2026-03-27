@@ -25,7 +25,7 @@ export default function SkillsSection() {
   const [selectedSkill, setSelectedSkill] = useState<string>(
     "Frontend Fundamentals",
   );
-  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
+  // const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
   const skills = [
@@ -132,14 +132,11 @@ export default function SkillsSection() {
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
         {skills.map((skill, i) => {
           const isActive = selectedSkill === skill.name;
-          const isHovered = hoveredSkill === skill.name;
 
           return (
             <motion.button
               key={i}
               onClick={() => setSelectedSkill(skill.name)}
-              onMouseEnter={() => setHoveredSkill(skill.name)}
-              onMouseLeave={() => setHoveredSkill(null)}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1, duration: 0.5, type: "spring" }}
