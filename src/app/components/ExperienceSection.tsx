@@ -40,7 +40,7 @@ const experiences: ExperienceItem[] = [
     description:
       "Developed and maintained web applications using React, Next.js, and WordPress, focusing on responsive design and seamless user experience.",
     dateInfo: "May - August 2025 | Yogyakarta",
-    logo: "/codingcollective_logo.webp",
+    logo: "/img/codingcollective_logo.webp",
   },
   {
     title: "Teaching Assistant for Practicum",
@@ -48,7 +48,7 @@ const experiences: ExperienceItem[] = [
     description:
       "Assisted students in mastering Linux operating systems, providing technical guidance during lab sessions and grading assignments.",
     dateInfo: "Februari - Juli 2023 | Amikom Campus",
-    logo: "/amikom_logo.webp",
+    logo: "/img/amikom_logo.webp",
   },
 ];
 
