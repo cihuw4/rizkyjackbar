@@ -32,7 +32,7 @@ const experiences: ExperienceItem[] = [
     description:
       "Developed and maintained internal web applications used by multiple departments to support daily business operations.",
     dateInfo: "Oct 2025 - Present | Jakarta",
-    logo: "/transretail.png",
+    logo: "/img/transretail.png",
   },
   {
     title: "Frontend Developer Intern",
