@@ -77,7 +77,7 @@ export default function AboutSection() {
     <section className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-center px-4">
       <div
         data-aos="fade-right"
-        className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[400px] h-[420px] sm:h-[460px] md:h-[500px] mx-auto lg:mx-0"
+        className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[400px] h-[300px] sm:h-[340px] md:h-[380px] lg:h-[420px] mx-auto lg:mx-0"
       >
         {images.map(({ top, left, rotate, baseZ, src, alt }, index) => {
           const zIndexClass = activeIndex === index ? "z-30" : `z-[${baseZ}]`;
