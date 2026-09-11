@@ -3,6 +3,8 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import AOS from "aos";
+// AOS does not ship TypeScript declarations for its CSS side-effect import.
+// @ts-expect-error CSS imports are handled by Next.js at build time.
 import "aos/dist/aos.css";
 import {
   Timeline,
@@ -26,6 +28,14 @@ interface ExperienceItem {
 }
 
 const experiences: ExperienceItem[] = [
+  {
+    title: "Web Developer & Engineer Support",
+    company: "Joindo Eka Handal",
+    description:
+      "Developed and maintained web applications, integrated front-end systems with databases and APIs, and handled testing, debugging, performance optimization, and site maintenance.",
+    dateInfo: "Sep 2026 - Present | Jakarta",
+    logo: "/img/pt_joindo_eka_handal_logo.jpeg",
+  },
   {
     title: "Frontend Developer",
     company: "Trans Retail Indonesia",
