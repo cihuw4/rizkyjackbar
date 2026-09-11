@@ -38,7 +38,7 @@ const experiences: ExperienceItem[] = [
     company: "Trans Retail Indonesia",
     description:
       "Developed and maintained internal web applications used by multiple departments to support daily business operations.",
-    dateInfo: "Oct 2025 - Present | Jakarta",
+    dateInfo: "Oct 2025 - Apr 2026 | Jakarta",
     logo: "/img/transretail.png",
   },
   {
@@ -57,6 +57,14 @@ const experiences: ExperienceItem[] = [
     dateInfo: "Februari - Juli 2023 | Amikom Campus",
     logo: "/img/amikom_logo.webp",
   },
+  {
+    title: "Teaching & Educational Service",
+    company: "Darul Ma'arif Boarding School",
+    description:
+      "Completed a one-year teaching assignment as part of Gontor's graduation requirements, contributing to student education and supporting daily learning activities.",
+    dateInfo: "2020 - 2021 | Indramayu",
+    logo: "/img/logo_dm.png",
+},
 ];
 
 export default function ExperienceSection() {
