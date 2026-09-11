@@ -3,8 +3,6 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import AOS from "aos";
-// AOS does not ship TypeScript declarations for its CSS side-effect import.
-// @ts-expect-error CSS imports are handled by Next.js at build time.
 import "aos/dist/aos.css";
 import {
   Timeline,
@@ -18,7 +16,6 @@ import {
 import { Typography, useMediaQuery } from "@mui/material";
 import { FaBriefcase } from "react-icons/fa";
 import { useTheme } from "@mui/material/styles";
-
 interface ExperienceItem {
   title: string;
   company: string;
