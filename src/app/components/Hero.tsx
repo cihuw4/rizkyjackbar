@@ -27,7 +27,7 @@ export default function Hero() {
       id="home"
       className="flex flex-col-reverse md:flex-row items-center justify-center min-h-screen px-6 sm:px-10 md:px-16 py-16 sm:py-20"
     >
-      <div className="w-full max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-10 px-6 sm:px-10 md:px-16">
+      <div className="w-full max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-10 px-6 sm:px-10 md:px-16">
         {/* Left Side */}
         <div className="flex-1 text-center md:text-left">
           <h2
@@ -76,11 +76,7 @@ export default function Hero() {
         </div>
 
         {/* Right Side */}
-        <div
-          data-aos="fade-left"
-          data-aos-delay="500"
-          className="flex justify-center md:justify-end"
-        >
+        <div data-aos="fade-left" data-aos-delay="500">
           <Image
             src="/img/home_hero.webp"
             alt="Rizky Jackbar"
