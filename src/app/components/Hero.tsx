@@ -29,7 +29,7 @@ export default function Hero() {
     >
       <div className="w-full max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-10 px-6 sm:px-10 md:px-16">
         {/* Left Side */}
-        <div className="flex-1 text-center md:text-left">
+        <div className="flex-1 text-center lg:text-left">
           <h2
             data-aos="fade-right"
             data-aos-delay="100"
@@ -47,7 +47,7 @@ export default function Hero() {
           <p
             data-aos="fade-right"
             data-aos-delay="300"
-            className="text-base sm:text-lg text-gray-600 max-w-sm mx-auto md:mx-0"
+            className="text-base sm:text-lg text-gray-600 max-w-sm mx-auto lg:mx-0"
           >
             As a Frontend Developer dedicated to crafting seamless user
             interfaces and engaging digital experiences using modern web
@@ -57,7 +57,7 @@ export default function Hero() {
           <div
             data-aos="fade-right"
             data-aos-delay="400"
-            className="mt-8 flex justify-center md:justify-start gap-4"
+            className="mt-8 flex justify-center lg:justify-start gap-4"
           >
             <a
               href="/MuhammadRizky-CV.pdf"
@@ -83,7 +83,7 @@ export default function Hero() {
             width={450}
             height={450}
             onClick={handleImageClick}
-            className={`w-40 h-40 sm:w-120 sm:h-120 md:w-80 md:h-[450px] rounded-full object-cover shadow-lg max-w-full filter transition duration-500
+            className={`w-40 h-40 sm:w-120 sm:h-120 lg:w-80 lg:h-[450px] rounded-full object-cover shadow-lg max-w-full filter transition duration-500
                             ${
                               isMobileOrTablet
                                 ? isClicked
