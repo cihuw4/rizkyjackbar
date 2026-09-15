@@ -130,8 +130,6 @@ export default function Contact() {
               rel="noopener noreferrer"
               className="inline-block"
               data-aos="fade-up"
-              data-aos-delay="500"
-              data-aos-duration="800"
             >
               <Image
                 src="https://websitelaunches.com/badge/rizkyjackbar.com.svg"
