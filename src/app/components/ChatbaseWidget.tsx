@@ -23,3 +23,9 @@
 
 //   return null;
 // }
+
+"use client";
+
+export default function ChatbaseWidget() {
+  return null;
+}
