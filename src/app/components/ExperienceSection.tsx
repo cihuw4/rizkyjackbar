@@ -26,7 +26,7 @@ interface ExperienceItem {
 
 const experiences: ExperienceItem[] = [
   {
-    title: "Web Developer & Engineer Support",
+    title: "Junior Web Developer & RND",
     company: "Joindo Eka Handal",
     description:
       "Developed and maintained web applications, integrated front-end systems with databases and APIs, and handled testing, debugging, performance optimization, and site maintenance.",
@@ -64,7 +64,7 @@ const experiences: ExperienceItem[] = [
       "Completed a one-year teaching assignment as part of Gontor's graduation requirements, contributing to student education and supporting daily learning activities.",
     dateInfo: "2020 - 2021 | Indramayu",
     logo: "/img/logo_dm.png",
-},
+  },
 ];
 
 export default function ExperienceSection() {
