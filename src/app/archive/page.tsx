@@ -44,11 +44,10 @@ export default function ArchivePage() {
               onClick={() => setSelectedCategory(cat)}
               data-aos="fade-up"
               data-aos-delay={index * 100}
-              className={`px-4 py-2 rounded-full font-semibold transition ${
-                selectedCategory === cat
+              className={`px-4 py-2 rounded-full font-semibold transition ${selectedCategory === cat
                   ? "bg-gray-900 text-gray-100"
                   : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-              }`}
+                }`}
             >
               {cat}
             </button>

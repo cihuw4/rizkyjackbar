@@ -45,7 +45,7 @@ export default function ProjectsGrid({
             <button
               data-aos="fade-up"
               data-aos-delay={200}
-              className="px-6 py-3 bg-gray-900 text-white rounded-lg font-semibold hover:bg-gray-600 transition cursor-pointer"
+              className="btn-liquid-clear px-7 py-3 text-sm font-semibold"
             >
               View All
             </button>

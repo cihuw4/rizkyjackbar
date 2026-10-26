@@ -8,7 +8,7 @@ import QueteSection from "../components/QuoteSection";
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-gray-100 text-gray-900 px-6 sm:px-10 md:px-16 py-16 space-y-32">
+    <div className="min-h-screen bg-skylrk-clean text-gray-900 pt-28 sm:pt-32 md:pt-36 pb-20 px-6 sm:px-10 md:px-16 space-y-24 sm:space-y-32">
       <AboutSection />
       <SkillsSection />
       <ExperienceSection />

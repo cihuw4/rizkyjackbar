@@ -19,7 +19,7 @@ export default function ProjectsPage() {
   }, []);
 
   return (
-    <div>
+    <div className="min-h-screen bg-skylrk-clean text-gray-900">
       <ProjectsHero
         isMobileOrTablet={isMobileOrTablet}
         clickedImages={clickedImages}
