@@ -138,7 +138,7 @@ export default function ProjectsPage() {
           <div className="section-inner w-full px-6 py-10">
             <div className="max-w-4xl mx-auto text-center mb-6 sm:mb-8">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight">
-                Technologies & Tools
+                Tools & Technologies
               </h2>
               <p className="text-xs sm:text-sm md:text-base text-gray-600 mt-2 sm:mt-3 max-w-xl mx-auto">
                 Modern frontend libraries, frameworks, and tools used to build

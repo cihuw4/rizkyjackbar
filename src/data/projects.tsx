@@ -53,24 +53,7 @@ export const projects = [
     tech: [
       { icon: <SiPython />, color: "#3776AB" },
       { icon: <SiStreamlit />, color: "#FF4B3E" },
-      {
-        icon: (
-          <div
-            style={{
-              background:
-                "linear-gradient(135deg, #4285F4, #EA4335, #FBBC05, #34A853)",
-              borderRadius: "50%",
-              padding: "6px",
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <SiGooglecloud color="white" className="w-6 h-6" />
-          </div>
-        ),
-        color: "multi",
-      },
+      { icon: <SiGooglecloud />, color: "#4285F4" },
       { icon: <SiTailwindcss />, color: "#38BDF8" },
     ],
   },
