@@ -115,11 +115,53 @@ export default function GsapSwipeSlider() {
         preventDefault: true,
       });
 
-      // Initial slide entrance
-      gotoSection(0, 1);
+      const getTargetIndex = (id: string): number => {
+        const clean = id.toLowerCase().replace("#", "").trim();
+        if (clean === "home" || clean === "hero") return 0;
+        if (clean === "about") return 1;
+        if (clean === "projects" || clean === "project") return 2;
+        if (clean === "contact") return 3;
+        return -1;
+      };
+
+      const navigateToId = (targetId: string) => {
+        const targetIndex = getTargetIndex(targetId);
+        if (targetIndex !== -1 && targetIndex !== currentIndex) {
+          const dir = targetIndex > currentIndex ? 1 : -1;
+          gotoSection(targetIndex, dir);
+        }
+      };
+
+      const handleGoToSlide = (e: Event) => {
+        const customEvent = e as CustomEvent<{ id: string }>;
+        if (customEvent.detail?.id) {
+          navigateToId(customEvent.detail.id);
+        }
+      };
+
+      const handleHashChange = () => {
+        if (window.location.hash) {
+          navigateToId(window.location.hash);
+        }
+      };
+
+      window.addEventListener("go-to-slide", handleGoToSlide);
+      window.addEventListener("hashchange", handleHashChange);
+
+      // Initial slide entrance (check hash or default to 0)
+      let initialIndex = 0;
+      if (typeof window !== "undefined" && window.location.hash) {
+        const matchIdx = getTargetIndex(window.location.hash);
+        if (matchIdx !== -1) {
+          initialIndex = matchIdx;
+        }
+      }
+      gotoSection(initialIndex, 1);
 
       return () => {
         observer.kill();
+        window.removeEventListener("go-to-slide", handleGoToSlide);
+        window.removeEventListener("hashchange", handleHashChange);
       };
     }, containerRef);
 
@@ -132,12 +174,20 @@ export default function GsapSwipeSlider() {
       {/* Dot indicators / Slide pagination */}
       <div className="fixed right-6 sm:right-10 top-1/2 -translate-y-1/2 z-40 flex flex-col items-center gap-3">
         {slides.map((slide, idx) => (
-          <div
+          <button
             key={slide.id}
-            className={`transition-all duration-300 rounded-full ${activeIndex === idx
+            type="button"
+            onClick={() => {
+              window.dispatchEvent(
+                new CustomEvent("go-to-slide", { detail: { id: slide.id } }),
+              );
+            }}
+            aria-label={`Go to ${slide.label}`}
+            className={`transition-all duration-300 rounded-full cursor-pointer border-none outline-none ${
+              activeIndex === idx
                 ? "w-2.5 h-7 bg-gray-900 shadow-md"
                 : "w-2.5 h-2.5 bg-gray-400/50 hover:bg-gray-600"
-              }`}
+            }`}
           />
         ))}
       </div>

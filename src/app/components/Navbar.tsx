@@ -94,14 +94,12 @@ export default function Navbar() {
     if (hash) {
       e.preventDefault();
       if (pathname !== "/") {
-        router.push("/");
-        setTimeout(() => {
-          const element = document.getElementById(hash);
-          if (element) element.scrollIntoView({ behavior: "smooth" });
-        }, 100);
+        router.push(`/#${hash}`);
       } else {
-        const element = document.getElementById(hash);
-        if (element) element.scrollIntoView({ behavior: "smooth" });
+        window.dispatchEvent(
+          new CustomEvent("go-to-slide", { detail: { id: hash } }),
+        );
+        window.history.replaceState(null, "", `#${hash}`);
       }
     }
   };

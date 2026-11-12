@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { Mail } from "lucide-react";
+import { SiLinkedin, SiGithub } from "react-icons/si";
 
 const CONTACT_IMG_SRC = "/img/home_contact.webp";
 
@@ -93,13 +93,45 @@ export default function Contact({ onHoverImg, isActive }: ContactProps) {
           <div className="flex flex-col items-center md:items-start gap-4 mt-2 sm:mt-0">
             {/* 3 Social Icons */}
             <div className="flex gap-3 sm:gap-4">
-              {/* Email */}
+              {/* Gmail / Email */}
               <a
                 href="mailto:muhamadrizky62020@gmail.com?subject=Hello%20Rizky&body=Hi%20Rizky,%0A%0AI%20want%20to%20discuss%20a%20project%20with%20you."
                 aria-label="Send email to Muhammad Rizky"
-                className="btn-liquid-clear !p-0 w-12 h-12 flex items-center justify-center !rounded-full text-black hover:text-black transition"
+                className="group btn-liquid-clear !p-0 w-12 h-12 flex items-center justify-center !rounded-full transition duration-300 shadow-sm hover:shadow"
               >
-                <Mail className="w-5 h-5 text-black" />
+                <svg
+                  className="w-5 h-5 transition-transform duration-300 group-hover:scale-110"
+                  viewBox="50 85 412 350"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  {/* Left Blue Flap */}
+                  <path
+                    d="M158 391v-142l-82-63V361q0 30 30 30"
+                    fill="#4285F4"
+                  />
+                  {/* Red Center Fold */}
+                  <path
+                    d="M154 248l102 77l102-77v-98l-102 77l-102-77"
+                    fill="#EA4335"
+                  />
+                  {/* Right Green Flap */}
+                  <path
+                    d="M354 391v-142l82-63V361q0 30-30 30"
+                    fill="#34A853"
+                  />
+                  {/* Top-Left Dark Red Accent */}
+                  <path
+                    d="M76 188l82 63v-98l-30-23c-27-21-52 0-52 26"
+                    fill="#C5221F"
+                  />
+                  {/* Top-Right Yellow Accent */}
+                  <path
+                    d="M436 188l-82 63v-98l30-23c27-21 52 0 52 26"
+                    fill="#FBBC04"
+                  />
+                </svg>
               </a>
 
               {/* LinkedIn */}
@@ -108,15 +140,9 @@ export default function Contact({ onHoverImg, isActive }: ContactProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn Profile"
-                className="btn-liquid-clear !p-0 w-12 h-12 flex items-center justify-center !rounded-full text-black hover:text-black transition"
+                className="group btn-liquid-clear !p-0 w-12 h-12 flex items-center justify-center !rounded-full transition duration-300 shadow-sm hover:shadow"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5 fill-current text-black"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.27c-.966 0-1.75-.783-1.75-1.75s.784-1.75 1.75-1.75 1.75.783 1.75 1.75-.783 1.75-1.75 1.75zm13.5 11.27h-3v-5.5c0-1.38-1.12-2.5-2.5-2.5s-2.5 1.12-2.5 2.5v5.5h-3v-10h3v1.31c.756-1.096 2.16-1.81 3.5-1.81 2.481 0 4.5 2.019 4.5 4.5v6z" />
-                </svg>
+                <SiLinkedin className="w-5 h-5 text-[#0A66C2] group-hover:scale-110 transition-transform duration-300" />
               </a>
 
               {/* GitHub */}
@@ -125,15 +151,9 @@ export default function Contact({ onHoverImg, isActive }: ContactProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub Profile"
-                className="btn-liquid-clear !p-0 w-12 h-12 flex items-center justify-center !rounded-full text-black hover:text-black transition"
+                className="group btn-liquid-clear !p-0 w-12 h-12 flex items-center justify-center !rounded-full transition duration-300 shadow-sm hover:shadow"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5 fill-current text-black"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 0c-6.627 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.238 1.839 1.238 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.605-2.665-.304-5.466-1.332-5.466-5.931 0-1.31.468-2.381 1.235-3.221-.123-.303-.535-1.523-.117-3.176 0 0 1.008-.322 3.3 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.289-1.552 3.295-1.23 3.295-1.23.655 1.653.243 2.873 1.232 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.813 1.104.813 2.222v3.293c0 .321.218.694.825.576 4.765-1.589 8.199-6.084 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                </svg>
+                <SiGithub className="w-5 h-5 text-[#24292F] group-hover:scale-110 transition-transform duration-300" />
               </a>
             </div>
           </div>
