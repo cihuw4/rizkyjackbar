@@ -21,14 +21,14 @@ export default function ProjectsHero({
   const images = [
     {
       top: "top-4 sm:top-6 md:top-8 lg:top-12",
-      left: "left-[11%] md:left-0",
+      left: "left-[5%] md:left-0",
       rotateNum: -3,
       z: 0,
       src: "/img/project3.webp",
     },
     {
       top: "top-2 sm:top-3 md:top-4 lg:top-6",
-      left: "left-[15%] md:left-4 lg:left-8",
+      left: "left-[12%] md:left-4 lg:left-8",
       rotateNum: 2,
       z: 10,
       src: "/img/project1.webp",
@@ -108,10 +108,10 @@ export default function ProjectsHero({
 
   return (
     <div className="w-full h-full flex items-center justify-center py-4 sm:py-6 md:py-8 lg:py-12 bg-transparent text-gray-900">
-      <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 md:px-10 lg:px-12 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 items-center">
+      <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 md:px-10 lg:px-12 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-8 lg:gap-12 items-center">
         {/* Images Stack - Centered horizontally on mobile */}
         <div
-          className="relative w-full max-w-[260px] sm:max-w-[320px] md:max-w-[380px] lg:max-w-[480px] h-[150px] sm:h-[185px] md:h-[220px] lg:h-[270px] mx-auto mb-3 sm:mb-4 md:mb-0"
+          className="relative w-full max-w-[320px] sm:max-w-[360px] md:max-w-[400px] lg:max-w-[480px] h-[180px] sm:h-[210px] md:h-[235px] lg:h-[270px] mx-auto mb-6 sm:mb-8 md:mb-0"
           onMouseEnter={() => setIsHoveredStack(true)}
           onMouseLeave={() => {
             setIsHoveredStack(false);
@@ -133,7 +133,7 @@ export default function ProjectsHero({
                 variants={cardVariants}
                 animate={currentVariant}
                 className={`absolute ${img.top} ${img.left} rounded-2xl overflow-hidden shadow-xl ring-4 ring-white cursor-pointer select-none`}
-                style={{ width: "70%", aspectRatio: "16 / 9", willChange: "transform" }}
+                style={{ width: "76%", aspectRatio: "16 / 9", willChange: "transform" }}
                 whileTap={{
                   scale: 0.94,
                   transition: { duration: 0.1 },

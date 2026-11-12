@@ -148,7 +148,7 @@ export default function EducationSection() {
           </p>
 
           <ul className="space-y-3 mt-4 max-h-[540px] lg:max-h-[580px] overflow-y-auto pr-1.5 custom-scrollbar">
-            {achievementsData.map(({ icon, title, desc, pdf }, i) => {
+            {achievementsData.map(({ icon, title, desc, pdf, image }, i) => {
               const isOpen = openIndex === i;
 
               return (
@@ -195,7 +195,7 @@ export default function EducationSection() {
                     />
                   </button>
 
-                  {/* Dropdown PDF - Clean Accordion with smooth overflow clipping */}
+                  {/* Dropdown Certificate - Responsive & 100% Fit on Mobile */}
                   <AnimatePresence initial={false}>
                     {isOpen && (
                       <motion.div
@@ -220,12 +220,24 @@ export default function EducationSection() {
                         className="overflow-hidden border-t border-gray-100 bg-gray-50/70"
                       >
                         <div className="p-3 sm:p-4">
-                          <div className="w-full h-[260px] sm:h-[320px] bg-white rounded-lg border border-gray-200 overflow-hidden shadow-inner relative">
-                            <iframe
-                              src={pdf}
-                              className="w-full h-full border-0"
-                              title={`PDF - ${title}`}
-                            />
+                          {/* Certificate preview container - Auto fit in any mobile/desktop viewport */}
+                          <div className="w-full relative bg-gray-100 rounded-lg border border-gray-200 overflow-hidden shadow-inner group/cert">
+                            <a
+                              href={pdf}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="block relative w-full aspect-[4/3] sm:aspect-[1.414/1] cursor-pointer"
+                              title="Click to view full certificate PDF"
+                            >
+                              <Image
+                                src={image || pdf}
+                                alt={`Certificate - ${title}`}
+                                fill
+                                className="object-contain p-1 sm:p-2 group-hover/cert:scale-[1.01] transition-transform duration-300"
+                                sizes="(max-width: 640px) 100vw, 600px"
+                                priority
+                              />
+                            </a>
                           </div>
 
                           <div className="mt-3 flex flex-wrap items-center justify-between gap-2.5">

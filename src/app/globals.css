@@ -286,19 +286,22 @@ h6 {
   padding-bottom: 6rem;
 }
 
-/* Custom sleek scrollbar for internal lists */
+/* Custom sleek scrollbar - hidden/blended with background so it is invisible to users */
+.custom-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
 .custom-scrollbar::-webkit-scrollbar {
-  width: 5px;
+  display: none;
+  width: 0;
+  height: 0;
+  background: transparent;
 }
 .custom-scrollbar::-webkit-scrollbar-track {
   background: transparent;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.15);
-  border-radius: 9999px;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.3);
+  background: transparent;
 }
 
 /* =========================================

@@ -112,10 +112,10 @@ export default function AboutSection({
 
   return (
     <div className="w-full h-full flex items-center justify-center py-4 sm:py-6 md:py-8 lg:py-12 bg-transparent text-gray-900">
-      <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 md:px-10 lg:px-12 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 items-center">
+      <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 md:px-10 lg:px-12 grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 md:gap-8 lg:gap-12 items-center">
         {/* Images Stack - Matching ProjectsHero architecture */}
         <div
-          className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[400px] h-[240px] sm:h-[280px] md:h-[320px] lg:h-[360px] mx-auto mb-2 sm:mb-4 md:mb-0"
+          className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[400px] h-[260px] sm:h-[290px] md:h-[320px] lg:h-[360px] mx-auto mb-6 sm:mb-8 md:mb-0"
           onMouseEnter={() => setIsHoveredStack(true)}
           onMouseLeave={() => {
             setIsHoveredStack(false);
