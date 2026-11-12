@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   FaReact,
@@ -12,16 +13,19 @@ import {
 import { SiPython, SiWordpress } from "react-icons/si";
 
 interface TechLogosMarqueeProps {
-  isMobileOrTablet: boolean;
-  clickedIcons: boolean[];
-  setClickedIcons: React.Dispatch<React.SetStateAction<boolean[]>>;
+  isMobileOrTablet?: boolean;
+  clickedIcons?: boolean[];
+  setClickedIcons?: React.Dispatch<React.SetStateAction<boolean[]>>;
 }
 
 export default function TechLogosMarquee({
-  isMobileOrTablet,
-  clickedIcons,
-  setClickedIcons,
+  isMobileOrTablet = false,
+  clickedIcons: externalClicked,
+  setClickedIcons: externalSetClicked,
 }: TechLogosMarqueeProps) {
+  const [internalClicked, setInternalClicked] = useState<boolean[]>(new Array(16).fill(false));
+  const clickedIcons = externalClicked || internalClicked;
+  const setClickedIcons = externalSetClicked || setInternalClicked;
   const techs = [
     { icon: FaReact, color: "#61DBFB", name: "React" },
     { icon: FaJsSquare, color: "#F7DF1E", name: "JavaScript" },
@@ -54,10 +58,10 @@ export default function TechLogosMarquee({
   };
 
   return (
-    <section className="w-screen bg-gray-100 overflow-x-hidden py-6 mt-0 mb-16">
-      <div className="flex items-center h-full max-w-6xl mx-auto px-6 sm:px-10 md:px-16">
+    <div className="w-full overflow-hidden py-4 sm:py-6 bg-transparent">
+      <div className="flex items-center h-full max-w-6xl mx-auto px-2 sm:px-10 md:px-16">
         <motion.div
-          className="flex gap-10 min-w-max"
+          className="flex gap-3 sm:gap-6 md:gap-10 min-w-max"
           animate={{ x: ["0%", "-50%"] }}
           transition={{
             repeat: Infinity,
@@ -78,7 +82,7 @@ export default function TechLogosMarquee({
             return (
               <motion.div
                 key={idx}
-                className={`group flex flex-col items-center justify-center min-w-[120px] ${
+                className={`group flex flex-col items-center justify-center min-w-[64px] sm:min-w-[90px] md:min-w-[120px] ${
                   isMobileOrTablet ? "cursor-pointer" : "cursor-default"
                 }`}
                 initial={{ opacity: 0, y: 30 }}
@@ -104,8 +108,10 @@ export default function TechLogosMarquee({
                   color: isActive ? tech.color : "#A0AEC0",
                 }}
               >
-                <Icon size={50} />
-                <span className="mt-2 text-sm font-medium text-gray-700">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 flex items-center justify-center">
+                  <Icon className="w-full h-full" />
+                </div>
+                <span className="mt-1 sm:mt-2 text-[11px] sm:text-xs md:text-sm font-medium text-gray-700">
                   {tech.name}
                 </span>
               </motion.div>
@@ -113,6 +119,6 @@ export default function TechLogosMarquee({
           })}
         </motion.div>
       </div>
-    </section>
+    </div>
   );
 }

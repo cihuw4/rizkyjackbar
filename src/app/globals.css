@@ -21,12 +21,17 @@
   --font-horizon: "Horizon", sans-serif;
 }
 
+html {
+  overflow-y: scroll !important;
+  scrollbar-gutter: stable;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
   overflow-x: hidden;
-  scroll-behavior: smooth;
+  overflow-y: scroll !important;
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans, sans-serif);
@@ -213,4 +218,188 @@ h6 {
   justify-content: center;
   will-change: transform;
   background-color: #f7f7f8;
+}
+
+/* =========================================
+   GSAP SCROLLTRIGGER STACKING PANELS
+   ========================================= */
+.slides-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.slides-wrapper .section {
+  width: 100%;
+  height: calc(100vh - 4rem);
+  display: flex;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  will-change: transform, opacity;
+}
+
+.slides-wrapper .section-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.slides-wrapper .section-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.slides-wrapper .section-scrollable {
+  height: calc(100vh - 4rem);
+  overflow: hidden;
+}
+
+.slides-wrapper .section-scrollable .section-content {
+  align-items: flex-start;
+  height: 100%;
+}
+
+.slides-wrapper .section-scrollable .section-inner {
+  height: auto;
+  min-height: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: visible;
+  overflow-anchor: none;
+  padding-top: 1.5rem;
+  padding-bottom: 6rem;
+}
+
+/* Custom sleek scrollbar for internal lists */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 9999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* =========================================
+   GSAP FLIP ARCHIVE FILTER & GRID
+   ========================================= */
+.archive-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-anchor: none;
+}
+
+.archive-checkboxes {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.archive-tag-button {
+  align-items: center;
+  border: 1.5px solid rgba(0, 0, 0, 0.12);
+  border-radius: 9999px;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  justify-content: center;
+  padding: 0.45rem 1.35rem;
+  position: relative;
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.75);
+  color: #374151;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  overflow: hidden;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+}
+
+.archive-tag-button:hover {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.archive-tag-button input {
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.archive-tag-button .checked-overlay {
+  opacity: 0;
+  position: absolute;
+  inset: -1px;
+  background-color: #111827;
+  border-radius: 9999px;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.archive-tag-button input:checked + .checked-overlay {
+  opacity: 1;
+}
+
+.archive-box-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: calc(100vh - 14rem);
+  position: relative;
+  overflow-anchor: none;
+}
+
+.archive-box-container .item {
+  display: inline-flex;
+  width: 100%;
+  max-width: 380px;
+  height: 220px;
+  margin: 0.625rem;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .archive-box-container .item {
+    width: calc(50% - 1.25rem);
+    max-width: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .archive-box-container .item {
+    width: calc(33.333% - 1.25rem);
+    max-width: none;
+  }
 }

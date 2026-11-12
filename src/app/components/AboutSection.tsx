@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 export default function AboutSection() {
   const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
@@ -11,8 +9,6 @@ export default function AboutSection() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    AOS.init({ duration: 1000, once: true });
-
     const handleResize = () => {
       setIsMobileOrTablet(window.innerWidth < 1024);
     };
@@ -74,9 +70,8 @@ export default function AboutSection() {
   ];
 
   return (
-    <section className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-center px-4">
+    <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-center px-6 lg:px-12 py-8 sm:py-12 gap-8 lg:gap-12">
       <div
-        data-aos="fade-right"
         className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[400px] h-[300px] sm:h-[340px] md:h-[380px] lg:h-[420px] mx-auto lg:mx-0"
       >
         {images.map(({ top, left, rotate, baseZ, src, alt }, index) => {
@@ -125,20 +120,14 @@ export default function AboutSection() {
       </div>
 
       {/* Text Section */}
-      <div
-        data-aos="fade-left"
-        data-aos-duration="1000"
-        data-aos-delay="200"
-        data-aos-once="true"
-        className="flex flex-col justify-center text-left"
-      >
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+      <div className="flex flex-col justify-center text-left">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 tracking-tight">
           Who I Am ?
         </h1>
         <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed">
-          Hi, I&apos;m <span className="font-semibold">Muhammad Rizky</span>.
+          Hi, I&apos;m <span className="font-semibold text-gray-900">Muhammad Rizky</span>.
           I&apos;m a passionate{" "}
-          <span className="font-semibold">Frontend Developer</span> with a
+          <span className="font-semibold text-gray-900">Frontend Developer</span> with a
           strong focus on building clean, responsive, and interactive UI/UX. I
           specialize in JavaScript, Next.js, and Tailwind CSS.
           <br />
@@ -147,6 +136,6 @@ export default function AboutSection() {
           also deliver smooth performance and accessibility across all devices.
         </p>
       </div>
-    </section>
+    </div>
   );
 }

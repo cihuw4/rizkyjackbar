@@ -29,8 +29,6 @@ export default function FlipCard({
 
   return (
     <motion.div
-      data-aos="fade-up"
-      data-aos-delay={100 + delay}
       className="w-full aspect-video perspective"
       onClick={() => setIsFlipped(!isFlipped)}
       onMouseEnter={() => !isMobileOrTablet && setIsFlipped(true)}

@@ -118,123 +118,122 @@ export default function SkillsSection() {
   ];
 
   return (
-    <section className="max-w-6xl mx-auto text-center">
-      <motion.h2
-        className="text-3xl sm:text-4xl md:text-5xl font-bold mb-12"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
+    <div
+      className="w-full max-w-6xl mx-auto text-center py-6 sm:py-10 px-4 sm:px-6"
+      style={{ overflowAnchor: "none" }}
+    >
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-10 text-gray-900 tracking-tight">
         Skills & Expertise
-      </motion.h2>
+      </h2>
 
       {/* Skill Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
         {skills.map((skill, i) => {
           const isActive = selectedSkill === skill.name;
 
           return (
-            <motion.button
+            <button
               key={i}
+              type="button"
               onClick={() => setSelectedSkill(skill.name)}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1, duration: 0.5, type: "spring" }}
-              whileTap={{ scale: 0.95 }}
-              className={`flex flex-col items-center bg-white rounded-2xl p-6 transition duration-300 w-full cursor-pointer ${isActive ? "shadow-xl scale-105" : "shadow-md scale-100"}`}
+              className={`flex flex-col items-center justify-center bg-white rounded-2xl p-5 sm:p-6 transition-all duration-300 w-full h-full cursor-pointer select-none ${
+                isActive
+                  ? "shadow-xl ring-2 ring-gray-900/10 scale-105"
+                  : "shadow-md hover:shadow-lg scale-100"
+              }`}
             >
-              <div className="mb-4">{skill.icon(isActive)}</div>
+              <div className="mb-3 sm:mb-4">{skill.icon(isActive)}</div>
               <p
-                className={`text-lg font-medium ${isActive ? "text-gray-900" : "text-gray-500"}`}
+                className={`text-base sm:text-lg font-medium transition-colors duration-300 ${
+                  isActive ? "text-gray-900" : "text-gray-500"
+                }`}
               >
                 {skill.name}
               </p>
-            </motion.button>
+            </button>
           );
         })}
       </div>
 
-      {/* Skill Details */}
-      <AnimatePresence mode="wait">
-        {selectedSkill && (
-          <motion.div
-            key={selectedSkill}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4 }}
-            className="mt-10"
-          >
-            <h3 className="text-2xl font-semibold mb-4">Core Skills</h3>
-            <div className="flex flex-wrap justify-center gap-3 mb-8">
-              {skills
-                .find((s) => s.name === selectedSkill)
-                ?.details.map((item, idx) => {
-                  const IconComp = item.icon;
-                  return (
-                    <motion.span
-                      key={idx}
-                      onMouseEnter={() => setHoveredItem(item.name)}
-                      onMouseLeave={() => setHoveredItem(null)}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: idx * 0.05 }}
-                      className="flex items-center gap-2 px-4 py-2 bg-gray-200 text-gray-800 font-medium rounded-full shadow-sm hover:bg-gray-300 transition"
-                    >
-                      {IconComp && (
-                        <IconComp
-                          className="w-5 h-5 transition-colors duration-300"
-                          style={{
-                            color:
-                              hoveredItem === item.name
-                                ? item.color
-                                : "#6B7280",
-                          }}
-                        />
-                      )}
-                      {item.name}
-                    </motion.span>
-                  );
-                })}
-            </div>
+      {/* Skill Details - Fixed min-height container prevents any vertical height collapse or layout shifting */}
+      <div className="mt-8 sm:mt-10 min-h-[300px] sm:min-h-[240px] w-full flex flex-col items-center">
+        <AnimatePresence mode="wait">
+          {selectedSkill && (
+            <motion.div
+              key={selectedSkill}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="w-full"
+            >
+              <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-gray-900">
+                Core Skills
+              </h3>
+              <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3 mb-6 sm:mb-8">
+                {skills
+                  .find((s) => s.name === selectedSkill)
+                  ?.details.map((item, idx) => {
+                    const IconComp = item.icon;
+                    return (
+                      <span
+                        key={idx}
+                        onMouseEnter={() => setHoveredItem(item.name)}
+                        onMouseLeave={() => setHoveredItem(null)}
+                        className="flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 bg-gray-200 text-gray-800 text-xs sm:text-sm font-medium rounded-full shadow-sm hover:bg-gray-300 transition"
+                      >
+                        {IconComp && (
+                          <IconComp
+                            className="w-4 h-4 sm:w-5 sm:h-5 transition-colors duration-300"
+                            style={{
+                              color:
+                                hoveredItem === item.name
+                                  ? item.color
+                                  : "#6B7280",
+                            }}
+                          />
+                        )}
+                        {item.name}
+                      </span>
+                    );
+                  })}
+              </div>
 
-            <h3 className="text-2xl font-semibold mb-4">
-              Tools & Technologies
-            </h3>
-            <div className="flex flex-wrap justify-center gap-3">
-              {skills
-                .find((s) => s.name === selectedSkill)
-                ?.tools.map((tool, idx) => {
-                  const IconComp = tool.icon;
-                  return (
-                    <motion.span
-                      key={idx}
-                      onMouseEnter={() => setHoveredItem(tool.name)}
-                      onMouseLeave={() => setHoveredItem(null)}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: idx * 0.05 }}
-                      className="flex items-center gap-2 px-4 py-2 bg-gray-300 text-gray-900 font-medium rounded-full shadow-sm hover:bg-gray-400 transition"
-                    >
-                      {IconComp && (
-                        <IconComp
-                          className="w-5 h-5 transition-colors duration-300"
-                          style={{
-                            color:
-                              hoveredItem === tool.name
-                                ? tool.color
-                                : "#6B7280",
-                          }}
-                        />
-                      )}
-                      {tool.name}
-                    </motion.span>
-                  );
-                })}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </section>
+              <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-gray-900">
+                Tools & Technologies
+              </h3>
+              <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3">
+                {skills
+                  .find((s) => s.name === selectedSkill)
+                  ?.tools.map((tool, idx) => {
+                    const IconComp = tool.icon;
+                    return (
+                      <span
+                        key={idx}
+                        onMouseEnter={() => setHoveredItem(tool.name)}
+                        onMouseLeave={() => setHoveredItem(null)}
+                        className="flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 bg-gray-300 text-gray-900 text-xs sm:text-sm font-medium rounded-full shadow-sm hover:bg-gray-400 transition"
+                      >
+                        {IconComp && (
+                          <IconComp
+                            className="w-4 h-4 sm:w-5 sm:h-5 transition-colors duration-300"
+                            style={{
+                              color:
+                                hoveredItem === tool.name
+                                  ? tool.color
+                                  : "#6B7280",
+                            }}
+                          />
+                        )}
+                        {tool.name}
+                      </span>
+                    );
+                  })}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </div>
   );
 }
