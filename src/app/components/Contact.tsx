@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { SiGmail, SiLinkedin, SiGithub } from "react-icons/si";
+import { SiLinkedin, SiGithub } from "react-icons/si";
 
 const CONTACT_IMG_SRC = "/img/home_contact.webp";
 
@@ -99,15 +99,39 @@ export default function Contact({ onHoverImg, isActive }: ContactProps) {
                 aria-label="Send email to Muhammad Rizky"
                 className="group btn-liquid-clear !p-0 w-12 h-12 flex items-center justify-center !rounded-full transition duration-300 shadow-sm hover:shadow"
               >
-                <span
-                  style={{
-                    background:
-                      "linear-gradient(135deg, rgb(66, 133, 244), rgb(234, 67, 53), rgb(251, 188, 5), rgb(52, 168, 83))",
-                  }}
-                  className="w-[22px] h-[22px] rounded-full inline-flex items-center justify-center p-[3.5px] transition-transform duration-300 group-hover:scale-110 shadow-xs"
+                <svg
+                  className="w-5 h-5 transition-transform duration-300 group-hover:scale-110"
+                  viewBox="50 85 412 350"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
                 >
-                  <SiGmail className="w-full h-full text-white" />
-                </span>
+                  {/* Left Blue Flap */}
+                  <path
+                    d="M158 391v-142l-82-63V361q0 30 30 30"
+                    fill="#4285F4"
+                  />
+                  {/* Red Center Fold */}
+                  <path
+                    d="M154 248l102 77l102-77v-98l-102 77l-102-77"
+                    fill="#EA4335"
+                  />
+                  {/* Right Green Flap */}
+                  <path
+                    d="M354 391v-142l82-63V361q0 30-30 30"
+                    fill="#34A853"
+                  />
+                  {/* Top-Left Dark Red Accent */}
+                  <path
+                    d="M76 188l82 63v-98l-30-23c-27-21-52 0-52 26"
+                    fill="#C5221F"
+                  />
+                  {/* Top-Right Yellow Accent */}
+                  <path
+                    d="M436 188l-82 63v-98l30-23c27-21 52 0 52 26"
+                    fill="#FBBC04"
+                  />
+                </svg>
               </a>
 
               {/* LinkedIn */}

@@ -27,12 +27,12 @@ export default function TechLogosMarquee({
   const clickedIcons = externalClicked || internalClicked;
   const setClickedIcons = externalSetClicked || setInternalClicked;
   const techs = [
-    { icon: FaReact, color: "#61DBFB", name: "React" },
+    { icon: FaReact, color: "#61DAFB", name: "React" },
     { icon: FaJsSquare, color: "#F7DF1E", name: "JavaScript" },
-    { icon: FaHtml5, color: "#E34C26", name: "HTML5" },
-    { icon: FaCss3Alt, color: "#264DE4", name: "CSS3" },
-    { icon: FaNodeJs, color: "#3C873A", name: "Node.js" },
-    { icon: FaVuejs, color: "#42b883", name: "Vue.js" },
+    { icon: FaHtml5, color: "#E34F26", name: "HTML5" },
+    { icon: FaCss3Alt, color: "#1572B6", name: "CSS3" },
+    { icon: FaNodeJs, color: "#5FA04E", name: "Node.js" },
+    { icon: FaVuejs, color: "#4FC08D", name: "Vue.js" },
     { icon: SiPython, color: "#3776AB", name: "Python" },
     { icon: SiWordpress, color: "#21759B", name: "WordPress" },
   ];

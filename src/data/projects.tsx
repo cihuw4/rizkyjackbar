@@ -5,10 +5,10 @@ import {
   SiTailwindcss,
   SiNextdotjs,
   SiTypescript,
-  SiVite,
   SiStreamlit,
   SiGooglecloud,
 } from "react-icons/si";
+import ViteIcon from "../app/components/icons/ViteIcon";
 
 export const projects = [
   {
@@ -19,10 +19,10 @@ export const projects = [
     img: "/img/axiompay.webp",
     web: "https://axiompay.io",
     tech: [
-      { icon: <FaReact />, color: "#61DBFB" },
+      { icon: <FaReact />, color: "#61DAFB" },
       { icon: <SiTypescript />, color: "#3178C6" },
-      { icon: <FaCss3Alt />, color: "#264DE4" },
-      { icon: <SiTailwindcss />, color: "#38BDF8" },
+      { icon: <FaCss3Alt />, color: "#1572B6" },
+      { icon: <SiTailwindcss />, color: "#06B6D4" },
       { icon: <SiNextdotjs />, color: "#000000" },
     ],
   },
@@ -35,11 +35,11 @@ export const projects = [
     github: "https://github.com/cihuw4/fe_binar_final_project.git",
     web: "https://devacademy.vercel.app",
     tech: [
-      { icon: <FaReact />, color: "#61DBFB" },
-      { icon: <SiTailwindcss />, color: "#38BDF8" },
-      { icon: <SiVite />, color: "#646CFF" },
+      { icon: <FaReact />, color: "#61DAFB" },
+      { icon: <SiTailwindcss />, color: "#06B6D4" },
+      { icon: <ViteIcon />, color: "inherit" },
       { icon: <FaJsSquare />, color: "#F7DF1E" },
-      { icon: <FaCss3Alt />, color: "#264DE4" },
+      { icon: <FaCss3Alt />, color: "#1572B6" },
     ],
   },
   {
@@ -52,9 +52,9 @@ export const projects = [
     web: "https://stressbyjb.streamlit.app",
     tech: [
       { icon: <SiPython />, color: "#3776AB" },
-      { icon: <SiStreamlit />, color: "#FF4B3E" },
+      { icon: <SiStreamlit />, color: "#FF4B4B" },
       { icon: <SiGooglecloud />, color: "#4285F4" },
-      { icon: <SiTailwindcss />, color: "#38BDF8" },
+      { icon: <SiTailwindcss />, color: "#06B6D4" },
     ],
   },
   {
@@ -66,8 +66,8 @@ export const projects = [
     github: "https://github.com/cihuw4/furniro.git",
     web: "https://furnirowebapp.vercel.app/",
     tech: [
-      { icon: <FaReact />, color: "#61DBFB" },
-      { icon: <SiTailwindcss />, color: "#38BDF8" },
+      { icon: <FaReact />, color: "#61DAFB" },
+      { icon: <SiTailwindcss />, color: "#06B6D4" },
       { icon: <SiNextdotjs />, color: "#000000" },
     ],
   },
@@ -79,10 +79,10 @@ export const projects = [
     img: "/img/swiftx.webp",
     web: "https://swift-x.co/",
     tech: [
-      { icon: <FaReact />, color: "#61DBFB" },
+      { icon: <FaReact />, color: "#61DAFB" },
       { icon: <SiTypescript />, color: "#3178C6" },
-      { icon: <FaCss3Alt />, color: "#264DE4" },
-      { icon: <SiTailwindcss />, color: "#38BDF8" },
+      { icon: <FaCss3Alt />, color: "#1572B6" },
+      { icon: <SiTailwindcss />, color: "#06B6D4" },
       { icon: <SiNextdotjs />, color: "#000000" },
     ],
   },
@@ -94,10 +94,10 @@ export const projects = [
     img: "/img/8bacus.webp",
     web: "https://8bacuscorp.com/en",
     tech: [
-      { icon: <FaReact />, color: "#61DBFB" },
+      { icon: <FaReact />, color: "#61DAFB" },
       { icon: <SiTypescript />, color: "#3178C6" },
-      { icon: <FaCss3Alt />, color: "#264DE4" },
-      { icon: <SiTailwindcss />, color: "#38BDF8" },
+      { icon: <FaCss3Alt />, color: "#1572B6" },
+      { icon: <SiTailwindcss />, color: "#06B6D4" },
       { icon: <SiNextdotjs />, color: "#000000" },
     ],
   },
@@ -109,10 +109,10 @@ export const projects = [
     img: "/img/facerepublic.webp",
     web: "https://facerepublic.ae/",
     tech: [
-      { icon: <FaReact />, color: "#61DBFB" },
+      { icon: <FaReact />, color: "#61DAFB" },
       { icon: <SiTypescript />, color: "#3178C6" },
-      { icon: <FaCss3Alt />, color: "#264DE4" },
-      { icon: <SiTailwindcss />, color: "#38BDF8" },
+      { icon: <FaCss3Alt />, color: "#1572B6" },
+      { icon: <SiTailwindcss />, color: "#06B6D4" },
       { icon: <SiNextdotjs />, color: "#000000" },
     ],
   },
@@ -124,10 +124,10 @@ export const projects = [
     img: "/img/paybo.webp",
     web: "https://paybo.io/",
     tech: [
-      { icon: <FaReact />, color: "#61DBFB" },
+      { icon: <FaReact />, color: "#61DAFB" },
       { icon: <SiTypescript />, color: "#3178C6" },
-      { icon: <FaCss3Alt />, color: "#264DE4" },
-      { icon: <SiTailwindcss />, color: "#38BDF8" },
+      { icon: <FaCss3Alt />, color: "#1572B6" },
+      { icon: <SiTailwindcss />, color: "#06B6D4" },
       { icon: <SiNextdotjs />, color: "#000000" },
     ],
   },
@@ -140,8 +140,8 @@ export const projects = [
     github: "https://github.com/cihuw4/housedimsum.git",
     web: "https://housedimsum.vercel.app",
     tech: [
-      { icon: <FaHtml5 />, color: "#E34C26" },
-      { icon: <FaCss3Alt />, color: "#264DE4" },
+      { icon: <FaHtml5 />, color: "#E34F26" },
+      { icon: <FaCss3Alt />, color: "#1572B6" },
       { icon: <FaJsSquare />, color: "#F7DF1E" },
     ],
   },
@@ -154,7 +154,7 @@ export const projects = [
     github: "https://github.com/cihuw4/userDiopark.git",
     tech: [
       { icon: <SiWordpress />, color: "#21759B" },
-      { icon: <FaCss3Alt />, color: "#264DE4" },
+      { icon: <FaCss3Alt />, color: "#1572B6" },
       { icon: <FaJsSquare />, color: "#F7DF1E" },
     ],
   },

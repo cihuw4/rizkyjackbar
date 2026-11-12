@@ -212,7 +212,7 @@ export default function ArchivePage() {
                           href={project.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="hover:text-gray-900 transition-colors"
+                          className="hover:text-[#181717] transition-colors"
                           title="GitHub Repository"
                         >
                           <FaGithub size={17} />
@@ -223,7 +223,7 @@ export default function ArchivePage() {
                           href={project.web}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="hover:text-gray-900 transition-colors"
+                          className="hover:text-[#4285F4] transition-colors"
                           title="Live Demo"
                         >
                           <FaGlobe size={17} />

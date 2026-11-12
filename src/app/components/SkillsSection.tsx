@@ -7,19 +7,21 @@ import {
   SiTypescript,
   SiTailwindcss,
   SiBootstrap,
-  SiMaterialdesign,
   SiFigma,
   SiPostman,
-  SiVite,
   SiJest,
   SiJavascript,
   SiHtml5,
   SiCss3,
   SiTestinglibrary,
+  SiMui,
+  SiExpress,
+  SiGithubactions,
 } from "react-icons/si";
 import { MdDashboardCustomize } from "react-icons/md";
-import { VscBeaker } from "react-icons/vsc";
+import { VscBeaker, VscVscode } from "react-icons/vsc";
 import { motion, AnimatePresence } from "framer-motion";
+import ViteIcon from "./icons/ViteIcon";
 
 export default function SkillsSection() {
   const [selectedSkill, setSelectedSkill] = useState<string>(
@@ -34,7 +36,7 @@ export default function SkillsSection() {
       icon: (active: boolean) => (
         <FaCode
           className="w-12 h-12 transition-colors duration-300"
-          style={{ color: active ? "#FF7F50" : "#9CA3AF" }}
+          style={{ color: active ? "#E34F26" : "#9CA3AF" }}
         />
       ),
       details: [
@@ -46,12 +48,11 @@ export default function SkillsSection() {
         },
         { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
         { name: "DOM Manipulation", icon: FaCode, color: "#FF7F50" },
-        { name: "Web Accessibility", icon: SiTestinglibrary, color: "#4CAF50" },
+        { name: "Web Accessibility", icon: SiTestinglibrary, color: "#E33332" },
         { name: "SEO Basics", icon: FaCode, color: "#FF4500" },
       ],
       tools: [
-        { name: "VS Code", icon: FaCode, color: "#007ACC" },
-        // { name: "Chrome DevTools", icon: FaCode, color: "#4285F4" },
+        { name: "VS Code", icon: VscVscode, color: "#007ACC" },
         { name: "Git", icon: FaGitAlt, color: "#F05032" },
         { name: "Github", icon: FaGithub, color: "#181717" },
       ],
@@ -61,19 +62,16 @@ export default function SkillsSection() {
       icon: (active: boolean) => (
         <MdDashboardCustomize
           className="w-12 h-12 transition-colors duration-300"
-          style={{ color: active ? "#9B5DE5" : "#9CA3AF" }}
+          style={{ color: active ? "#06B6D4" : "#9CA3AF" }}
         />
       ),
       details: [
         { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
         { name: "Bootstrap", icon: SiBootstrap, color: "#7952B3" },
-        { name: "Material UI", icon: SiMaterialdesign, color: "#007FFF" },
-        // { name: "Chakra UI", icon: SiChakraui, color: "#319795" },
+        { name: "Material UI", icon: SiMui, color: "#007FFF" },
       ],
       tools: [
         { name: "Figma", icon: SiFigma, color: "#F24E1E" },
-        // { name: "Storybook", icon: SiStorybook, color: "#FF4785" },
-        // { name: "Framer Motion", icon: SiFramer, color: "#0055FF" },
       ],
     },
     {
@@ -88,15 +86,12 @@ export default function SkillsSection() {
         { name: "React.js", icon: FaReact, color: "#61DAFB" },
         { name: "Next.js", icon: SiNextdotjs, color: "#000000" },
         { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
-        { name: "Node.js", icon: FaNodeJs, color: "#339933" },
-        { name: "Express.js", icon: FaNodeJs, color: "#000000" },
-        // { name: "React Query", icon: FaReact, color: "#FF4154" },
-        // { name: "Vue.js", icon: FaVuejs, color: "#4FC08D" },
+        { name: "Node.js", icon: FaNodeJs, color: "#5FA04E" },
+        { name: "Express.js", icon: SiExpress, color: "#000000" },
       ],
       tools: [
         { name: "Postman", icon: SiPostman, color: "#FF6C37" },
-        { name: "Vite", icon: SiVite, color: "#646CFF" },
-        // { name: "Webpack", icon: SiWebpack, color: "#8DD6F9" },
+        { name: "Vite", icon: ViteIcon, color: "#FFA800" },
       ],
     },
     {
@@ -104,15 +99,15 @@ export default function SkillsSection() {
       icon: (active: boolean) => (
         <VscBeaker
           className="w-12 h-12 transition-colors duration-300"
-          style={{ color: active ? "#22C55E" : "#9CA3AF" }}
+          style={{ color: active ? "#C21325" : "#9CA3AF" }}
         />
       ),
       details: [
         { name: "Jest", icon: SiJest, color: "#C21325" },
-        { name: "React Testing Library", icon: FaReact, color: "#61DAFB" },
+        { name: "React Testing Library", icon: SiTestinglibrary, color: "#E33332" },
       ],
       tools: [
-        { name: "CI/CD (GitHub Actions)", icon: FaGithub, color: "#181717" },
+        { name: "CI/CD (GitHub Actions)", icon: SiGithubactions, color: "#2088FF" },
       ],
     },
   ];
