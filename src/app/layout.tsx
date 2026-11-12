@@ -25,6 +25,12 @@ const horizon = localFont({
   display: "swap",
 });
 
+const accidentalPresident = localFont({
+  src: "./fonts/accidental-president.ttf",
+  variable: "--font-accidental-president",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: {
     default: "Rizky | Portfolio",
@@ -46,7 +52,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${poppins.variable} ${manrope.variable} ${horizon.variable}`}
+      translate="no"
+      className={`${poppins.variable} ${manrope.variable} ${horizon.variable} ${accidentalPresident.variable}`}
+      suppressHydrationWarning
     >
       <body className="bg-gray-100 text-gray-900">
         <Navbar />

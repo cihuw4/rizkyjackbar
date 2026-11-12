@@ -47,14 +47,15 @@ export default function GsapSwipeSlider() {
       if (!sections.length) return;
 
       let currentIndex = -1;
-      const wrap = gsap.utils.wrap(0, sections.length);
       let animating = false;
 
       gsap.set(outerWrappers, { yPercent: 100 });
       gsap.set(innerWrappers, { yPercent: -100 });
 
       function gotoSection(index: number, direction: number) {
-        index = wrap(index);
+        if (index < 0 || index >= sections.length) return;
+        if (animating || index === currentIndex) return;
+
         animating = true;
         setActiveIndex(index);
 
@@ -136,8 +137,11 @@ export default function GsapSwipeSlider() {
       </div>
 
       {/* Slide number counter indicator in bottom-left */}
-      <div className="fixed bottom-6 left-6 sm:left-10 z-40 text-xs font-mono tracking-widest text-gray-400">
-        <span className="text-gray-900 font-bold">
+      <div
+        className="fixed bottom-6 left-6 sm:left-10 z-40 text-xs font-mono tracking-widest text-gray-400 notranslate"
+        translate="no"
+      >
+        <span className="text-gray-900 font-bold" suppressHydrationWarning>
           0{activeIndex + 1}
         </span>{" "}
         / 0{slides.length}
@@ -160,7 +164,7 @@ export default function GsapSwipeSlider() {
                     backgroundImage: `url(${hoverImgSrc || lastBgSrc})`,
                   }}
                 />
-                <div className="w-full h-full flex items-center justify-center overflow-y-auto px-4 z-10 relative">
+                <div className="w-full h-full flex items-center justify-center overflow-y-auto z-10 relative">
                   <Component
                     onHoverImg={handleHoverImg}
                     isActive={activeIndex === index}

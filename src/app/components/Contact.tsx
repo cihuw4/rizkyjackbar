@@ -49,9 +49,9 @@ export default function Contact({ onHoverImg, isActive }: ContactProps) {
   return (
     <section
       id="contact"
-      className="flex flex-col-reverse md:flex-row items-center justify-center min-h-[75vh] md:min-h-screen px-5 sm:px-10 md:px-16 py-10 sm:py-20 bg-transparent"
+      className="w-full flex items-center justify-center min-h-[75vh] md:min-h-screen py-10 sm:py-20 bg-transparent"
     >
-      <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-6 md:gap-12">
+      <div className="w-full max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-12">
         {/* Right side: Image */}
         <div
           data-aos="fade-left"
@@ -97,7 +97,7 @@ export default function Contact({ onHoverImg, isActive }: ContactProps) {
           <p
             data-aos="fade-right"
             data-aos-delay="300"
-            className="hidden sm:block text-sm sm:text-base md:text-lg text-gray-600 max-w-md mx-auto md:mx-0 mb-6 leading-relaxed"
+            className="hidden sm:block text-sm sm:text-base md:text-lg text-gray-600 max-w-xl lg:max-w-2xl mx-auto md:mx-0 mb-6 leading-relaxed"
           >
             Have a project in mind or just want to say hi? Feel free to get in touch!
           </p>
@@ -152,23 +152,6 @@ export default function Contact({ onHoverImg, isActive }: ContactProps) {
                 </svg>
               </a>
             </div>
-
-            {/* Website Launches Badge */}
-            <a
-              href="https://websitelaunches.com/site/rizkyjackbar.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block"
-              data-aos="fade-up"
-              data-aos-delay="400"
-            >
-              <Image
-                src="https://websitelaunches.com/badge/rizkyjackbar.com.svg"
-                alt="Established Online - Public launch record"
-                width={255}
-                height={55}
-              />
-            </a>
           </div>
         </div>
       </div>

@@ -6,7 +6,12 @@ module.exports = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        accidentalPresident: ["var(--font-accidental-president)", "sans-serif"],
+        horizon: ["var(--font-horizon)", "sans-serif"],
+      },
+    },
   },
   plugins: [],
 }
