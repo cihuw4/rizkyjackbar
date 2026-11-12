@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function QuoteSection() {
   const fullText =
-    "IImpossible is not a fact. It's an opinion. Impossible is not a declaration. It's a dare. Impossible is potential. Impossible is temporary. And impossible is nothing.";
+    "Impossible is not a fact. It's an opinion. Impossible is not a declaration. It's a dare. Impossible is potential. Impossible is temporary. And impossible is nothing.";
   const highlight = "And impossible is nothing.";
 
   const [displayedText, setDisplayedText] = useState("");

@@ -103,8 +103,14 @@ export default function GsapSwipeSlider() {
         target: containerRef.current || window,
         type: "wheel,touch,pointer",
         wheelSpeed: -1,
-        onDown: () => !animating && gotoSection(currentIndex - 1, -1),
-        onUp: () => !animating && gotoSection(currentIndex + 1, 1),
+        onDown: () =>
+          !animating &&
+          !document.body.classList.contains("scroll-locked") &&
+          gotoSection(currentIndex - 1, -1),
+        onUp: () =>
+          !animating &&
+          !document.body.classList.contains("scroll-locked") &&
+          gotoSection(currentIndex + 1, 1),
         tolerance: 15,
         preventDefault: true,
       });

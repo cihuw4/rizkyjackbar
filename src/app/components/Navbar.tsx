@@ -32,6 +32,25 @@ export default function Navbar() {
     }
   }, [isOpen]);
 
+  // Lock scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.documentElement.classList.add("scroll-locked");
+      document.body.classList.add("scroll-locked");
+
+      const preventTouch = (e: TouchEvent) => {
+        e.preventDefault();
+      };
+      window.addEventListener("touchmove", preventTouch, { passive: false });
+
+      return () => {
+        document.documentElement.classList.remove("scroll-locked");
+        document.body.classList.remove("scroll-locked");
+        window.removeEventListener("touchmove", preventTouch);
+      };
+    }
+  }, [isOpen]);
+
   useEffect(() => setLogoKey((prev) => prev + 1), [pathname]);
 
   const getMenuItems = (): MenuItem[] => {
@@ -89,8 +108,12 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
-        scrolled || isOpen ? "bg-white/30 backdrop-blur-md" : "bg-transparent"
+      className={`fixed top-0 left-0 w-full z-[999] transition-colors duration-300 ${
+        isOpen
+          ? "bg-transparent"
+          : scrolled
+            ? "bg-white/30 backdrop-blur-md"
+            : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between py-5 px-6 lg:px-12">
@@ -179,7 +202,7 @@ function HamburgerButton({
     <motion.button
       ref={buttonRef}
       onClick={() => setIsOpen(!isOpen)}
-      className="relative w-8 h-8 flex flex-col justify-center items-center gap-1.5 z-[60] cursor-pointer"
+      className="relative w-8 h-8 flex flex-col justify-center items-center gap-1.5 z-[1001] cursor-pointer"
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 50 }}
@@ -233,11 +256,18 @@ function MobileMenuOverlay({
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 h-screen w-screen bg-black/80 z-50 flex flex-col items-center justify-center gap-8 text-2xl font-semibold text-white"
+          className="fixed inset-0 h-screen w-screen bg-black/80 backdrop-blur-md z-[999] flex flex-col items-center justify-center gap-8 text-2xl font-semibold text-white select-none"
           initial={{ clipPath: `circle(0% at ${circleOrigin})` }}
           animate={{ clipPath: `circle(200% at ${circleOrigin})` }}
           exit={{ clipPath: `circle(0% at ${circleOrigin})` }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
+          onWheel={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+          onTouchMove={(e) => {
+            e.stopPropagation();
+          }}
         >
           {menuItems.map((item, i) => (
             <motion.div

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AboutSection from "../components/AboutSection";
@@ -12,7 +12,19 @@ import Link from "next/link";
 import { ArrowRight, Mail } from "lucide-react";
 
 export default function AboutPage() {
+  const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
+  const [clickedImages, setClickedImages] = useState([false, false, false]);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileOrTablet(window.innerWidth < 1024);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -101,7 +113,11 @@ export default function AboutPage() {
       <section className="section section-1 z-10 bg-[#fbfbfb] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border-b border-black/5">
         <div className="section-content">
           <div className="section-inner w-full">
-            <AboutSection />
+            <AboutSection
+              isMobileOrTablet={isMobileOrTablet}
+              clickedImages={clickedImages}
+              setClickedImages={setClickedImages}
+            />
           </div>
         </div>
       </section>

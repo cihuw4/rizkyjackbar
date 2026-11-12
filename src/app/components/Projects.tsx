@@ -52,11 +52,7 @@ export default function Projects({ onHoverImg, isActive }: ProjectsProps) {
       className="w-full flex items-center justify-center min-h-[75vh] md:min-h-screen py-10 sm:py-20 bg-transparent"
     >
       <div className="w-full max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-12">
-        <div
-          data-aos="fade-left"
-          data-aos-delay="100"
-          className="flex justify-center md:justify-end order-1 md:order-2 w-full md:w-auto"
-        >
+        <div className="flex justify-center md:justify-end order-1 md:order-2 w-full md:w-auto">
           <div
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -83,27 +79,17 @@ export default function Projects({ onHoverImg, isActive }: ProjectsProps) {
         </div>
 
         <div className="flex-1 text-center md:text-left order-2 md:order-1">
-          <h1
-            data-aos="fade-right"
-            data-aos-delay="200"
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 relative inline-block text-gray-900"
-          >
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 relative inline-block text-gray-900">
             Projects
             <span className="absolute left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 -bottom-1.5 w-12 h-1 bg-gradient-to-r from-pink-500 via-yellow-400 to-green-400 rounded-full animate-pulse"></span>
           </h1>
 
-          <p
-            data-aos="fade-right"
-            data-aos-delay="300"
-            className="hidden sm:block text-sm sm:text-base md:text-lg text-gray-600 max-w-xl lg:max-w-2xl mx-auto md:mx-0 mb-6 leading-relaxed"
-          >
+          <p className="hidden sm:block text-sm sm:text-base md:text-lg text-gray-600 max-w-xl lg:max-w-2xl mx-auto md:mx-0 mb-6 leading-relaxed">
             Selected web applications focused on performance, accessibility, and modern interfaces.
           </p>
 
           <div className="mt-2 sm:mt-0">
             <Link
-              data-aos="fade-right"
-              data-aos-delay="400"
               href="/projects"
               className="btn-liquid-clear text-xs sm:text-sm whitespace-nowrap"
             >

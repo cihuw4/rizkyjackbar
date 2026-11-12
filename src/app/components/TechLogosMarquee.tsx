@@ -62,12 +62,16 @@ export default function TechLogosMarquee({
       <div className="flex items-center h-full max-w-6xl mx-auto px-2 sm:px-10 md:px-16">
         <motion.div
           className="flex gap-3 sm:gap-6 md:gap-10 min-w-max"
-          animate={{ x: ["0%", "-50%"] }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, x: ["0%", "-50%"] }}
           transition={{
-            repeat: Infinity,
-            repeatType: "loop",
-            duration: 30,
-            ease: "linear",
+            opacity: { duration: 0.5 },
+            x: {
+              repeat: Infinity,
+              repeatType: "loop",
+              duration: 30,
+              ease: "linear",
+            },
           }}
           style={{
             willChange: "transform",
@@ -82,21 +86,15 @@ export default function TechLogosMarquee({
             return (
               <motion.div
                 key={idx}
-                className={`group flex flex-col items-center justify-center min-w-[64px] sm:min-w-[90px] md:min-w-[120px] ${
+                className={`group flex flex-col items-center justify-center min-w-[64px] sm:min-w-[90px] md:min-w-[120px] transition-colors duration-200 ${
                   isMobileOrTablet ? "cursor-pointer" : "cursor-default"
                 }`}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  delay: idx * 0.1,
-                  duration: 0.6,
-                  type: "spring",
-                }}
                 whileHover={
                   !isMobileOrTablet
                     ? {
-                        scale: 1.3,
+                        scale: 1.25,
                         color: tech.color,
+                        transition: { duration: 0.2 },
                       }
                     : {}
                 }

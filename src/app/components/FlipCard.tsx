@@ -38,13 +38,20 @@ export default function FlipCard({
       <motion.div
         className="relative w-full h-full rounded-2xl shadow-lg"
         animate={{ rotateY: isFlipped ? 180 : 0 }}
-        transition={{ duration: 0.8 }}
-        style={{ transformStyle: "preserve-3d" }}
+        transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+        style={{
+          transformStyle: "preserve-3d",
+          WebkitTransformStyle: "preserve-3d",
+          willChange: "transform",
+        }}
       >
         {/* Front */}
         <motion.div
           className="absolute w-full h-full backface-hidden rounded-2xl overflow-hidden"
-          style={{ backfaceVisibility: "hidden" }}
+          style={{
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
+          }}
         >
           <Image
             src={project.img}
@@ -60,7 +67,11 @@ export default function FlipCard({
 
         <motion.div
           className="absolute w-full h-full backface-hidden rounded-2xl bg-black bg-opacity-80 text-white flex flex-col justify-between p-4 sm:p-6 overflow-hidden"
-          style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+          style={{
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
+            transform: "rotateY(180deg)",
+          }}
         >
           <div className="overflow-hidden">
             <h3 className="text-lg sm:text-2xl font-semibold mb-2 truncate">

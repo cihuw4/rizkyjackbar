@@ -26,6 +26,12 @@ html {
   scrollbar-gutter: stable;
 }
 
+html.scroll-locked,
+body.scroll-locked {
+  overflow: hidden !important;
+  touch-action: none;
+}
+
 html,
 body {
   padding: 0;

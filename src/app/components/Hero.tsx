@@ -61,28 +61,18 @@ export default function Hero({ onHoverImg, isActive = true }: HeroProps) {
       <div className="w-full max-w-7xl mx-auto px-6 lg:px-12 flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-12">
         {/* Left Side */}
         <div className="flex-1 text-center md:text-left">
-          <h2
-            data-aos="fade-right"
-            data-aos-delay="100"
-            className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-gray-500 mb-1 tracking-widest uppercase font-accidentalPresident"
-          >Muhammad Rizky</h2>
-          <h1
-            data-aos="fade-right"
-            data-aos-delay="200"
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-2 sm:mb-4 text-gray-900 md:-ml-1"
-          >Frontend Developer</h1>
+          <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-gray-500 mb-1 tracking-widest uppercase font-accidentalPresident">
+            Muhammad Rizky
+          </h2>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-2 sm:mb-4 text-gray-900 md:-ml-1">
+            Frontend Developer
+          </h1>
 
-          <p
-            data-aos="fade-right"
-            data-aos-delay="300"
-            className="hidden sm:block text-sm sm:text-base md:text-lg text-gray-600 max-w-xl lg:max-w-2xl mx-auto md:mx-0 leading-relaxed mb-6"
-          >Crafting seamless user interfaces and engaging digital experiences using modern web technologies.</p>
+          <p className="hidden sm:block text-sm sm:text-base md:text-lg text-gray-600 max-w-xl lg:max-w-2xl mx-auto md:mx-0 leading-relaxed mb-6">
+            Crafting seamless user interfaces and engaging digital experiences using modern web technologies.
+          </p>
 
-          <div
-            data-aos="fade-right"
-            data-aos-delay="400"
-            className="mt-4 sm:mt-8 flex justify-center md:justify-start gap-3 sm:gap-4"
-          >
+          <div className="mt-4 sm:mt-8 flex justify-center md:justify-start gap-3 sm:gap-4">
             <a
               href="/MuhammadRizky-CV.pdf"
               download
