@@ -17,14 +17,14 @@ export default function QuoteSection() {
   const blinkIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const startTyping = () => {
-    let currentIndex = 0;
+    let currentLength = 0;
     setDisplayedText("");
     setIsTypingDone(false);
     if (typingIntervalRef.current) clearInterval(typingIntervalRef.current);
     typingIntervalRef.current = setInterval(() => {
-      setDisplayedText((prev) => prev + fullText[currentIndex]);
-      currentIndex++;
-      if (currentIndex >= fullText.length) {
+      currentLength++;
+      setDisplayedText(fullText.slice(0, currentLength));
+      if (currentLength >= fullText.length) {
         if (typingIntervalRef.current) clearInterval(typingIntervalRef.current);
         setIsTypingDone(true);
       }
@@ -90,7 +90,7 @@ export default function QuoteSection() {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="text-xl sm:text-2xl md:text-3xl font-semibold italic text-gray-700 whitespace-pre-wrap relative inline-block"
+        className="text-xl sm:text-2xl md:text-3xl font-semibold italic text-gray-700 whitespace-pre-wrap relative inline-block px-1"
       >
         {displayedText.includes(highlight) ? (
           <>
@@ -105,8 +105,9 @@ export default function QuoteSection() {
                 initial={{ width: 0 }}
                 animate={{ width: isTypingDone ? "100%" : 0 }}
                 transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
-                className="absolute top-0 left-0 h-full text-yellow-500 overflow-hidden whitespace-nowrap"
-                style={{ pointerEvents: "none" }}
+                className="absolute top-0 left-0 h-full text-yellow-500 overflow-hidden whitespace-nowrap select-none"
+                style={{ pointerEvents: "none", userSelect: "none" }}
+                aria-hidden="true"
               >
                 {highlight}
               </motion.span>
